@@ -38,3 +38,40 @@ for index, row in enumerate(cropped_array):
 
 print(non_white_pixels)
 print(pixel_values)
+
+
+"""get the start and end coords"""
+
+height_coords = []
+for i in range(len(pixel_values) - 1):
+    height_coords.append(
+        (pixel_values[i] - 10, pixel_values[i + 1] - 10)
+    )
+
+print(height_coords)
+
+
+def crop_questions(image, coordinates: list[tuple]):
+    questions = []
+    # image = Image.open(image)
+    for (start, end) in coordinates:
+        question = image.crop((0, start, image.width, end))
+        questions.append(question)
+    return questions
+
+def remove_excess_whitespace(images: list):
+    out = []
+    for image in images:
+        mask = image.point(lambda p: p < 128)
+        bbox = mask.getbbox()
+        if bbox: image.crop(bbox)
+        out.append(image)
+    return out
+
+
+out = crop_questions(image, height_coords)
+for i in out: print(i.height)
+out2 = remove_excess_whitespace(out)
+for i in out2: print(i.height)
+
+

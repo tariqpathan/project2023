@@ -1,3 +1,13 @@
+"""
+imagegenerator.py is designed to convert a pdf and convert it to a series of jpegs
+This is a test version.
+Some of the changes that need to be implemented are:
+1) Apply a proper naming structure to the files
+2) Print out a success/update message when conversion is complete
+3) Think about how this hooks into the whole software structure
+4) Once the process is complete - how would cleanup looklike
+5) What about recovery/backup options in case something goes wrong?
+"""
 import os
 from pathlib import Path
 from pdf2image import convert_from_path

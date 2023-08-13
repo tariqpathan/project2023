@@ -60,18 +60,48 @@ def crop_questions(image, coordinates: list[tuple]):
     return questions
 
 def remove_excess_whitespace(images: list):
+    print(f'length of images  {len(images)}')
     out = []
     for image in images:
-        mask = image.point(lambda p: p < 128)
-        bbox = mask.getbbox()
-        if bbox: image.crop(bbox)
-        out.append(image)
+        out.append(remove_vertical_whitespace(image))
     return out
+
+def remove_vertical_whitespace(i):
+    image = get_grayscale_image(i)
+    data = np.array(image)
+    min_values = data.min(axis=1)
+    
+    # Find the first and last occurrence of a value less than the threshold
+    non_white_rows = np.where(min_values < 128)[0]
+    if non_white_rows.size == 0:
+        print("No content detected in the image.")
+        return
+
+    top = non_white_rows[0]
+    bottom = non_white_rows[-1]
+
+    # Crop the image
+    cropped = image.crop((0, top, image.width, bottom + 1))
+
+    # Save the cropped image
+    return cropped
+
+
+def get_grayscale_image(image):
+    if image.mode != 'L':
+        image = image.convert('L')
+    return image
 
 
 out = crop_questions(image, height_coords)
-for i in out: print(i.height)
+for i in out: 
+    print(i.height)
+    # i.show()
+
 out2 = remove_excess_whitespace(out)
-for i in out2: print(i.height)
+print(f'length of out2: {len(out2)}')
+for i in out2: 
+    print(i.height)
+    i.show()
 
 

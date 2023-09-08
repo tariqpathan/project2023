@@ -1,6 +1,7 @@
 import json
 import numpy as np
 import pytesseract
+import re
 from PIL import Image, ImageDraw
 from pdfPageToQuestion import ConfigValidator, PageProcessor, QuestionMetadata
 from typing import Dict, List, Tuple
@@ -56,7 +57,7 @@ class QuestionExtractor(PageProcessor):
         thresh = self.config["binary_threshold"]
         return image.point(lambda x: 0 if x < thresh else 255, "1")
     
-    def create_image_arrays(self, binary_image: Image.Image) -> Dict[str: np.ndarray]:
+    def create_image_arrays(self, binary_image: Image.Image) -> Dict: #[str: np.ndarray]:
         ystart, yend = 0, self.image_height
         xstart, x_question_end = self.image_width
         x_margin_start, x_margin_end = self.margin
@@ -111,3 +112,28 @@ class QuestionDetail(QuestionMetadata):
         draw = ImageDraw.Draw(modified_image)
         draw.rectangle(coords, fill="white")
         return modified_image
+
+class ExamPaperDetails():
+
+    def get_subjects(self):
+        self.subjects = ["BIOLOGY", "CHEMISTRY", "PHYSICS"]
+    
+    def extract_text(self, image: Image.Image):
+        text = pytesseract.image_to_string(image)
+        return text
+    
+    def extract_unit_code(self, text):
+        match = re.search(r'([A-Z\s]+)\s(\d{4}/\d{2})', text)
+        return match
+
+    def process(self, image):
+        self.get_subjects()
+        text = self.extract_text(image)
+        match = self.extract_unit_code(text)
+        return match
+
+if __name__=="__main__":
+    i = Image.open('test-page0.jpg')
+    t = ExamPaperDetails()
+    out = t.process(i)
+    print(out)

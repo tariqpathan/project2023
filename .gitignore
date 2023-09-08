@@ -1,4 +1,5 @@
 project-env
 *.jpg
 test.pdf
+test*
 scratch.py

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-class PDFPageToQuestion(ABC):
+class PageProcessor(ABC):
     @abstractmethod
     def process(self, image) -> List:
         pass

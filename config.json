@@ -2,6 +2,8 @@
 
     "cambridge_science": {
 
+        "subjects": [],
+
         "questionExtractor": {
 
             "binary_threshold": 180,

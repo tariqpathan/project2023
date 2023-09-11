@@ -13,9 +13,10 @@ import PyPDF4
 from pathlib import Path
 from pdf2image import convert_from_path
 from PIL import Image
+import re
 
 dir_path = Path(__file__).parent.parent
-file_location = "test.pdf"
+file_location = "test-answers.pdf"
 pdf_path = os.path.join(dir_path, file_location)
 print(pdf_path)
 
@@ -34,9 +35,9 @@ def get_image_details():
 def convert_test():
     pdf_images = convert_from_path(pdf_path)
     for i, image in enumerate(pdf_images):
-        image.save(f'test-page{i}.jpg', 'JPEG')
+        image.save(f'test-answers-page{i}.jpg', 'JPEG')
 
-if __name__ == "__main__":
+def process_details():
     w, h = get_pdf_details()
     print(f'width: {w}, height: {h}')
 
@@ -46,3 +47,40 @@ if __name__ == "__main__":
     factorh = float(ih/h)
     factorw = float(iw/w)
     print(factorh, factorw)
+
+def get_text_from_answers():
+    with open(pdf_path, "rb") as f:
+        reader = PyPDF4.PdfFileReader(f)
+        print(f'No. of pages: {reader.getNumPages()}')
+        first_page = reader.getPage(0).extractText()
+        answer_page_one(first_page)
+        page_content = reader.getPage(1).extractText()
+
+    return page_content
+
+def answer_page_one(text):
+    code_pattern = re.compile(r'(\d{4})/(\d{2})')
+    code_match = code_pattern.search(text)
+    subject_code, component_code = code_match.groups() if code_match else (None, None)
+    print(subject_code, component_code)
+
+def get_answer_details(text):
+    options = set(['A', 'B', 'C', 'D'])
+    answers = {}
+    lines = [t.strip() for t in text.split("\n")]
+    i = 0
+    while i < len(lines) - 2:  # Ensuring we don't overrun the list
+        line = lines[i]    
+        if line.isdigit() and line.isdigit() and lines[i+1] in options:
+            num = int(line)
+            answers[num] = lines[i+1]
+        i += 1
+    return answers
+        
+def process_answers_pdf():
+    text = get_text_from_answers()
+    res = get_answer_details(text)
+    print(res)
+
+if __name__ == "__main__":
+    process_answers_pdf()

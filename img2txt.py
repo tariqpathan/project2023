@@ -6,7 +6,7 @@ import pytesseract
 import numpy as np
 
 dir_path = Path(__file__).parent
-file_location = "test-page0.jpg"
+file_location = "test-answers-page1.jpg"
 img_path = os.path.join(dir_path, file_location)
 
 print(img_path)
@@ -27,7 +27,7 @@ image = Image.open(img_path)
 # eroded = cv2.erode(thresh, kernel, iterations = 2)
 # dilated = cv2.dilate(thresh, kernel, iterations = 2)
 
-text = pytesseract.image_to_string(image, config='--psm 1')
+text = pytesseract.image_to_string(image, config='--psm 3')
 
 # cv2.imshow('CV2 Image', eroded)
 # cv2.waitKey(2000)

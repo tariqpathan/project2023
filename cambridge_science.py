@@ -124,13 +124,30 @@ class ExamPaperDetails():
     
     def extract_unit_code(self, text):
         match = re.search(r'([A-Z\s]+)\s(\d{4}/\d{2})', text)
-        return match
+        subject = match.group(1).strip()
+        unit_code = match.group(2)
+        return (subject, unit_code)
+
+    def extract_date(self, text):
+        months = "January|February|March|April|May|June|July|August|September|October|November|December"
+        date_pattern = fr'(?P<month1>{months})/(?P<month2>{months})\s+(?P<year>\d{{4}})'
+        date_match = re.search(date_pattern, text)
+
+        if date_match:
+            date = f"{date_match.group('month1')}/{date_match.group('month2')} {date_match.group('year')}"
+
+        return date if date_match else None
+
+
 
     def process(self, image):
         self.get_subjects()
         text = self.extract_text(image)
-        match = self.extract_unit_code(text)
-        return match
+        subject = self.extract_unit_code(text)
+        date = self.extract_date(text).split()
+        date_dict = {"month": date[0], "year": int(date[1])}
+
+        return (subject, date_dict)
 
 if __name__=="__main__":
     i = Image.open('test-page0.jpg')

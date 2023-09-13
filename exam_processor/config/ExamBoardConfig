@@ -1,0 +1,21 @@
+import json
+
+class ExamBoardConfig:
+    def __init__(self, config_path):
+        with open(config_path, 'r') as f:
+            self.config_data = json.load(f)
+
+    def get_config_for_board(self, board_name: str):
+        """Returns the configuration for a specific board or raises an exception."""
+        try:
+            return self.config_data[board_name]
+        except KeyError:
+            raise ValueError(f"No configuration found for board: {board_name}")
+
+    def validate_presence_of_keys(self, section: str, required_keys: set):
+        """Validate the presence of required keys for a specific section."""
+        if section not in self.config_data:
+            raise ValueError(f"Configuration section '{section}' not found.")
+        if not required_keys.issubset(self.config_data[section].keys()):
+            missing_keys = required_keys - self.config_data[section].keys()
+            raise ValueError(f"Missing configuration keys in section '{section}': {', '.join(missing_keys)}")

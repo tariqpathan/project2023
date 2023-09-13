@@ -1,19 +1,7 @@
 from PIL import Image, ImageDraw
 import numpy as np
-import pytesseract
 from typing import Tuple
 
-def get_text_from_image(image: Image, psm_mode: int=3) -> str:
-    """Extracts text from an image"""
-    text = pytesseract.image_to_string(image, config=f'--psm {psm_mode}')
-    return text.strip()
-
-def get_number_from_image(image: Image, psm_mode:int=3) -> int:
-    """Extracts a number from image or else returns None"""
-    text = get_text_from_image(image, psm_mode)
-    if text.isdigit():
-        return int(text)
-    return None
 
 def overwrite_image(image: Image.Image, coords: Tuple[int, int, int, int]) -> Image.Image:
     """Overlays a white box on given image with provided coords"""

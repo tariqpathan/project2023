@@ -23,10 +23,21 @@ print(pdf_path)
 def get_pdf_details():
     with open(pdf_path, "rb") as f:
         reader = PyPDF4.PdfFileReader(f)
-        page = reader.getPage(0)  # get the first page
+        page = reader.getPage(1)
+        print(reader.getFields())  # get the first page
         media_box = page.mediaBox
         width, height = media_box.upperRight
-        return width, height
+        # return width, height
+        meta = reader.xmpMetadata
+        return meta
+
+def get_meta():
+    with open(pdf_path, 'rb') as f:
+        reader = PyPDF4.PdfFileReader(f)
+        info = reader.getDocumentInfo()
+        print(info["/Title"])
+        print('**end**')
+
 
 def get_image_details():
     image = Image.open('test-page0.jpg')
@@ -83,4 +94,4 @@ def process_answers_pdf():
     print(res)
 
 if __name__ == "__main__":
-    process_answers_pdf()
+    get_pdf_details()

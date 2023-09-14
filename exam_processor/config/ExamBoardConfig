@@ -19,3 +19,86 @@ class ExamBoardConfig:
         if not required_keys.issubset(self.config_data[section].keys()):
             missing_keys = required_keys - self.config_data[section].keys()
             raise ValueError(f"Missing configuration keys in section '{section}': {', '.join(missing_keys)}")
+
+
+
+class ExamBoardConfig:
+    def __init__(self, config_path: str):
+        with open(config_path, 'r') as f:
+            self.config_data = json.load(f)
+
+    def get_config(self, exam_board: str, config_type: str) -> dict:
+        """Retrieves the config for a specified exam board and type. 
+        If some keys are missing, it fills in from the default configuration."""
+        
+        config = self.config_data.get(exam_board, {}).get(config_type, {})
+        self.validate_and_fill_defaults(config, config_type)
+        return config
+
+    def validate_and_fill_defaults(self, config: dict, config_type: str):
+        """Validates the configuration and fills in missing keys from default settings."""
+        
+        default_config = DEFAULT_CONFIG.get(config_type, {})
+
+        # Loop through all the keys in default config
+        for key, default_value in default_config.items():
+            if key not in config:
+                config[key] = default_value
+                print(f"Warning: Using default value for {key}.")
+
+        # Optionally: Validate any other constraints (e.g., if value ranges are as expected)
+        # This can be added later as needed.
+
+import json
+
+class ExamBoardConfig:
+    def __init__(self, config_path: str, default_config_path="default_config.json", required_keys_path="required_keys.json"):
+        with open(config_path, 'r') as f:
+            self.config_data = json.load(f)
+            
+        with open(default_config_path, 'r') as f:
+            self.default_config = json.load(f)
+            
+        with open(required_keys_path, 'r') as f:
+            self.required_keys = json.load(f)
+
+    def get_config(self, exam_board: str, config_type: str) -> dict:
+        """Retrieves the config for a specified exam board and type. 
+        If some keys are missing, it fills in from the default configuration."""
+        
+        config = self.config_data.get(exam_board, {}).get(config_type, {})
+        self.validate_and_fill_defaults(config, config_type)
+        return config
+
+    def validate_and_fill_defaults(self, config: dict, config_type: str):
+        """Validates the configuration and fills in missing keys from default settings."""
+        
+        default_config = self.default_config.get(config_type, {})
+
+        # Loop through all the keys in required keys list
+        for key in self.required_keys.get(config_type, []):
+            if key not in config:
+                if key in default_config:
+                    config[key] = default_config[key]
+                    print(f"Warning: Using default value for {key}.")
+                else:
+                    raise ValueError(f"Missing key: {key} and no default value found!")
+
+        # Optionally: Validate any other constraints (e.g., if value ranges are as expected)
+        # This can be added later as needed.
+
+DEFAULT_CONFIG = {
+    "questionExtractor": {
+        "binary_threshold": 180,
+        "margin_start": 0,
+        "margin_end": 180,
+        "padding": 50,
+        "footer_height": 120,
+        "whitespace_threshold": 128
+    },
+    "questionDetail": {
+        "question_x_start": 100,
+        "question_x_end": 190,
+        "tesseract_psm_mode": 7
+    }
+}

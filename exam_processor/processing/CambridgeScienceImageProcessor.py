@@ -1,30 +1,12 @@
-from abc import ABC, abstractmethod
 from PIL import Image, ImageDraw
-
-class AbstractImageProcessor(ABC):
-    
-    @abstractmethod
-    def process(self, image: Image.Image) -> Image.Image:
-        pass
-    
-    @staticmethod
-    def convert_to_grayscale_image(image:Image.Image) -> Image.Image:
-        """Converts image to grayscale"""
-        return image.convert('L')
-
-    @staticmethod
-    def convert_to_binary_image(image: Image.Image, threshold: int) -> Image.Image:
-        """
-        Converts a grayscale image to a binary, using threshold value
-        1 represents a white pixel, 0 represents black
-        """
-        return image.point(lambda x: 0 if x < threshold else 255, "1")
-
+from typing import Dict, List, Tuple
+import numpy as np
+import AbstractImageProcessor
 
 class CambridgeScienceImageProcessor(AbstractImageProcessor):
     
-    def __init__(self):
-        # You can load configurations here or use other initial setup steps.
+    def validate_config(self, image: Image.Image):
+        """Validate ImageProcessor-specific configuration"""
         pass
 
     def process(self, image: Image.Image) -> Image.Image:
@@ -39,16 +21,16 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         """Modifies images after data has been extracted"""
         pass
 
-    def create_image_arrays(self, binary_image: Image.Image) -> Dict: #[str: np.ndarray]:
+    def _create_image_arrays(self, binary_image: Image.Image) -> Dict: #[str: np.ndarray]:
         """Creates a numpy array of the image for quicker process"""
-        ystart, yend = 0, self.image_height
-        xstart, x_question_end = self.image_width
-        x_margin_start, x_margin_end = self.margin
+        ystart, yend = 0, self._image_height
+        xstart, x_question_end = self._image_width
+        x_margin_start, x_margin_end = self._margin
         full_array = np.array(binary_image.crop((xstart, ystart, x_question_end, yend)))
         margin_array = np.array(binary_image.crop((x_margin_start, ystart, x_margin_end, yend)))
         return {"full_array": full_array, "margin_array": margin_array}
 
-    def detect_question_start(self, binary_array, cropped_array, question_spacing=25) -> np.ndarray:
+    def _detect_question_start(self, binary_array, cropped_array, question_spacing=25) -> np.ndarray:
         """Detects the start of a question and returns as list of y-pixel values"""
         non_white_rows = np.where(np.any(cropped_array == 0, axis=1))[0]
         nw_row_diffs = np.diff(non_white_rows, prepend=non_white_rows[0])
@@ -59,20 +41,27 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
             )]
         return question_rows
 
-    def get_question_coordinates(self, ques_start_rows: np.ndarray) -> List[Tuple[int, int]]:
+    def _get_question_coordinates(self, ques_start_rows: np.ndarray) -> List[Tuple[int, int]]:
         """Converts start location of question into(start, end) y-coordinates"""
         return [(ques_start_rows[i], ques_start_rows[i + 1]) for i in range(len(ques_start_rows) - 1)]
 
-    def remove_vertical_whitespace(self, image: Image.Image):
+    def _remove_vertical_whitespace(self, image: Image.Image):
         """Removes vertical whitespace, leaving some padding"""
         data = np.array(image)
         min_values = data.min(axis=1)
-        non_white_rows = np.where(min_values < threshold)[0]
-        top = max(non_white_rows[0] - padding, 0)
-        bottom = min(non_white_rows[-1] + padding, image.height)
+        non_white_rows = np.where(min_values < self._threshold)[0]
+        top = max(non_white_rows[0] - self._padding, 0)
+        bottom = min(non_white_rows[-1] + self._padding, image.height)
         return image.crop((0, top, image.width, bottom))
     
-    def crop_image(self, image: Image.Image, width: Tuple[int, int], coords: List[Tuple[int, int]]) -> List[Image.Image]:
+    def _crop_image(self, image: Image.Image, width: Tuple[int, int], coords: List[Tuple[int, int]]) -> List[Image.Image]:
         """Crops images in the y-plane to produce a question-image fragment"""
         (xstart, xend) = width
         return [image.crop((xstart, ystart, xend, yend)) for (ystart, yend) in coords]
+
+    def _overwrite_image(image: Image.Image, coords: Tuple[int, int, int, int]) -> Image.Image:
+        """Overlays a white box on given image with provided coords"""
+        modified_image = image.copy()
+        draw = ImageDraw.Draw(modified_image)
+        draw.rectangle(coords, fill="white")
+        return modified_image

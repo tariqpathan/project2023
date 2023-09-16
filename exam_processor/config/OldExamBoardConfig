@@ -1,25 +1,41 @@
 import json
 
 class ExamBoardConfig:
-    def __init__(self, config_path):
-        with open(config_path, 'r') as f:
-            self.config_data = json.load(f)
+    
+    def __init__(self, exam_type: str):
+        user_config = self.load_user_config()
+        self.config = self._merge_with_defaults(user_config)
+        self._validate_config()
 
-    def get_config_for_board(self, board_name: str):
-        """Returns the configuration for a specific board or raises an exception."""
-        try:
-            return self.config_data[board_name]
-        except KeyError:
-            raise ValueError(f"No configuration found for board: {board_name}")
+    # Load defaults from a file
+    with open("config.json", "r") as f:
+        DEFAULTS = json.load(f)
+    REQUIRED_KEYS = DEFAULTS['required_keys']
 
-    def validate_presence_of_keys(self, section: str, required_keys: set):
-        """Validate the presence of required keys for a specific section."""
-        if section not in self.config_data:
-            raise ValueError(f"Configuration section '{section}' not found.")
-        if not required_keys.issubset(self.config_data[section].keys()):
-            missing_keys = required_keys - self.config_data[section].keys()
-            raise ValueError(f"Missing configuration keys in section '{section}': {', '.join(missing_keys)}")
+    @staticmethod
+    def load_user_config(file_path):
+        with open(file_path, "r") as file:
+            return json.load(file)
 
+    def _merge_with_defaults(self, user_config):
+        config = {}
+        for key in self.REQUIRED_KEYS:
+            if key in user_config:
+                config[key] = user_config[key]
+            elif key in self.DEFAULTS['config']:
+                config[key] = self.DEFAULTS['config'][key]
+            else:
+                raise ValueError(f"Missing required configuration key: {key}")
+        
+        # Load any other keys from user's config or the defaults
+        for key, default_value in self.DEFAULTS['config'].items():
+            config[key] = user_config.get(key, default_value)
+        
+        return config
+
+    def _validate_config(self):
+        # Add specific validation logic for configurations here
+        pass
 
 
 class ExamBoardConfig:

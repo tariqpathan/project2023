@@ -1,52 +1,61 @@
-from typing import List, Dict, Tuple
 from PIL import Image
-import numpy as np
-from abc import ABC, abstractmethod
+from typing import Dict, List, Tuple, Optional
+import pytesseract
+
+from exam_processor.processing.AbstractImageProcessor import AbstractImageProcessor
+from exam_processor.processing.CambridgeScienceImageProcessor import CambridgeScienceImageProcessor
+from exam_processor.processing.OCRProcessor import OCRProcessor
 
 class QuestionProcessor:
-    image_processors = {
-        "cambridge_science": CambridgeScienceImageProcessor,
-        "aqa_maths": AqaMathsImageProcessor,
-    }
+    def __init__(self, name, config) -> None:
+        self.config = config
+        self.image_processor = self._get_image_processor(name)
+        self.ocr_processor = self._get_ocr_processor(name)
 
-    def _initialize_image_processor(self, board_name: str):
-        if board_name not in self.image_processors:
-            raise ValueError(f"Unsupported board: {board_name}")
-        return self.image_processors[board_name]()
+    def _get_image_processor(self, exam_board: str) -> Optional[AbstractImageProcessor]:
+        """
+        Returns an instance of the required image processor based on the document type.
+        """
+        for subclass in AbstractImageProcessor.__subclasses__():
+            if subclass.EXAM_BOARD == exam_board:
+                return subclass()
+        else:
+            raise ValueError(f"Unsupported exam board: {exam_board}")
+
+    def _get_ocr_processor(self, ocr_type: str) -> Optional[OCRProcessor]:
+        """
+        Returns an instance of the required OCR processor based on the ocr type.
+        """
+        if not ocr_type: return OCRProcessor()
+        else:
+            raise ValueError(f"Unsupported OCR type: {ocr_type}")
 
 
-    def __init__(self, image_width: int, image_height: int, margin: Tuple[int, int]):
-        self.image_width = image_width
-        self.image_height = image_height
-        self.margin = margin
-
-    @abstractmethod
-    def create_image_arrays(self, binary_image: Image.Image) -> Dict[str, np.ndarray]:
+    def extract_questions(self, page_image: List[Image.Image]) -> List[Image.Image]:
+        """
+        Extracts individual question images from a page along with their respective question numbers.
+        Returns a list of images corresponding to a single question.
+        """
         pass
 
-    @abstractmethod
-    def detect_question_start(self, binary_array, cropped_array, question_spacing=25) -> np.ndarray:
+        # pass a single image to the image_processor
+
+        self.image_processor.validate() # pass in image processor configurations        
+        # only call the process and post-process methods
+
+
+        # Extracting question numbers
+
+        # return list(zip(question_numbers, question_images))
+
+    def get_text_from_question(self, question_image: Image.Image) -> str:
+
+        """
+        Extracts text from a question image.
+        """
         pass
 
-    @abstractmethod
-    def get_question_coordinates(self, ques_start_rows: np.ndarray) -> List[Tuple[int, int]]:
-        pass
-
-    @abstractmethod
-    def create_question(self, ):
-        pass
 
     @staticmethod
-    def crop_image(self, image: Image.Image, width: Tuple[int, int], coords: List[Tuple[int, int]]) -> List[Image.Image]:
-        (xstart, xend) = width
-        return [image.crop((xstart, ystart, xend, yend)) for (ystart, yend) in coords]
-
-    @staticmethod
-    def remove_vertical_whitespace(image: Image.Image, padding:int, threshold: int) -> Image.Image:
-        """Removes vertical whitespace from an image up to a padded amount"""
-        data = np.array(image)
-        min_values = data.min(axis=1)
-        non_white_rows = np.where(min_values < threshold)[0]
-        top = max(non_white_rows[0] - padding, 0)
-        bottom = min(non_white_rows[-1] + padding, image.height)
-        return image.crop((0, top, image.width, bottom))
+    def load_configs(self, config):
+        self.config = config

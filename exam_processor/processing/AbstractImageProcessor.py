@@ -1,27 +1,35 @@
 from abc import ABC, abstractmethod
 from PIL import Image
+from typing import Dict, List
 
 class AbstractImageProcessor(ABC):
-    def __init__(self, config: dict):
+    EXAM_BOARD = ""
+    REQUIRED_PARAMS: List[str] = []
+
+    def __init__(self, config: Dict):
         self._config = config
-        self.validated = False
 
-        for key in self.required_keys():
-            setattr(self, f'_{key}', self._config[key])
-
-    @classmethod
     @abstractmethod
-    def required_keys(cls):
+    def _derive_attributes(self):
+        """Derive and set specific attributes from the configuration parameters."""
         pass
 
     @abstractmethod
     def process(self, image: Image.Image) -> Image.Image:
         """Converts an image of a page and returns a list of question-images"""
         pass
+    
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        if not hasattr(cls, "EXAM_BOARD"):
+            raise TypeError(f"Subclasses of AbstractImageProcessor must have an "\
+                "'EXAM_BOARD' attribute. {cls.__name__} doesn't.")
+
+    def process_image(self, image_path: str) -> str:
+        raise NotImplementedError("The process_image method should be implemented by subclasses.")
 
     @abstractmethod
-    @staticmethod
-    def validate_image_config(self, image: Image.Image):
+    def validate(self, image:Image.Image):
         """Validate ImageProcessor-specific configuration"""
         pass
 

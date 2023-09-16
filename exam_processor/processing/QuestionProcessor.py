@@ -16,9 +16,8 @@ class QuestionProcessor:
         """
         Returns an instance of the required image processor based on the document type.
         """
-        for subclass in AbstractImageProcessor.__subclasses__():
-            if subclass.EXAM_BOARD == exam_board:
-                return subclass()
+        if exam_board == "cambridge_science":
+            return CambridgeScienceImageProcessor(self.config["cambridge_science"]["imageProcessor"])
         else:
             raise ValueError(f"Unsupported exam board: {exam_board}")
 
@@ -29,7 +28,6 @@ class QuestionProcessor:
         if not ocr_type: return OCRProcessor()
         else:
             raise ValueError(f"Unsupported OCR type: {ocr_type}")
-
 
     def extract_questions(self, page_image: List[Image.Image]) -> List[Image.Image]:
         """

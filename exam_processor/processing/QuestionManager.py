@@ -17,6 +17,7 @@ class QuestionProcessor:
         """
         Returns an instance of the required image processor based on the document type.
         """
+        # TODO: change this to a factory
         if exam_board == "cambridge_science":
             return CambridgeScienceImageProcessor(self.config[exam_board]["imageProcessor"])
         else:

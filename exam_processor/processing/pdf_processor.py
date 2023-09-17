@@ -1,6 +1,6 @@
 import PyPDF4
 import pdf2image as p2i
-
+#TODO: Delete file
 
 def open_pdf(file_path: str):
     """Open the provided PDF file and return the pdf reader object."""

@@ -1,0 +1,3 @@
+from exam_processor.managers.config_manager import ConfigManager
+from exam_processor.pdf_processing.pdf_manager import PDFManager
+from exam_processor.processing.pdf_processor import close_pdf

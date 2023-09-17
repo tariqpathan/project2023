@@ -5,7 +5,7 @@ from exam_processor.QuestionFactory import QuestionFactory
 
 from exam_processor.processing.AbstractImageProcessor import AbstractImageProcessor
 from exam_processor.processing.CambridgeScienceImageProcessor import CambridgeScienceImageProcessor
-from exam_processor.processing.TextProcessor import TextProcessor
+from exam_processor.processing.ImageTextProcessor import ImageTextProcessor
 
 class QuestionManager:
     def __init__(self, exam_board, config) -> None:
@@ -25,11 +25,11 @@ class QuestionManager:
         else:
             raise ValueError(f"Unsupported exam board: {exam_board}")
 
-    def _get_text_processor(self, exam_board: str) -> TextProcessor:
+    def _get_text_processor(self, exam_board: str) -> ImageTextProcessor:
         """
         Returns an instance of the required OCR processor based on the ocr type.
         """
-        if not exam_board: return TextProcessor(self.config[exam_board]["textProcessor"])
+        if not exam_board: return ImageTextProcessor(self.config[exam_board]["textProcessor"])
         else:
             raise ValueError(f"Unsupported OCR type: {exam_board}")
 

@@ -2,7 +2,7 @@ from PIL import Image
 import pytesseract
 from typing import Dict, Optional
 
-class TextProcessor():
+class ImageTextProcessor():
     def __init__(self, config: Dict):
         self._config = config
         self._xstart = config["question_x_start"]
@@ -23,7 +23,7 @@ class TextProcessor():
     def get_question_number(self, image: Image.Image, psm_mode:int=7) -> Optional[int]:
         """Extracts a number from image or else returns None"""
         cropped = self._question_crop(image)
-        text = TextProcessor.get_text_from_image(cropped, psm_mode)
+        text = ImageTextProcessor.get_text_from_image(cropped, psm_mode)
         if text.isdigit():
             return int(text)
         return None

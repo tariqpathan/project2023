@@ -61,7 +61,7 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
 
     def validate(self, image: Image.Image):
         self._derive_attributes(image)
-        self._validate_attributes
+        self._validate_attributes()
         
 
     def process(self, image: Image.Image) -> List[Image.Image]:

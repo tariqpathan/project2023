@@ -2,7 +2,7 @@ from PIL import Image
 from exam_processor.models import Question
 import os
 
-from ImageSaver import save
+from file_handler import save_image
 
 class QuestionFactory:
     def __init__(self, db_session):
@@ -22,7 +22,7 @@ class QuestionFactory:
             relative_path = "some_criterion"
             
             # Save the image and update the image_path
-            image_path = save(image, relative_path)
+            image_path = save_image(image, relative_path)
             question.image_path = image_path
             
             # Save the changes again

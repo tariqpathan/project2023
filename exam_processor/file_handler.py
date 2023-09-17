@@ -1,7 +1,9 @@
 import os
 from pathlib import Path
+from PIL import Image
 
 BASE_PATH = ''
+QUESTION_PATH = ''
 
 #TODO: get file path location and add it in 
 #TODO: check if Path objects required or strings
@@ -16,3 +18,6 @@ def get_valid_path(file_path: str):
         raise Exception(f'file not found at {file_path}')
     return os.path(file_path)
 
+def save_image(filename: str, image: Image.Image):
+    filepath = os.path.join(QUESTION_PATH, filename)
+    

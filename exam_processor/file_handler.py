@@ -18,9 +18,24 @@ def get_valid_path(file_path: str):
         raise Exception(f'file not found at {file_path}')
     return os.path(file_path)
 
-def save_image(image: Image.Image, relative_path: str) -> str:
+def get_valid_image(file_path: str) -> Image.Image:
+    """Returns a valid image or raises an exception"""
+    image = get_image(file_path)
+    if image is None:
+        raise Exception(f'invalid image at {file_path}')
+    return image
+
+def get_image(file_path: str) -> Image.Image:
+    """Returns an image object from a file path"""
+    return Image.open(file_path)
+
+def save_image(image: Image.Image, name: str) -> str:
     """Saves an image to a predetermined location and returns filepath"""
-    full_path = os.path.join(QUESTION_PATH, relative_path)
-    image.save(full_path)
-    return full_path
+    filepath = os.path.join(QUESTION_PATH, name)
+    image.save(filepath)
+    return filepath
+
+def get_image_filepath(filename: str) -> str:
+    """Returns a file path for an image"""
+    return os.path.join(QUESTION_PATH, filename)
     

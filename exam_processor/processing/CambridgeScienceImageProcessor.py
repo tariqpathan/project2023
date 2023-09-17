@@ -64,7 +64,7 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         self._validate_attributes()
         
 
-    def process(self, image: Image.Image) -> List[Image.Image]:
+    def extract(self, image: Image.Image) -> List[Image.Image]:
         """Converts an image of a page and returns a list of question-images"""
         # convert to grayscale and binary images
         grayscale = self._convert_to_grayscale_image(image)
@@ -152,7 +152,7 @@ if __name__ == "__main__":
     }
     csip = CambridgeScienceImageProcessor(config)
     csip.validate(image)
-    out = csip.process(image)
+    out = csip.extract(image)
     if out is not None:
         for i in out:
             i.show()

@@ -15,7 +15,7 @@ class AbstractImageProcessor(ABC):
         pass
 
     @abstractmethod
-    def process(self, image: Image.Image) -> List[Image.Image]:
+    def extract(self, image: Image.Image) -> List[Image.Image]:
         """Converts an image of a page and returns a list of question-images"""
         pass
 

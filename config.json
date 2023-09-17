@@ -15,7 +15,7 @@
             "whitespace_threshold": 128
 
         },
-        "OCRProcessor": {
+        "textProcessor": {
 
             "question_x_start": 100,
             "question_y_start": 40,

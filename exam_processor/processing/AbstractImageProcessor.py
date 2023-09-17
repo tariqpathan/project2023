@@ -15,8 +15,13 @@ class AbstractImageProcessor(ABC):
         pass
 
     @abstractmethod
-    def process(self, image: Image.Image) -> Image.Image:
+    def process(self, image: Image.Image) -> List[Image.Image]:
         """Converts an image of a page and returns a list of question-images"""
+        pass
+
+    @abstractmethod
+    def post_process(self, image: Image.Image, *args) -> Image.Image:
+        """Modifies images after data has been extracted"""
         pass
     
     def __init_subclass__(cls, **kwargs):
@@ -24,9 +29,6 @@ class AbstractImageProcessor(ABC):
         if not hasattr(cls, "EXAM_BOARD"):
             raise TypeError(f"Subclasses of AbstractImageProcessor must have an "\
                 "'EXAM_BOARD' attribute. {cls.__name__} doesn't.")
-
-    def process_image(self, image_path: str) -> str:
-        raise NotImplementedError("The process_image method should be implemented by subclasses.")
 
     @abstractmethod
     def validate(self, image:Image.Image):
@@ -45,3 +47,4 @@ class AbstractImageProcessor(ABC):
         1 represents a white pixel, 0 represents black
         """
         return image.point(lambda x: 0 if x < threshold else 255, "1")
+    

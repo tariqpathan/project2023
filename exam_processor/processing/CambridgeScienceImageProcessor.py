@@ -81,8 +81,11 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         cleaned_images = [self._remove_vertical_whitespace(i) for i in cropped_images]
         return cleaned_images
 
-    def post_process(self, image: Image.Image) -> Image.Image:
+    def post_process(self, image: Image.Image, config: Dict[str, int]) -> Image.Image:
         """Modifies images after data has been extracted"""
+        coords = (config['question_x_start'], config['question_y_start'],
+                  config['question_x_end'], config['question_y_end'])
+        self._overwrite_image(image, coords)
         return image
 
     def _create_image_arrays(self, binary_image: Image.Image) -> Tuple[np.ndarray, ...]:
@@ -135,6 +138,7 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         return modified_image
     
 if __name__ == "__main__":
+    #TODO: remove this
     # import CambridgeScienceImageProcessor
     print("**test**")
     image = Image.open('test-page1.jpg')

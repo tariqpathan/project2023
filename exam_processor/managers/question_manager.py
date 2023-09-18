@@ -1,7 +1,7 @@
 from PIL import Image
 from typing import Dict, List, Tuple, Optional
 from database.models import Exam
-from exam_processor.QuestionFactory import QuestionFactory
+from exam_processor.question_factory import QuestionFactory
 
 from exam_processor.processing.AbstractImageProcessor import AbstractImageProcessor
 from exam_processor.processing.CambridgeScienceImageProcessor import CambridgeScienceImageProcessor

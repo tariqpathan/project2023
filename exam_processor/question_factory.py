@@ -27,5 +27,5 @@ class QuestionFactory:
             # Remove the saved image if there's a failure after image save
             if question.image_path:
                 os.remove(question.image_path)
-            raise e
+            raise Exception(f"Error creating Question: {qnum} for ExamID: {question.exam_id}. Error: {e}")
         return question

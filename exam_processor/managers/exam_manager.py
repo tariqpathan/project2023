@@ -1,40 +1,65 @@
+from database.database_manager import DatabaseManager
 from exam_processor import ConfigManager
 from exam_processor import PDFManager
-from exam_processor import close_pdf
+from exam_processor.managers.file_manager import FileHandler, ImageFileManager
+from exam_processor.managers.question_manager import QuestionManager
 
 
 class ExamManager:
-    def __init__(self, config_path: str, db_path: str):
-        self.config_manager = ConfigManager(config_path)
-        self.config = self.config_manager.get_config()
-        self.config_manager.validate()
-
-        self.pdf_manager = PDFManager()
-        
+    def __init__(self, exam_board: str, question_pdf_path: str, answer_pdf_path: str, 
+                 db_path: str):
+        self.exam_board = exam_board
+        self.question_pdf_path = question_pdf_path
+        self.answer_pdf_path = answer_pdf_path
+        self.file_handler = FileHandler()
+        self.config_manager = ConfigManager()
         self.db_manager = DatabaseManager(db_path)
-        self.db_session = self.db_manager.get_session()
-        
-        self.question_manager = QuestionManager(self.config["exam_board"], self.config)
-        self.answer_manager = AnswerManager(self.config)
+        self.db_functions = DatabaseFunctions(db_path)
+        self.pdf_manager = PDFManager(exam_board, self.config_manager)
+        self.question_manager = QuestionManager(exam_board, self.config_manager.get_config("question_manager", exam_board))
+        self.answer_manager = AnswerManager()
 
-    def process_exam(self, question_file_path: str, answer_file_path: str):
-        question_pdf = self.pdf_manager.load_pdf(question_file_path)
-        answer_pdf = self.pdf_manager.load_pdf(answer_file_path)
+    # TODO: use file_handler to construct the paths
+    
+    def validate_exam_board(self):
+        """Validates the exam board."""
+        if self.exam_board not in self.db_functions.get_exam_boards():
+            raise ValueError(f"Unsupported exam board: {self.exam_board}")
 
-        if not self.pdf_manager.validate_pdfs(question_pdf, answer_pdf):
-            raise ValueError("Mismatch between question and answer files or invalid file format.")
+    # def upload_files(self, question_file_path: str, answer_file_path: str):
+    #     """Uploads the provided files to the appropriate directory."""
+    #     # Move the provided files to the appropriate directory.
+    #     pass
 
-        question_cover, answer_cover = self.pdf_manager.parse_cover_pages(question_pdf, answer_pdf)
+    def extract_exam_details(self):
+        """
+        Extracts cover details as a dict, images of the question paper as a list, 
+        and the answer text as a string. Returns as a tuple of three elements.
+        """
+        data = self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
 
-        if not self.pdf_manager.match_cover_pages(question_cover, answer_cover):
-            raise ValueError("Mismatched exam series in question and answer files.")
 
-        # Rest of the processing logic
-        # ...
+    def process(self, exam_data: dict):
+        try:
+            with self.db_manager as db_session:
+                self.validate_exam_board()
 
-        # Don't forget to close the PDFs
-        close_pdf(question_pdf)
-        close_pdf(answer_pdf)
-        
-        # Commit to the database.
-        self.db_session.commit()
+                exam_factory = ExamFactory(db_session)
+                exam = exam_factory.create_exam(exam_data)
+
+                questions_images, answers_text = self.pdf_manager.main(self.question_pdf_path, self.answer_pdf_path)
+
+                question_manager_config = self.config_manager.get_config("question_manager", self.exam_board)
+                question_manager = QuestionManager(self.exam_board, question_manager_config)
+                question_manager.execute(db_session, exam, questions_images) 
+
+                # Similar logic for answers (using a hypothetical AnswerManager)
+
+                # After everything is done, commit the session.
+                self.db_manager.commit()
+
+        except Exception as e:
+            # If any error occurs, rollback the session.
+            self.db_manager.rollback()
+            # Handle or re-raise the exception as needed.
+            raise e

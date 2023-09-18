@@ -1,10 +1,8 @@
 from PIL import Image
-from exam_processor.file_handler import get_image_filepath
 from database.models import Exam, Question
 from typing import Optional
 import os
-
-from file_handler import save_image
+from exam_processor.managers.file_manager import FileHandler, ImageFileManager
 
 class QuestionFactory:
     def __init__(self, db_session, exam: Exam):
@@ -17,12 +15,12 @@ class QuestionFactory:
         question = Question(exam=self.exam, number=qnum)
         # Construct the relative path based on the question's ID or other criteria
         filename = "some_criterion"
-        image_path = get_image_filepath(filename)
+        image_path = FileHandler.construct_path(filename)
         
         try:
             question.image_path = image_path
             self.db_session.add(question)
-            save_image(image, filename)
+            ImageFileManager.store_image(image, filename)
         
         except Exception as e:
             self.db_session.rollback()

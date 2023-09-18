@@ -1,6 +1,7 @@
 from database.database_manager import DatabaseManager
 from exam_processor import ConfigManager
 from exam_processor import PDFManager
+from exam_processor.exam_factory import ExamFactory
 from exam_processor.managers.file_manager import FileHandler, ImageFileManager
 from exam_processor.managers.question_manager import QuestionManager
 
@@ -20,34 +21,32 @@ class ExamManager:
         self.answer_manager = AnswerManager()
 
     # TODO: use file_handler to construct the paths
-    
+
     def validate_exam_board(self):
         """Validates the exam board."""
         if self.exam_board not in self.db_functions.get_exam_boards():
             raise ValueError(f"Unsupported exam board: {self.exam_board}")
-
-    # def upload_files(self, question_file_path: str, answer_file_path: str):
-    #     """Uploads the provided files to the appropriate directory."""
-    #     # Move the provided files to the appropriate directory.
-    #     pass
-
-    def extract_exam_details(self):
-        """
-        Extracts cover details as a dict, images of the question paper as a list, 
-        and the answer text as a string. Returns as a tuple of three elements.
-        """
-        data = self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+    
+    def _validate_exam_details(self, data: dict):
 
 
     def process(self, exam_data: dict):
         try:
             with self.db_manager as db_session:
                 self.validate_exam_board()
-
+                #TODO: validate exam details
+                #TODO: load and validate file paths
+                #TODO: extract exam details from pdfs
+                #TODO: retirieve subject id
+                #TODO: validate exam details
+                #TODO: create exam
+                #TODO: run question manager
+                #TODO: run answer manager
+                #TODO: commit session
                 exam_factory = ExamFactory(db_session)
                 exam = exam_factory.create_exam(exam_data)
 
-                questions_images, answers_text = self.pdf_manager.main(self.question_pdf_path, self.answer_pdf_path)
+                data = self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
 
                 question_manager_config = self.config_manager.get_config("question_manager", self.exam_board)
                 question_manager = QuestionManager(self.exam_board, question_manager_config)

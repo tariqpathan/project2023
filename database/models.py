@@ -12,13 +12,7 @@ class Subject(Base):
 
     exams = relationship('Exam', back_populates='subject')
     subtopics = relationship('Subtopic', back_populates='subject')
-    # components = relationship('Component', secondary='component_subject', back_populates='subjects')
 
-# class Component(Base):
-#     __tablename__ = 'components'
-#     code = mapped_column(Integer, primary_key=True)
-    
-#     subjects = relationship('Subject', secondary='component_subject', back_populates='components')
 
 class Exam(Base):
     __tablename__ = 'exams'
@@ -75,11 +69,3 @@ question_subtopic_table = Table('question_subtopic', Base.metadata,
     Column('question_id', Integer, ForeignKey('questions.id'), primary_key=True),
     Column('subtopic_id', Integer, ForeignKey('subtopics.id'), primary_key=True)
 )
-
-# component_subject_association = Table(
-#     'component_subject',
-#     Base.metadata,
-#     Column(Integer, primary_key=True),
-#     Column('component_code', String, nullable=False),
-#     Column('subject_id', Integer, ForeignKey('subjects.id'))
-# )

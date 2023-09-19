@@ -28,11 +28,6 @@ class ExamManager:
         # TODO: Implement this method
         pass
 
-    def validate_exam_details(self, exam_data: dict):
-        """Validates the exam details."""
-        # TODO: Implement this method
-        pass
-
     def get_or_create_exam(self, exam_data: dict) -> Exam:
         # Try to fetch an existing exam based on the unique constraint
         exam = self.db_session.query(Exam).filter_by(**exam_data).first()
@@ -42,7 +37,6 @@ class ExamManager:
             exam = exam_factory.create_exam(exam_data)
             self.db_session.add(exam)
         return exam
-
 
     def extract_data_from_pdfs(self):
         """Extracts data from PDFs."""

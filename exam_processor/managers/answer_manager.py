@@ -20,9 +20,12 @@ class AnswerManager:
         """Returns an instance of the required answer factory based on exam board."""
         self.answer_factory = AnswerFactory(db_session)
 
-    def execute(self, db_session, text: str, questions: List[Question]):
+    def execute(self, db_session, text: str, questions: List[Question]) -> None:
         self._set_answer_factory(db_session)
         answers = self.answer_processor.process(text)
+        if not answers:
+            print("No answers found in the provided text.")
+            return
         self._match_questions(answers, questions)
 
     def _match_questions(self, qnum_answer_dict: Dict[int, str], questions: List[Question]):

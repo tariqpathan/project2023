@@ -50,6 +50,7 @@ class Question(Base):
     difficulty_id = mapped_column(Integer, ForeignKey('difficulties.id'), nullable=True)
     exam_id = mapped_column(Integer, ForeignKey('exams.id'), nullable=False)
 
+    answers = relationship('Answer', back_populates='question')
     difficulty = relationship('Difficulty', back_populates='questions')
     exam = relationship('Exam', back_populates='questions')
     subtopics = relationship('Subtopic', secondary='question_subtopic', back_populates='questions')
@@ -69,3 +70,12 @@ question_subtopic_table = Table('question_subtopic', Base.metadata,
     Column('question_id', Integer, ForeignKey('questions.id'), primary_key=True),
     Column('subtopic_id', Integer, ForeignKey('subtopics.id'), primary_key=True)
 )
+
+class Answer(Base):
+    __tablename__ = 'answers'
+
+    id = mapped_column(Integer, primary_key=True)
+    question_id = mapped_column(Integer, ForeignKey('questions.id'), nullable=False)
+    answer = mapped_column(String, nullable=False)
+
+    question = relationship('Question', back_populates='answers')

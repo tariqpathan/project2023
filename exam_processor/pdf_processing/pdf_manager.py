@@ -1,4 +1,4 @@
-from typing import Optional, Tuple
+from typing import Dict, Optional, Tuple
 import PyPDF4
 import re
 from exam_processor.managers.config_manager import ConfigManager
@@ -11,7 +11,7 @@ class PDFManager:
         self.config_manager = config_manager
 
     def _get_settings(self) -> dict:
-        try:
+        try: #TODO: remove this try-except block
             return self.config_manager.get_config("coverpage_settings", self.exam_board)
         except ValueError as e:
             raise e
@@ -35,7 +35,7 @@ class PDFManager:
             raise ValueError(f"No match found for the given regex of {self.exam_board}.")
 
         extracted_data = {}
-        for group_name in capture_groups:
+        for group_name in capture_groups: #TODO: what happens if capture_groups are empty?
             extracted_data[group_name] = match.group(group_name)
         return extracted_data
     
@@ -47,11 +47,11 @@ class PDFManager:
         """Returns all the text from a PDF file, excluding the cover page."""
         return PDFUtils.extract_text_except_first_page(pdf_path)
 
-    def _get_exam_cover_details(self, pdf: PyPDF4.PdfFileReader) -> dict:
+    def _get_exam_cover_details(self, pdf: PyPDF4.PdfFileReader) -> Dict[str, str|int]:
         text = PDFUtils.first_page_text(pdf)
         return self._extract(text, "question")
 
-    def extract_pdf_data(self, question_pdf_path: str, answer_pdf_path: str) -> Tuple[dict, list, str]:
+    def extract_pdf_data(self, question_pdf_path: str, answer_pdf_path: str) -> Tuple[Dict[str, str|int], list, str]:
         """
         Extracts cover details as a dict, images of the question paper as a list, 
         and the answer text as a string. Returns as a tuple of three elements.

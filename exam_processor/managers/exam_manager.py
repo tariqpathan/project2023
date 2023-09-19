@@ -2,6 +2,7 @@ from database.database_manager import DatabaseManager
 from exam_processor import ConfigManager
 from exam_processor import PDFManager
 from exam_processor.exam_factory import ExamFactory
+from exam_processor.managers.answer_manager import AnswerManager
 from exam_processor.managers.file_manager import FileHandler, ImageFileManager
 from exam_processor.managers.question_manager import QuestionManager
 
@@ -15,10 +16,10 @@ class ExamManager:
         self.file_handler = FileHandler()
         self.config_manager = ConfigManager()
         self.db_manager = DatabaseManager(db_path)
-        self.db_functions = DatabaseFunctions(db_path)
+        # self.db_functions = Databas(db_path)
         self.pdf_manager = PDFManager(exam_board, self.config_manager)
         self.question_manager = QuestionManager(exam_board, self.config_manager.get_config("question_manager", exam_board))
-        self.answer_manager = AnswerManager()
+        self.answer_manager = AnswerManager(exam_board)
 
     # TODO: use file_handler to construct the paths
 
@@ -28,7 +29,8 @@ class ExamManager:
             raise ValueError(f"Unsupported exam board: {self.exam_board}")
     
     def _validate_exam_details(self, data: dict):
-
+        """Validates the exam details."""
+        pass
 
     def process(self, exam_data: dict):
         try:

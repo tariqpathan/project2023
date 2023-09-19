@@ -1,5 +1,6 @@
 
-from database.models import Subject
+from typing import Optional
+from database.models import Exam, Subject
 
 
 def get_valid_columns(model):
@@ -39,3 +40,14 @@ def retrieve_subject_id(session, subject_name):
 #     session.close()
 
 #     return results
+
+def get_or_create_exam(self, session, exam_data: dict) -> Optional[Exam]:
+        exam = session.query(Exam).filter_by(
+            exam_board=exam_data["exam_board"],
+            month=exam_data["month"],
+            year=exam_data["year"],
+            unit_code=exam_data["unit_code"],
+            component_code=exam_data["component_code"],
+            subject_id=exam_data["subject_id"]
+        ).one_or_none()
+        return exam

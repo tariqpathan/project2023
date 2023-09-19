@@ -6,9 +6,9 @@ from exam_processor.processing.AbstractAnswerProcessor import AbstractAnswerProc
 
 
 class AnswerManager:
-    def __init__(self, exam_board: str, config) -> None:
+    def __init__(self, exam_board: str) -> None:
         self.exam_board = exam_board
-        self.config = config
+        # self.config = config
         self.answer_processor = self._get_answer_processor()
         self.answer_factory = None
     

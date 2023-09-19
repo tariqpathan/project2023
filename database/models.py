@@ -46,11 +46,11 @@ class Question(Base):
     id = mapped_column(Integer, primary_key=True)
     image_path = mapped_column(String, unique=True, nullable=False)
     question_number = mapped_column(Integer, nullable=True)
-    correct_answer = mapped_column(String, nullable=True)
     difficulty_id = mapped_column(Integer, ForeignKey('difficulties.id'), nullable=True)
     exam_id = mapped_column(Integer, ForeignKey('exams.id'), nullable=False)
-
-    answers = relationship('Answer', back_populates='question')
+    
+    # uselist = False means it's a one-to-one relationship
+    answer = relationship('Answer', back_populates='question', uselist=False) 
     difficulty = relationship('Difficulty', back_populates='questions')
     exam = relationship('Exam', back_populates='questions')
     subtopics = relationship('Subtopic', secondary='question_subtopic', back_populates='questions')
@@ -75,7 +75,7 @@ class Answer(Base):
     __tablename__ = 'answers'
 
     id = mapped_column(Integer, primary_key=True)
-    question_id = mapped_column(Integer, ForeignKey('questions.id'), nullable=False)
-    answer = mapped_column(String, nullable=False)
+    question_id = Column(Integer, ForeignKey('questions.id'), nullable=False)
+    answer_text = mapped_column(String, nullable=False)
 
-    question = relationship('Question', back_populates='answers')
+    question = relationship('Question', back_populates='answer')

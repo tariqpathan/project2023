@@ -18,9 +18,8 @@ class ExamManager:
         self.config_manager = ConfigManager()
         self.db_manager = DatabaseManager(db_path)
         
-        self.pdf_manager = PDFManager(exam_format, self.config_manager)
-        self.question_manager_config = self.config_manager.get_config("question_manager", exam_format)
-        self.question_manager = QuestionManager(exam_format, self.question_manager_config)
+        self.pdf_manager = PDFManager(exam_format)
+        self.question_manager = QuestionManager(exam_format)
         self.answer_manager = AnswerManager(exam_format)
 
     def _get_or_create_exam(self, db_session, exam_data: dict) -> Exam:
@@ -36,27 +35,27 @@ class ExamManager:
         """Extracts data from PDFs."""
         return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
 
-    def _process_questions(self, db_session, exam, questions_images):
+    def _process_questions(self, db_session, exam, questions_images) -> List[Question]:
         """Process questions."""
-        self.question_manager.execute(db_session, exam, questions_images)
+        return self.question_manager.execute(db_session, exam, questions_images)
 
     def _process_answers(self, db_session, text: str, questions: List[Question]):
         """Process answers."""
         self.answer_manager.execute(db_session, text, questions)
 
-    def process(self, exam_data: dict):
+    def process(self):
         try:
             with self.db_manager.get_session() as db_session:
 
+                data = self._extract_data_from_pdfs()
+                exam_data = data["cover_details"]
+                raw_questions = data["questions"]
+                raw_answers = data["answers"]
+
                 exam = self._get_or_create_exam(db_session, exam_data)
 
-                data = self._extract_data_from_pdfs()
-
-                # Assuming questions_images is part of the data, or replace it accordingly.
-                questions_images = data.get('questions_images', [])
-
-                self._process_questions(db_session, exam, questions_images)
-                self._process_answers()
+                questions = self._process_questions(db_session, exam, raw_questions)
+                self._process_answers(db_session, raw_answers, questions)
 
                 db_session.commit()
 

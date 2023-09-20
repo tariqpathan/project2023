@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 import PyPDF4
 import re
 from exam_processor.managers.config_manager import ConfigManager
@@ -26,7 +26,7 @@ class PDFManager:
         text = PDFUtils.first_page_text(pdf)
         return self.cover_page_extractor.extract(text, "question") # cover details come from question paper
 
-    def extract_pdf_data(self, question_pdf_path: str, answer_pdf_path: str) -> Tuple[Dict[str, str|int], list, str]:
+    def extract_pdf_data(self, question_pdf_path: str, answer_pdf_path: str) -> Dict[str, Any]:
         """
         Extracts cover details as a dict, images of the question paper as a list, 
         and the answer text as a string. Returns as a tuple of three elements.
@@ -43,12 +43,13 @@ class PDFManager:
             cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
             questions = self._return_pdf_images(question_pdf_path)[1:]
             answers = self._return_pdf_text(answer_pdf_path)
-            return cover_details, questions, answers
+            return {"cover_details": cover_details,
+                    "questions": questions,
+                     "answers": answers}
         
         except Exception as e:
             raise Exception(f"Error with input pdf files: {e}" \
-                            f"\nQuestion PDF: {question_pdf_path}" \
-                            f"\nAnswer PDF: {answer_pdf_path}")
+                f"\nInput: Question PDF: {question_pdf_path}, Answer PDF: {answer_pdf_path}")
         finally:
             if question_pdf: PDFUtils.close_pdf(question_pdf)
             if answer_pdf: PDFUtils.close_pdf(answer_pdf)

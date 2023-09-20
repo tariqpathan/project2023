@@ -3,7 +3,7 @@ from PIL import Image
 from typing import Dict, List
 
 class AbstractImageProcessor(ABC):
-    EXAM_BOARD = ""
+    EXAM_FORMAT = ""
     REQUIRED_PARAMS: List[str] = []
 
     def __init__(self, config: Dict):
@@ -26,9 +26,9 @@ class AbstractImageProcessor(ABC):
     
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
-        if not hasattr(cls, "EXAM_BOARD"):
+        if not hasattr(cls, "EXAM_FORMAT"):
             raise TypeError(f"Subclasses of AbstractImageProcessor must have an "\
-                "'EXAM_BOARD' attribute. {cls.__name__} doesn't.")
+                "'EXAM_FORMAT' attribute. {cls.__name__} doesn't.")
 
     @abstractmethod
     def validate(self, image:Image.Image):

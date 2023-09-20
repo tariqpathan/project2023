@@ -4,7 +4,7 @@ from typing import Dict
 from exam_processor.processing.AbstractAnswerProcessor import AbstractAnswerProcessor
 
 class CambridgeScienceAnswerProcessor(AbstractAnswerProcessor):
-    EXAM_BOARD = "cambridge_science"
+    EXAM_FORMAT = "cambridge_science"
     
     def _extract_answers(self, text: str) -> Dict[int, str]:
         """

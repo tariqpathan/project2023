@@ -8,30 +8,30 @@ from exam_processor.processing.CambridgeScienceImageProcessor import CambridgeSc
 from exam_processor.processing.ImageTextProcessor import ImageTextProcessor
 
 class QuestionManager:
-    def __init__(self, exam_board, config) -> None:
+    def __init__(self, exam_format, config) -> None:
         self.config = config
-        self.exam_board = exam_board
-        self.image_processor = self._get_image_processor(exam_board)
-        self.text_processor = self._get_text_processor(exam_board)
+        self.exam_format = exam_format
+        self.image_processor = self._get_image_processor(exam_format)
+        self.text_processor = self._get_text_processor(exam_format)
         self.question_factory = None
 
-    def _get_image_processor(self, exam_board: str) -> AbstractImageProcessor:
+    def _get_image_processor(self, exam_format: str) -> AbstractImageProcessor:
         """
         Returns an instance of the required image processor based on the document type.
         """
         # TODO: change this to a factory
-        if exam_board == "cambridge_science":
-            return CambridgeScienceImageProcessor(self.config[exam_board]["imageProcessor"])
+        if exam_format == "cambridge_science":
+            return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
         else:
-            raise ValueError(f"Unsupported exam board: {exam_board}")
+            raise ValueError(f"Unsupported exam board: {exam_format}")
 
-    def _get_text_processor(self, exam_board: str) -> ImageTextProcessor:
+    def _get_text_processor(self, exam_format: str) -> ImageTextProcessor:
         """
         Returns an instance of the required OCR processor based on the ocr type.
         """
-        if not exam_board: return ImageTextProcessor(self.config[exam_board]["textProcessor"])
+        if not exam_format: return ImageTextProcessor(self.config[exam_format]["textProcessor"])
         else:
-            raise ValueError(f"Unsupported OCR type: {exam_board}")
+            raise ValueError(f"Unsupported OCR type: {exam_format}")
 
     def validate_processor(self, image: Image.Image):
         self.image_processor.validate(image)
@@ -47,7 +47,7 @@ class QuestionManager:
 
     def _post_process(self, image: Image.Image):
         """Modifies image after extracting data"""
-        coords = self.config[self.exam_board]["textProcessor"]
+        coords = self.config[self.exam_format]["textProcessor"]
         return self.image_processor.post_process(image, coords)
 
     def set_question_factory(self, db_session, exam: Exam) -> QuestionFactory:

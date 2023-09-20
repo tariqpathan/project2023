@@ -5,7 +5,7 @@ from exam_processor.processing.AbstractImageProcessor import AbstractImageProces
 
 
 class CambridgeScienceImageProcessor(AbstractImageProcessor):
-    EXAM_BOARD = "cambridge_science"
+    EXAM_FORMAT = "cambridge_science"
     REQUIRED_PARAMS = [
         "binary_threshold",
         "margin_end",

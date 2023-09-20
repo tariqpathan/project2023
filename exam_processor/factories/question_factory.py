@@ -2,7 +2,7 @@ from PIL import Image
 from database.models import Exam, Question
 from typing import Optional
 import os
-from exam_processor.managers.file_manager import FileHandler, ImageFileManager
+from exam_processor.managers.file_manager import FileManager, ImageFileManager
 
 class QuestionFactory:
     def __init__(self, db_session, exam: Exam):
@@ -15,7 +15,7 @@ class QuestionFactory:
         question = Question(exam=self.exam, number=qnum)
         # Construct the relative path based on the question's ID or other criteria
         filename = "some_criterion"
-        image_path = FileHandler.construct_path(filename)
+        image_path = FileManager.construct_path(filename)
         
         try:
             question.image_path = image_path

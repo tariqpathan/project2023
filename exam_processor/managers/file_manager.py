@@ -2,27 +2,33 @@ import os
 from PIL import Image
 from typing import Optional
 
-class FileHandler:
 
-    DEFAULT_BASE_PATH = "/path/to/default/base"
+class FileManager:
+
+    BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 
     @staticmethod
-    def construct_path(filename: str, base_path: Optional[str] = None) -> str:
-        """Returns the full path to the provided filename, given the base path."""
-        base_path = base_path or FileHandler.DEFAULT_BASE_PATH
-        return os.path.join(base_path, filename)
+    def construct_path(filename: str) -> str:
+        """Returns the full path to the provided filename."""
+        return os.path.join(FileManager.BASE_PATH, filename)
 
     @staticmethod
     def is_valid_file(filepath: str) -> bool:
         """Returns True if the provided filepath exists and is a file."""
         return os.path.exists(filepath) and os.path.isfile(filepath)
 
+    @staticmethod
+    def resolve_path(filename: str, env_var: str) -> str:
+        default_path = FileManager.construct_path(filename)
+        return os.environ.get(env_var, default_path)
+
+
 
 class ImageFileManager:
 
     @staticmethod
     def load_image(filepath: str) -> Optional[Image.Image]:
-        if FileHandler.is_valid_file(filepath):
+        if FileManager.is_valid_file(filepath):
             try:
                 return Image.open(filepath)
             except Exception as e:

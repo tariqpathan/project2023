@@ -1,14 +1,11 @@
 import os
 import json
+from file_manager import FileManager
 
 class ConfigManager:
-    # Default paths and potential environment variables.
-    #TODO: use file_handler to construct the paths
 
-    CONFIG_PATHS = {
-        "config": os.environ.get('CONFIG_PATH', 'config/config.json'),
-        "coverpage_settings": os.environ.get('COVERPAGE_SETTINGS_PATH', 'config/coverpage_settings.json')
-    }
+    BASE_PATH = FileManager.get_root_path()
+    CONFIG_BASE_PATH = os.path.join(BASE_PATH, "config")
 
     _instance = None  # The single instance of ConfigManager
 
@@ -19,12 +16,19 @@ class ConfigManager:
         return cls._instance
 
     def __init__(self):
-        pass
+        self.CONFIG_PATHS = {
+            "config": self._resolve_path('config.json', 'CONFIG_PATH'),
+            "coverpage_settings": self._resolve_path('coverpage_settings.json', 'COVERPAGE_SETTINGS_PATH')
+        }
 
-    @classmethod
-    def _load_config(cls, config_type: str):
+    @staticmethod
+    def _resolve_path(filename: str, env_var: str) -> str:
+        default_path = FileManager.construct_path(filename, base_path=ConfigManager.CONFIG_BASE_PATH)
+        return os.environ.get(env_var, default_path)
+
+    def _load_config(self, config_type: str):
         """Loads the config file based on its type and returns the config as a dictionary."""
-        path = cls.CONFIG_PATHS.get(config_type)
+        path = self.CONFIG_PATHS.get(config_type)
         if not path:
             raise ValueError(f"Unknown config type: {config_type}")
 
@@ -43,5 +47,5 @@ class ConfigManager:
 
         if not board_config:
             raise ValueError(f"No configuration found for exam board: {exam_format}")
-        
+
         return board_config

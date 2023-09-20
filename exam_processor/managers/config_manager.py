@@ -8,6 +8,14 @@ class ConfigManager:
         "coverpage_settings": os.environ.get('COVERPAGE_SETTINGS_PATH', 'config/coverpage_settings.json')
     }
 
+    _instance = None  # The single instance of ConfigManager
+
+    def __new__(cls):
+        # Ensure only one instance of ConfigManager is created
+        if cls._instance is None:
+            cls._instance = super(ConfigManager, cls).__new__(cls)
+        return cls._instance
+
     def __init__(self):
         pass
 
@@ -35,4 +43,3 @@ class ConfigManager:
             raise ValueError(f"No configuration found for exam board: {exam_board}")
         
         return board_config
-

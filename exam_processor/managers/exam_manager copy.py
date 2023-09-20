@@ -9,19 +9,19 @@ from exam_processor.managers.question_manager import QuestionManager
 from typing import List
 
 class ExamManager:
-    def __init__(self, exam_board: str, question_pdf_path: str, answer_pdf_path: str, 
+    def __init__(self, exam_format: str, question_pdf_path: str, answer_pdf_path: str, 
                  db_path: str):
-        self.exam_board = exam_board
+        self.exam_board = exam_format
         self.question_pdf_path = question_pdf_path
         self.answer_pdf_path = answer_pdf_path
 
         self.config_manager = ConfigManager()
         self.db_manager = DatabaseManager(db_path)
         
-        self.pdf_manager = PDFManager(exam_board, self.config_manager)
-        self.question_manager_config = self.config_manager.get_config("question_manager", exam_board)
-        self.question_manager = QuestionManager(exam_board, self.question_manager_config)
-        self.answer_manager = AnswerManager(exam_board)
+        self.pdf_manager = PDFManager(exam_format, self.config_manager)
+        self.question_manager_config = self.config_manager.get_config("question_manager", exam_format)
+        self.question_manager = QuestionManager(exam_format, self.question_manager_config)
+        self.answer_manager = AnswerManager(exam_format)
 
     def validate_exam_board(self):
         """Validates the exam board."""

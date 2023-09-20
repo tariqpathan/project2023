@@ -1,10 +1,9 @@
 from database.database_manager import DatabaseManager
-from database.models import Answer, Exam, Question, Subject
+from database.models import Exam, Question, Subject
 from exam_processor import ConfigManager
 from exam_processor import PDFManager
 from exam_processor.exam_factory import ExamFactory
 from exam_processor.managers.answer_manager import AnswerManager
-from exam_processor.managers.file_manager import FileHandler, ImageFileManager
 from exam_processor.managers.question_manager import QuestionManager
 from typing import List
 

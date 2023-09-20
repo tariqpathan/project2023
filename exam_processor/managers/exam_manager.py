@@ -1,7 +1,7 @@
 from database.database_manager import DatabaseManager
 from database.models import Exam, Question, Subject
-from exam_processor import ConfigManager
-from exam_processor import PDFManager
+from exam_processor.managers.config_manager import ConfigManager
+from exam_processor.pdf_processing.pdf_manager import PDFManager
 from exam_processor.exam_factory import ExamFactory
 from exam_processor.managers.answer_manager import AnswerManager
 from exam_processor.managers.question_manager import QuestionManager

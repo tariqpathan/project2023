@@ -3,10 +3,18 @@
         "question": {
             "regex": "",
             "capture_groups": [""]
+        },
+        "answer": {
+            "regex": "(\\d{4})/(\\d{2})",
+            "capture_groups": ["subject", "component"]
         }
     }, 
     "example": {
         "question": {
+            "regex": "",
+            "capture_groups": [""]
+        }, 
+        "answer": {
             "regex": "",
             "capture_groups": [""]
         }

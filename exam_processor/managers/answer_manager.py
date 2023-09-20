@@ -8,7 +8,6 @@ from exam_processor.processing.AbstractAnswerProcessor import AbstractAnswerProc
 class AnswerManager:
     def __init__(self, exam_format: str) -> None:
         self.exam_format = exam_format
-        # self.config = config
         self.answer_processor = self._get_answer_processor()
         self.answer_factory = None
     

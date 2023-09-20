@@ -3,32 +3,51 @@ import json
 from file_manager import FileManager
 
 class ConfigManager:
-
-    BASE_PATH = FileManager.get_root_path()
-    CONFIG_BASE_PATH = os.path.join(BASE_PATH, "config")
-
+    """
+    Manages the configuration files for the application.
+    CONFIG_BASE_PATH: Name of the directory where the config files are stored.
+    """
+    CONFIG_BASE_PATH = FileManager.construct_path("config")
     _instance = None  # The single instance of ConfigManager
+    paths = {}  # Class-level attribute for paths
 
-    def __new__(cls):
-        # Ensure only one instance of ConfigManager is created
+    @classmethod
+    def get_instance(cls):
         if cls._instance is None:
-            cls._instance = super(ConfigManager, cls).__new__(cls)
+            cls._instance = cls()
+            cls.paths = cls._load_paths()
         return cls._instance
 
-    def __init__(self):
-        self.CONFIG_PATHS = {
-            "config": self._resolve_path('config.json', 'CONFIG_PATH'),
-            "coverpage_settings": self._resolve_path('coverpage_settings.json', 'COVERPAGE_SETTINGS_PATH')
-        }
-
     @staticmethod
-    def _resolve_path(filename: str, env_var: str) -> str:
-        default_path = FileManager.construct_path(filename, base_path=ConfigManager.CONFIG_BASE_PATH)
+    def _load_paths():
+        try:
+            with open(FileManager.construct_path('paths.json'), 'r') as file:
+                return json.load(file)
+        except FileNotFoundError:
+            raise ValueError("paths.json not found.")
+        except json.JSONDecodeError:
+            raise ValueError("Error decoding paths.json. Ensure it's valid JSON.")
+
+    @classmethod
+    def _resolve_path(cls, filename: str, env_var: str) -> str:
+        """
+        Resolves the path for a given filename, using the environment variable if it exists.
+        Expected environment variables: CONFIG_PATH, COVERPAGE_SETTINGS_PATH
+        """
+        default_path = FileManager.construct_path(filename, base_path=cls.CONFIG_BASE_PATH)
         return os.environ.get(env_var, default_path)
+
+    def __init__(self):
+        if self._instance:
+            return  # Avoid reinitializing if an instance already exists
+        self._CONFIG_PATHS = {
+            "config": self._resolve_path(ConfigManager.paths['config'], 'CONFIG_PATH'),
+            "coverpage_settings": self._resolve_path(ConfigManager.paths['coverpage_settings'], 'COVERPAGE_SETTINGS_PATH')
+        }
 
     def _load_config(self, config_type: str):
         """Loads the config file based on its type and returns the config as a dictionary."""
-        path = self.CONFIG_PATHS.get(config_type)
+        path = self._CONFIG_PATHS.get(config_type)
         if not path:
             raise ValueError(f"Unknown config type: {config_type}")
 

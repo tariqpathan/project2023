@@ -15,6 +15,7 @@ def test_to_path():
 
     with pytest.raises(ValueError):
         FileManager._to_path(None)   # type: ignore
+        FileManager._to_path('incorrect')    
 
 def test_construct_path():
     path = FileManager.construct_path("file.txt")

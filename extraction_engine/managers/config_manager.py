@@ -7,6 +7,7 @@ class ConfigManager:
     """
     Manages the configuration files for the application.
     CONFIG_BASE_PATH: Name of the directory where the config files are stored.
+    Default directory structure: root_path/config
     """
     CONFIG_BASE_PATH = FileManager.construct_path("config")
     _instance = None  # The single instance of ConfigManager
@@ -17,14 +18,14 @@ class ConfigManager:
         if cls._instance is None:
             cls._instance = cls()
             cls.paths = cls._load_paths()
+            cls._initialize_config_paths()
         return cls._instance
 
     @staticmethod
     def _load_paths():
-        print("Loading paths.json")
+        path = FileManager.construct_path('/paths.json')
         try:
-            with open(FileManager.construct_path('/config/paths.json'), 'r') as file:
-                print(file)
+            with path.open(encoding='utf-8') as file:
                 return json.load(file)
         except FileNotFoundError:
             raise ValueError("paths.json not found.")
@@ -32,7 +33,7 @@ class ConfigManager:
             raise ValueError("Error decoding paths.json. Ensure it's valid JSON.")
 
     @classmethod
-    def _resolve_path(cls, filename: str, env_var: str) -> Path:
+    def _get_path_from_env_or_default(cls, filename: str, env_var: str) -> Path:
         """
         Resolves the path for a given filename, using the environment variable if it exists.
         Expected environment variables: CONFIG_PATH, COVERPAGE_SETTINGS_PATH
@@ -43,9 +44,12 @@ class ConfigManager:
     def __init__(self):
         if self._instance:
             return  # Avoid reinitializing if an instance already exists
-        self._CONFIG_PATHS = {
-            "config": self._resolve_path(ConfigManager.paths['config'], 'CONFIG_PATH'),
-            "coverpage_settings": self._resolve_path(ConfigManager.paths['coverpage_settings'], 'COVERPAGE_SETTINGS_PATH')
+
+    @classmethod
+    def _initialize_config_paths(cls):
+        cls._CONFIG_PATHS = {
+            "config": cls._get_path_from_env_or_default(ConfigManager.paths['config'], 'CONFIG_PATH'),
+            "coverpage_settings": cls._get_path_from_env_or_default(ConfigManager.paths['coverpage_settings'], 'COVERPAGE_SETTINGS_PATH')
         }
 
     def _load_config(self, config_type: str):
@@ -71,5 +75,3 @@ class ConfigManager:
             raise ValueError(f"No configuration found for exam board: {exam_format}")
 
         return board_config
-if __name__=="__main__":
-    ConfigManager._load_paths()

@@ -3,9 +3,13 @@ from typing import Optional
 import os
 
 class FileManager:
-    """A utility class for managing file paths and checking file existence."""
+    """
+    A utility class for managing file paths and checking file existence.
+    The root_path attribute is used as the base path for all file operations.
+    Default file location: root_path/extraction_engine/managers/file_manager.py
+    """
 
-    root_path: Path = Path(__file__).resolve().parent  # Default root path
+    root_path: Path = Path(__file__).resolve().parents[2]  # Default root path
 
     @classmethod
     def set_root_path(cls, path: str):
@@ -50,7 +54,7 @@ class FileManager:
             base_path = cls.root_path
         else:
             base_path = cls._to_path(base_str)
-        return base_path / filename
+        return base_path.joinpath(filename)
 
     @staticmethod
     def is_valid_file(filepath_str: str) -> bool:

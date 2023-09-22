@@ -1,6 +1,7 @@
 import os
 import json
-from file_manager import FileManager
+from pathlib import Path
+from extraction_engine.managers.file_manager import FileManager
 
 class ConfigManager:
     """
@@ -20,8 +21,10 @@ class ConfigManager:
 
     @staticmethod
     def _load_paths():
+        print("Loading paths.json")
         try:
-            with open(FileManager.construct_path('paths.json'), 'r') as file:
+            with open(FileManager.construct_path('/config/paths.json'), 'r') as file:
+                print(file)
                 return json.load(file)
         except FileNotFoundError:
             raise ValueError("paths.json not found.")
@@ -29,13 +32,13 @@ class ConfigManager:
             raise ValueError("Error decoding paths.json. Ensure it's valid JSON.")
 
     @classmethod
-    def _resolve_path(cls, filename: str, env_var: str) -> str:
+    def _resolve_path(cls, filename: str, env_var: str) -> Path:
         """
         Resolves the path for a given filename, using the environment variable if it exists.
         Expected environment variables: CONFIG_PATH, COVERPAGE_SETTINGS_PATH
         """
-        default_path = FileManager.construct_path(filename, base_path=cls.CONFIG_BASE_PATH)
-        return os.environ.get(env_var, default_path)
+        default_path = FileManager.construct_path(filename)
+        return Path(os.environ.get(env_var, default_path))
 
     def __init__(self):
         if self._instance:
@@ -68,3 +71,5 @@ class ConfigManager:
             raise ValueError(f"No configuration found for exam board: {exam_format}")
 
         return board_config
+if __name__=="__main__":
+    ConfigManager._load_paths()

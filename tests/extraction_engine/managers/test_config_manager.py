@@ -2,7 +2,7 @@
 
 import unittest
 from unittest.mock import mock_open, patch
-from config_manager import ConfigManager
+from extraction_engine.managers.config_manager import ConfigManager
 
 class ConfigManagerTest(unittest.TestCase):
     def setUp(self):

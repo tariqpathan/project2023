@@ -1,69 +1,83 @@
-import os
-from PIL import Image
+from pathlib import Path
 from typing import Optional
-
-
 import os
 
 class FileManager:
-    
-    @staticmethod
-    def get_root_path():
-        return os.path.dirname(os.path.realpath(__file__))
+    """A utility class for managing file paths and checking file existence."""
 
-    @staticmethod
-    def construct_path(filename: str, base_path: Optional[str]=None):
-        """Constructs the full path for a given filename."""
-        if not base_path:
-            base_path = FileManager.get_root_path()
-        return os.path.join(base_path, filename)
+    root_path: Path = Path(__file__).resolve().parent  # Default root path
 
-    @staticmethod
-    def is_valid_file(filepath: str) -> bool:
-        """Check if the provided path exists and is a file.
+    @classmethod
+    def set_root_path(cls, path: str):
+        """Sets the root path for file management operations.
+
         Args:
-            filepath (str): The path to check.
+            path (str): The new root path.
+        """
+        cls.root_path = cls._to_path(path)
+
+    @classmethod
+    def _to_path(cls, path_str: str) -> Path:
+        """Converts a string to a Path object, raising an exception if the conversion fails.
+
+        Args:
+            path_str (str): The string to convert.
+
+        Returns:
+            Path: The resulting Path object.
+
+        Raises:
+            ValueError: If the string cannot be converted to a Path object.
+        """
+        try:
+            return Path(path_str)
+        except Exception as e:
+            raise ValueError(f"Failed to convert string to Path: {e}")
+
+    @classmethod
+    def construct_path(cls, filepath_str: str, base_str: Optional[str] = None) -> Path:
+        """Constructs the full path for a given filename, optionally based on a specified base path.
+
+        Args:
+            filepath_str (str): The name of the file.
+            base_path (Optional[str]): The base path. If None, uses the class's root_path.
+
+        Returns:
+            Path: The full path to the file.
+        """
+        filename = cls._to_path(filepath_str)
+        if base_str is None:
+            base_path = cls.root_path
+        else:
+            base_path = cls._to_path(base_str)
+        return base_path / filename
+
+    @staticmethod
+    def is_valid_file(filepath_str: str) -> bool:
+        """Checks if the provided path exists and is a file.
+
+        Args:
+            filepath (str): The filepath to check.
 
         Returns:
             bool: True if the filepath exists and is a file, otherwise False.
         """
-        return os.path.exists(filepath) and os.path.isfile(filepath)
+        filepath = FileManager._to_path(filepath_str)
+        return filepath.exists() and filepath.is_file()
 
-    @staticmethod
-    def resolve_path(filename: str, env_var: str) -> str:
-        default_path = FileManager.construct_path(filename)
-        return os.environ.get(env_var, default_path)
+    @classmethod
+    def resolve_path(cls, filename: str, env_var: str) -> Path:
+        """Resolves the full path of a file, allowing for environment variable overrides.
 
+        Args:
+            filename (str): The name of the file.
+            env_var (str): The name of the environment variable that may override the default path.
 
-class ImageFileManager:
-
-    @staticmethod
-    def get_image_save_path(filename: str) -> str:
-        """Returns the path where the image should be saved."""
-        #TODO: avoid hardcoding the path
-        base_path = FileManager.construct_path("static/question_images")
-        return FileManager.construct_path(filename, base_path)
-
-    @staticmethod
-    def save_image(image_data, filename: str):
-        """Saves the given image data to the specified filename in the image directory."""
-        save_path = ImageFileManager.get_image_save_path(filename)
-        
-        try:
-            with open(save_path, 'wb') as image_file:
-                image_file.write(image_data)
-        except Exception as e:
-            raise IOError(f"Unable to save image: {e}")
-    
-    #TODO: ensure image retrieval works
-    @staticmethod
-    def get_image(filename: str):
-        """Returns the image data for the specified filename."""
-        image_path = ImageFileManager.get_image_save_path(filename)
-        try:
-            with open(image_path, 'rb') as image_file:
-                return image_file.read()
-        except FileNotFoundError:
-            raise ValueError(f"Image file {image_path} not found.")
-        except Exception as e:
-            raise IOError(f"Unable to read image: {e}")
+        Returns:
+            Path: The resolved path to the file.
+        """
+        env_var_value = os.environ.get(env_var)
+        if env_var_value:
+            return cls._to_path(env_var_value) / filename
+        else:
+            return cls.construct_path(filename)

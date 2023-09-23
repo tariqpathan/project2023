@@ -1633,3 +1633,2000 @@ Traceback (most recent call last):
     raise Exception(f"Error with input pdf files: {e}" \
 Exception: Error with input pdf files: 'regex'
 Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 21:34:48,744 - __main__ - INFO - Starting exam extraction...
+2023-09-23 21:34:48,745 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:34:48,749 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 21:34:48,756 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'type': 'r"(MARK SCHEME)"'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 21:34:48,757 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 21:34:48,768 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 21:34:48,768 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 21:34:48,768 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:34:48,768 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 21:34:48,768 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 21:34:48,769 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 21:34:48,769 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 21:34:48,769 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:34:48,769 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 21:34:48,769 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 21:34:48,770 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 21:34:48,770 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 21:34:48,770 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 21:34:48,941 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 21:34:48,950 - root - DEBUG - cover_settings: {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'type': 'r"(MARK SCHEME)"'}}
+2023-09-23 21:34:48,951 - __main__ - ERROR - Error with input pdf files: name 'regex' is not defined
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 39, in validate_cover_pages_match
+    question_data = self.extract(question_text, "question")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 21, in extract
+    if not regex:
+           ^^^^^
+NameError: name 'regex' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: name 'regex' is not defined
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 21:40:58,852 - __main__ - INFO - Starting exam extraction...
+2023-09-23 21:40:58,853 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:40:58,853 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 21:40:58,857 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'type': 'r"(MARK SCHEME)"'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 21:40:58,857 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 21:40:58,867 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 21:40:58,868 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 21:40:58,868 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:40:58,868 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 21:40:58,868 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 21:40:58,868 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 21:40:58,868 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 21:40:58,868 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:40:58,869 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 21:40:58,869 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 21:40:58,869 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 21:40:58,869 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 21:40:58,869 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 21:40:59,018 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 21:40:59,027 - root - DEBUG - cover_settings: {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'type': 'r"(MARK SCHEME)"'}}
+2023-09-23 21:40:59,028 - __main__ - ERROR - Error with input pdf files: 'answer'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 42, in validate_cover_pages_match
+    question_data = self.extract(question_text, "question")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 31, in extract
+    if extracted_data["answer"]:
+      ~~~~~~~~~~~~~~^^^^^^^^^^
+KeyError: 'answer'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'answer'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 21:41:56,367 - __main__ - INFO - Starting exam extraction...
+2023-09-23 21:41:56,368 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:41:56,368 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 21:41:56,372 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'type': 'r"(MARK SCHEME)"'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 21:41:56,372 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 21:41:56,382 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 21:41:56,382 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 21:41:56,382 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:41:56,382 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 21:41:56,383 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 21:41:56,383 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 21:41:56,383 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 21:41:56,383 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:41:56,383 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 21:41:56,383 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 21:41:56,383 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 21:41:56,383 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 21:41:56,384 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 21:41:56,535 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 21:41:56,545 - root - DEBUG - cover_settings: {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'type': 'r"(MARK SCHEME)"'}}
+2023-09-23 21:41:56,546 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}
+2023-09-23 21:41:56,546 - root - DEBUG - cover_settings: {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'type': 'r"(MARK SCHEME)"'}}
+2023-09-23 21:41:56,546 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}
+2023-09-23 21:41:56,546 - __main__ - ERROR - Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 44, in validate_cover_pages_match
+    if question_data["exam_series"] != answer_data["exam_series"]:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'exam_series'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 21:42:20,619 - __main__ - INFO - Starting exam extraction...
+2023-09-23 21:42:20,620 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:42:20,620 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 21:42:20,629 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'answer': 'r"(MARK SCHEME)"'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 21:42:20,630 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 21:42:20,641 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 21:42:20,641 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 21:42:20,641 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:42:20,641 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 21:42:20,642 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 21:42:20,642 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 21:42:20,642 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 21:42:20,642 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:42:20,642 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 21:42:20,642 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 21:42:20,643 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 21:42:20,643 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 21:42:20,643 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 21:42:20,792 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 21:42:20,802 - root - DEBUG - cover_settings: {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'answer': 'r"(MARK SCHEME)"'}}
+2023-09-23 21:42:20,802 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'answer': None}
+2023-09-23 21:42:20,803 - root - DEBUG - cover_settings: {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b",', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b",', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b",', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b",', 'answer': 'r"(MARK SCHEME)"'}}
+2023-09-23 21:42:20,803 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'answer': None}
+2023-09-23 21:42:20,803 - __main__ - ERROR - Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 44, in validate_cover_pages_match
+    if question_data["exam_series"] != answer_data["exam_series"]:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'exam_series'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 21:44:41,475 - __main__ - INFO - Starting exam extraction...
+2023-09-23 21:44:41,475 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:44:41,475 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 21:44:41,484 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b"', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b"', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b"', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b"', 'answer': 'r"(MARK SCHEME)"'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 21:44:41,484 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 21:44:41,494 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 21:44:41,494 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 21:44:41,494 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:44:41,494 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 21:44:41,494 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 21:44:41,494 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 21:44:41,494 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 21:44:41,495 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:44:41,495 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 21:44:41,495 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 21:44:41,495 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 21:44:41,496 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 21:44:41,496 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 21:44:41,645 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 21:44:41,654 - root - DEBUG - cover_settings: {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b"', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b"', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b"', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b"', 'answer': 'r"(MARK SCHEME)"'}}
+2023-09-23 21:44:41,655 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'answer': None}
+2023-09-23 21:44:41,655 - root - DEBUG - cover_settings: {'regexes': {'subject': 'r"\\b([A-Z]{6,})\\b"', 'unit_code': 'r"\\b(\\d{4})\\/\\d{2}\\b"', 'component_code': 'r"\\b\\d{4}\\/(\\d{2})\\b"', 'month': 'r"\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b"', 'year': 'r"\\bUCLES\\s+(\\d{4})\\b"', 'answer': 'r"(MARK SCHEME)"'}}
+2023-09-23 21:44:41,655 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'answer': None}
+2023-09-23 21:44:41,656 - __main__ - ERROR - Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 44, in validate_cover_pages_match
+    if question_data["exam_series"] != answer_data["exam_series"]:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'exam_series'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 21:48:44,319 - __main__ - INFO - Starting exam extraction...
+2023-09-23 21:48:44,319 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:48:44,320 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 21:48:44,329 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': "r'\\b([A-Z]{6,})\\b'", 'unit_code': "r'\\b(\\d{4})\\/\\d{2}\\b'", 'component_code': "r'\\b\\d{4}\\/(\\d{2})\\b'", 'month': "r'\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'", 'year': "r'\\bUCLES\\s+(\\d{4})\\b'", 'answer': "r'(MARK SCHEME)'"}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 21:48:44,329 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 21:48:44,339 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 21:48:44,339 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 21:48:44,339 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:48:44,339 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 21:48:44,339 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 21:48:44,340 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 21:48:44,340 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 21:48:44,340 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:48:44,340 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 21:48:44,340 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 21:48:44,340 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 21:48:44,341 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 21:48:44,341 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 21:48:44,490 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 21:48:44,500 - root - DEBUG - cover_settings: {'regexes': {'subject': "r'\\b([A-Z]{6,})\\b'", 'unit_code': "r'\\b(\\d{4})\\/\\d{2}\\b'", 'component_code': "r'\\b\\d{4}\\/(\\d{2})\\b'", 'month': "r'\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'", 'year': "r'\\bUCLES\\s+(\\d{4})\\b'", 'answer': "r'(MARK SCHEME)'"}}
+2023-09-23 21:48:44,501 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'answer': None}
+2023-09-23 21:48:44,501 - root - DEBUG - cover_settings: {'regexes': {'subject': "r'\\b([A-Z]{6,})\\b'", 'unit_code': "r'\\b(\\d{4})\\/\\d{2}\\b'", 'component_code': "r'\\b\\d{4}\\/(\\d{2})\\b'", 'month': "r'\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'", 'year': "r'\\bUCLES\\s+(\\d{4})\\b'", 'answer': "r'(MARK SCHEME)'"}}
+2023-09-23 21:48:44,501 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'answer': None}
+2023-09-23 21:48:44,502 - __main__ - ERROR - Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 44, in validate_cover_pages_match
+    if question_data["exam_series"] != answer_data["exam_series"]:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'exam_series'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 21:50:15,032 - __main__ - INFO - Starting exam extraction...
+2023-09-23 21:50:15,033 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:50:15,033 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 21:50:15,037 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': "r'\\b([A-Z]{6,})\\b'", 'unit_code': "r'\\b(\\d{4})\\/\\d{2}\\b'", 'component_code': "r'\\b\\d{4}\\/(\\d{2})\\b'", 'month': "r'\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'", 'year': "r'\\bUCLES\\s+(\\d{4})\\b'", 'answer': "r'(MARK SCHEME)'"}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 21:50:15,037 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 21:50:15,048 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 21:50:15,048 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 21:50:15,049 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:50:15,049 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 21:50:15,049 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 21:50:15,049 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 21:50:15,049 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 21:50:15,049 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:50:15,049 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 21:50:15,049 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 21:50:15,050 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 21:50:15,050 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 21:50:15,050 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 21:50:15,211 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 21:50:15,221 - root - DEBUG - cover_settings: {'regexes': {'subject': "r'\\b([A-Z]{6,})\\b'", 'unit_code': "r'\\b(\\d{4})\\/\\d{2}\\b'", 'component_code': "r'\\b\\d{4}\\/(\\d{2})\\b'", 'month': "r'\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'", 'year': "r'\\bUCLES\\s+(\\d{4})\\b'", 'answer': "r'(MARK SCHEME)'"}}
+2023-09-23 21:50:15,221 - root - DEBUG - regex123: "r'\\b([A-Z]{6,})\\b'"
+2023-09-23 21:50:15,221 - root - DEBUG - regex123: "r'\\b(\\d{4})\\/\\d{2}\\b'"
+2023-09-23 21:50:15,222 - root - DEBUG - regex123: "r'\\b\\d{4}\\/(\\d{2})\\b'"
+2023-09-23 21:50:15,222 - root - DEBUG - regex123: "r'\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'"
+2023-09-23 21:50:15,222 - root - DEBUG - regex123: "r'\\bUCLES\\s+(\\d{4})\\b'"
+2023-09-23 21:50:15,222 - root - DEBUG - regex123: "r'(MARK SCHEME)'"
+2023-09-23 21:50:15,223 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'answer': None}
+2023-09-23 21:50:15,223 - root - DEBUG - cover_settings: {'regexes': {'subject': "r'\\b([A-Z]{6,})\\b'", 'unit_code': "r'\\b(\\d{4})\\/\\d{2}\\b'", 'component_code': "r'\\b\\d{4}\\/(\\d{2})\\b'", 'month': "r'\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'", 'year': "r'\\bUCLES\\s+(\\d{4})\\b'", 'answer': "r'(MARK SCHEME)'"}}
+2023-09-23 21:50:15,223 - root - DEBUG - regex123: "r'\\b([A-Z]{6,})\\b'"
+2023-09-23 21:50:15,223 - root - DEBUG - regex123: "r'\\b(\\d{4})\\/\\d{2}\\b'"
+2023-09-23 21:50:15,223 - root - DEBUG - regex123: "r'\\b\\d{4}\\/(\\d{2})\\b'"
+2023-09-23 21:50:15,224 - root - DEBUG - regex123: "r'\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'"
+2023-09-23 21:50:15,224 - root - DEBUG - regex123: "r'\\bUCLES\\s+(\\d{4})\\b'"
+2023-09-23 21:50:15,224 - root - DEBUG - regex123: "r'(MARK SCHEME)'"
+2023-09-23 21:50:15,224 - root - DEBUG - extracted_data_xyz: {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'answer': None}
+2023-09-23 21:50:15,224 - __main__ - ERROR - Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 45, in validate_cover_pages_match
+    if question_data["exam_series"] != answer_data["exam_series"]:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'exam_series'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 21:50:41,272 - __main__ - INFO - Starting exam extraction...
+2023-09-23 21:50:41,272 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:50:41,272 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 21:50:41,281 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 21:50:41,282 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 21:50:41,293 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 21:50:41,294 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 21:50:41,294 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:50:41,294 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 21:50:41,294 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 21:50:41,294 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 21:50:41,295 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 21:50:41,295 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 21:50:41,295 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 21:50:41,295 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 21:50:41,295 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 21:50:41,295 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 21:50:41,295 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 21:50:41,455 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 21:50:41,464 - root - DEBUG - cover_settings: {'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}
+2023-09-23 21:50:41,464 - root - DEBUG - regex123: '\\b([A-Z]{6,})\\b'
+2023-09-23 21:50:41,465 - root - DEBUG - regex123: '\\b(\\d{4})\\/\\d{2}\\b'
+2023-09-23 21:50:41,465 - root - DEBUG - regex123: '\\b\\d{4}\\/(\\d{2})\\b'
+2023-09-23 21:50:41,465 - root - DEBUG - regex123: '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'
+2023-09-23 21:50:41,466 - root - DEBUG - regex123: '\\bUCLES\\s+(\\d{4})\\b'
+2023-09-23 21:50:41,466 - root - DEBUG - regex123: '(MARK SCHEME)'
+2023-09-23 21:50:41,466 - root - DEBUG - extracted_data_xyz: {'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-23 21:50:41,466 - root - DEBUG - cover_settings: {'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}
+2023-09-23 21:50:41,467 - root - DEBUG - regex123: '\\b([A-Z]{6,})\\b'
+2023-09-23 21:50:41,467 - root - DEBUG - regex123: '\\b(\\d{4})\\/\\d{2}\\b'
+2023-09-23 21:50:41,467 - root - DEBUG - regex123: '\\b\\d{4}\\/(\\d{2})\\b'
+2023-09-23 21:50:41,467 - root - DEBUG - regex123: '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b'
+2023-09-23 21:50:41,467 - root - DEBUG - regex123: '\\bUCLES\\s+(\\d{4})\\b'
+2023-09-23 21:50:41,468 - root - DEBUG - regex123: '(MARK SCHEME)'
+2023-09-23 21:50:41,468 - root - DEBUG - extracted_data_xyz: {'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': 'MARK SCHEME'}
+2023-09-23 21:50:41,468 - __main__ - ERROR - Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 45, in validate_cover_pages_match
+    if question_data["exam_series"] != answer_data["exam_series"]:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'exam_series'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 22:03:19,242 - __main__ - INFO - Starting exam extraction...
+2023-09-23 22:03:19,242 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:03:19,242 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 22:03:19,251 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 22:03:19,251 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 22:03:19,261 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 22:03:19,261 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 22:03:19,261 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:03:19,261 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 22:03:19,262 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 22:03:19,262 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+{'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}
+2023-09-23 22:03:19,262 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 22:03:19,262 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:03:19,262 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 22:03:19,262 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 22:03:19,263 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 22:03:19,263 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 22:03:19,263 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 22:03:19,413 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 22:03:19,423 - __main__ - ERROR - Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 41, in validate_cover_pages_match
+    if question_data["exam_series"] != answer_data["exam_series"]:
+       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'exam_series'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'exam_series'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 22:14:07,195 - __main__ - INFO - Starting exam extraction...
+2023-09-23 22:14:07,195 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:14:07,195 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 22:14:07,199 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 22:14:07,199 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 22:14:07,210 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 22:14:07,210 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 22:14:07,210 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:14:07,210 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 22:14:07,210 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 22:14:07,210 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+{'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}
+2023-09-23 22:14:07,211 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 22:14:07,211 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:14:07,211 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 22:14:07,211 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 22:14:07,211 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 22:14:07,212 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 22:14:07,212 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 22:14:09,444 - extraction_engine.managers.exam_manager - INFO - Exam data: {'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-23 22:14:09,454 - __main__ - ERROR - Mapped instance expected for relationship comparison to object.   Classes, queries and other SQL elements are not accepted in this context; for comparison with a subquery, use Exam.subject.has(**criteria).
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 61, in process
+    exam = self._get_or_create_exam(db_session, exam_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 31, in _get_or_create_exam
+    exam = db_session.query(Exam).filter_by(**exam_data).first()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\query.py", line 1998, in filter_by
+    clauses = [
+              ^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\query.py", line 1999, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\sql\operators.py", line 582, in __eq__
+    return self.operate(eq, other)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\attributes.py", line 452, in operate
+    return op(self.comparator, *other, **kwargs)  # type: ignore[return-value,no-any-return]  # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\relationships.py", line 757, in __eq__
+    self.property._optimized_compare(
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1180, in _optimized_compare
+    raise sa_exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Mapped instance expected for relationship comparison to object.   Classes, queries and other SQL elements are not accepted in this context; for comparison with a subquery, use Exam.subject.has(**criteria).

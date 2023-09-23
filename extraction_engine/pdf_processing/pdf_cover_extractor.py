@@ -1,5 +1,5 @@
 import re
-from typing import Dict
+from typing import Dict, Union
 import logging
 
 import yaml
@@ -7,26 +7,25 @@ import yaml
 logger = logging.getLogger(__name__)
 
 class PDFCoverPageExtractor:
+    KEY_NAME_FOR_YAML_CONFIG = "regexes"
 
     def __init__(self, cover_settings: Dict):
-        logging.debug("PDFCoverPageExtractor.__init__ called")
         self.cover_settings = cover_settings
 
-    def extract(self, text: str, paper_type: str) -> Dict[str, str|int]:
+    def extract(self, text: str) -> Dict[str, Union[str, int, bool]]:
         """Extracts the exam series from the cover page text."""
-        extraction_config = self.cover_settings['regex'][paper_type]
-        capture_groups = extraction_config['capture_groups']
-        regex = extraction_config['regex']
-        if not regex:
-            raise KeyError(f"Regex not found for the given exam paper: {paper_type}")
-
-        match = re.search(regex, text)
-        if not match:
-            raise ValueError(f"No match found for the given regex. Caused by the exam paper: {paper_type}")
+        extraction_config = self.cover_settings[self.KEY_NAME_FOR_YAML_CONFIG]
+        # logging.debug(f"extraction_config: {extraction_config}")
+        if not extraction_config:
+            raise KeyError(f"Regex not found for the given exam paper: {self.cover_settings.keys()}")
 
         extracted_data = {}
-        for group_name in capture_groups:
-            extracted_data[group_name] = match.group(group_name)
+        for group_name, regex in extraction_config.items():
+            match = re.search(regex, text)
+            if match:
+                extracted_data[group_name] = True if group_name == "answer" else match.group(1)
+            else:
+                extracted_data[group_name] = None
         return extracted_data
 
     def validate_cover_pages_match(self, question_text: str, answer_text: str) -> Dict[str, str|int]:
@@ -35,34 +34,14 @@ class PDFCoverPageExtractor:
         Requires the cover pages in text format.
         Raises a ValueError if the exam series do not match.
         """
-        question_data = self.extract(question_text, "question")
-        logging.debug(f"question_data: {question_data}")
-        answer_data = self.extract(answer_text, "answer")
-        if question_data["exam_series"] != answer_data["exam_series"]:
-            raise ValueError("The exam series do not match.")
+        keys_to_compare = ['unit_code', 'component_code', 'month', 'year', 'subject']
+        question_data = self.extract(question_text)
+        answer_data = self.extract(answer_text)
+
+        for key in keys_to_compare:
+            if question_data.get(key) != answer_data.get(key):
+                raise ValueError(f"The cover pages do not match for {key}.\n" \
+                    f"They are: {question_data.get(key)}, and {answer_data.get(key)}")
+        if question_data.get('answer') != None and not answer_data.get('answer'):
+            raise ValueError(f"Mark scheme not correctly identified. Check file names.")
         return question_data
-    
-if __name__=="__main__":
-    with open('./config/config.yaml', 'r') as f:
-        config = yaml.safe_load(f)
-    
-    settings = config['coverpage_settings']['cambridge_science']['question']
-    with open('./tests/test_question_cover.txt', 'r') as f:
-        text = f.read()
-    
-    regexes = {
-        "subject": r"\b([A-Z]{6,})\b",
-        "unit_code": r"\b(\d{4})\/\d{2}\b",
-        "component_code": r"\b\d{4}\/(\d{2})\b",
-        "Month": r"\b([A-Z]{1}[a-z]+)\/?[A-Z]{1}[a-z]+\s20\d{2}\b",
-        "Year": r"\bUCLES\s+(\d{4})\b",
-        "Type": r"(MARK SCHEME)"
-    }
-    extracted_data = {}
-    for group_name, regex in regexes.items():
-        match = re.search(regex, text)
-        if match:
-            extracted_data[group_name] = match.group(1)
-        else:
-            extracted_data[group_name] = None
-    print(extracted_data)

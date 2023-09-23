@@ -26,7 +26,7 @@ class PDFManager:
 
     def _get_exam_cover_details(self, pdf: PyPDF4.PdfFileReader) -> Dict[str, str|int]:
         text = PDFUtils.first_page_text(pdf)
-        return self.cover_page_extractor.extract(text, "question") # cover details come from question paper
+        return self.cover_page_extractor.extract(text) # cover details come from question paper
 
     def extract_pdf_data(self, question_pdf_path: str, answer_pdf_path: str) -> Dict[str, Any]:
         """
@@ -40,7 +40,7 @@ class PDFManager:
             answer_pdf = PDFUtils.load_pdf(answer_pdf_path)
             q_cover_text = PDFUtils.first_page_text(question_pdf)
             a_cover_text = PDFUtils.first_page_text(answer_pdf)
-            logging.debug(f'\n\nFRONTPAGE q:\n {q_cover_text},\n\n\n\n a:\n {a_cover_text}\n\nEND\n')        
+            # logging.debug(f'\n\nFRONTPAGE q:\n {q_cover_text},\n\n\n\n a:\n {a_cover_text}\n\nEND\n')        
             cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
             questions = self._return_pdf_images(question_pdf_path)[1:]
             answers = self._return_pdf_text(answer_pdf_path)

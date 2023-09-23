@@ -1,4 +1,6 @@
 {
-    "config": "config.json",
-    "coverpage_settings": "coverpage_settings.json"
+    "config": "./config/config.json",
+    "coverpage_settings": "./config/coverpage_settings.json",
+    "images": "./static/question_images/",
+    "uploads": "./uploads"
 }

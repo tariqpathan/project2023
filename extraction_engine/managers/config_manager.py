@@ -47,10 +47,9 @@ class ConfigManager:
 
     @classmethod
     def _initialize_config_paths(cls):
-        cls._CONFIG_PATHS = {
-            "config": cls._get_path_from_env_or_default(ConfigManager.paths['config'], 'CONFIG_PATH'),
-            "coverpage_settings": cls._get_path_from_env_or_default(ConfigManager.paths['coverpage_settings'], 'COVERPAGE_SETTINGS_PATH')
-        }
+        cls._CONFIG_PATHS = {}
+        for key, name in cls.paths.items():
+            cls._CONFIG_PATHS[key] = FileManager.construct_path(CONFIG_BASE_PATH, name)
 
     def _load_config(self, config_type: str):
         """Loads the config file based on its type and returns the config as a dictionary."""

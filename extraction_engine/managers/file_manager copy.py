@@ -12,7 +12,6 @@ class FileManager:
 
     root_path: Path = Path(__file__).resolve().parents[2]  # Default root path
     paths_location: Path = root_path / "config" / "paths.json"
-    _paths_cache = None  # Cache for file paths
 
     @classmethod
     def set_root_path(cls, path: str):
@@ -40,23 +39,6 @@ class FileManager:
             return Path(path_str)
         except Exception as e:
             raise ValueError(f"Failed to convert string to Path: {e}")
-
-    @classmethod
-    def _load_paths(cls):
-        """Load and cache file paths from the JSON file."""
-        with open(cls.paths_location, 'r') as file:
-            cls._paths_cache = json.load(file)
-
-    @classmethod
-    def _get_cached_path(cls, filepath_name: str) -> Optional[str]:
-        """Get a file path from the cache."""
-        if cls._paths_cache is None:
-            cls._load_paths()
-        # Now check if _paths_cache is a dictionary and contains the filepath_name
-        if isinstance(cls._paths_cache, dict) and filepath_name in cls._paths_cache:
-            return cls._paths_cache.get(filepath_name)
-        else:
-            return None
 
     @classmethod
     def construct_path(cls, filepath_str: str, base_str: Optional[str] = None) -> Path:
@@ -94,29 +76,28 @@ class FileManager:
         """Returns the path to the file location.
 
         Args:
-            filepath_name (str): The name of the file path in the paths.json file.
+            filename (str): The name of the config file.
 
         Returns:
-            Path: The path to the file.
+            Path: The path to the config file.
         """
-        relative_path_str = cls._get_cached_path(filepath_name)
-        if not relative_path_str:
-            raise ValueError(f"No path found for filepath name: {filepath_name}")
-        return cls.construct_path(relative_path_str)
+        with open(cls.paths_location, 'r') as file:
+            paths = json.load(file)
+        return cls.construct_path(filename, "config.yaml")
 
     @classmethod
-    def get_env_paths_or_default(cls, env_var: str) -> Path:
-        """Resolves the full path of the paths file, allowing for environment variable overrides.
+    def get_env_paths_or_default(cls, filename: str, env_var: str) -> Path:
+        """Resolves the full path of a file, allowing for environment variable overrides.
 
         Args:
+            filename (str): The name of the file.
             env_var (str): The name of the environment variable that may override the default path.
 
         Returns:
-            Path: The resolved path to the paths file.
+            Path: The resolved path to the file.
         """
         env_var_value = os.environ.get(env_var)
         if env_var_value:
-            cls.paths_location = cls._to_path(env_var_value)
-        # Now reload the paths, as the location may have changed
-        cls._load_paths()
-        return cls.paths_location
+            return cls._to_path(env_var_value) / filename
+        else:
+            return cls.construct_path(filename)

@@ -1,0 +1,57 @@
+# Configuration for different exam formats
+# This is the main configuration file that consolidates settings
+# for different exam formats as well as cover page settings.
+
+# Configuration for different exam formats.
+exam_formats:
+
+  # Configuration for Cambridge Science exams.
+  cambridge_science:
+    # Settings related to image processing.
+    imageProcessor:
+      binary_threshold: 180       # Threshold value for binary conversion.
+      margin_start: 0             # Start margin for processing.
+      margin_end: 180             # End margin for processing.
+      question_x_start: ""        # X-coordinate start position for question region.
+      question_x_end: ""          # X-coordinate end position for question region.
+      question_y_start: ""        # Y-coordinate start position for question region.
+      footer_height: 120          # Height of the footer region.
+      padding: 50                 # Padding around the processed area.
+      min_question_spacing: 25    # Minimum spacing between questions.
+      whitespace_threshold: 128   # Threshold value for detecting whitespace.
+
+    # Settings related to text processing.
+    textProcessor:
+      question_x_start: 100       # X-coordinate start position for question text.
+      question_y_start: 40        # Y-coordinate start position for question text.
+      question_x_end: 190         # X-coordinate end position for question text.
+      question_y_end: 100         # Y-coordinate end position for question text.
+      tesseract_psm_mode: 7       # Tesseract Page Segmentation Mode (PSM).
+
+  # Configuration for AQA Maths exams.
+  aqa_maths:
+    # Similar settings as for Cambridge Science exams.
+    # Settings for image processing and OCR processing are grouped similarly.
+    imageProcessor:
+      # ...
+    OCRProcessor:
+      # ...
+
+# Cover page settings for different exam formats.
+coverpage_settings:
+  # Cover page settings for Cambridge Science exams.
+  cambridge_science:
+    question:
+      regex: ""                   # Regular expression for identifying questions.
+      capture_groups: [""]        # Capture groups for extracting data from questions.
+    answer:
+      regex: "(\\d{4})/(\\d{2})"  # Regular expression for identifying answers.
+      capture_groups: ["subject", "component"]  # Capture groups for extracting data from answers.
+
+  # Example settings, could be for a different exam format.
+  example:
+    question:
+      # ...
+    answer:
+      # ...
+

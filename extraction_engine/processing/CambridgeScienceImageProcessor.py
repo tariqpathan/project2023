@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw
 from typing import Dict, List, Tuple, Optional
 import numpy as np
-from exam_processor.processing.AbstractImageProcessor import AbstractImageProcessor
+from extraction_engine.processing.AbstractImageProcessor import AbstractImageProcessor
 
 
 class CambridgeScienceImageProcessor(AbstractImageProcessor):

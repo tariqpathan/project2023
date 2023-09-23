@@ -1,7 +1,7 @@
 {
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.extraPaths": [
-        "./exam_processor/managers",
+        "./extraction_engine/managers",
         "./extraction_engine/managers"
     ]
 }

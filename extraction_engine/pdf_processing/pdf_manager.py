@@ -1,18 +1,20 @@
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict
 import PyPDF4
-import re
-from exam_processor.managers.config_manager import ConfigManager
-from exam_processor.pdf_processing.pdf_cover_extractor import PDFCoverPageExtractor
-from exam_processor.pdf_processing.pdf_utils import PDFUtils
+from extraction_engine.managers.config_manager import ConfigManager
+from extraction_engine.pdf_processing.pdf_cover_extractor import PDFCoverPageExtractor
+from extraction_engine.pdf_processing.pdf_utils import PDFUtils
+import logging
 
+logger = logging.getLogger(__name__)
 class PDFManager:
     def __init__(self, exam_format: str):
+        self.CONFIG_TYPE = "coverpage_settings"
         self.exam_format = exam_format
         self.cover_settings = self._get_cover_settings()
         self.cover_page_extractor = PDFCoverPageExtractor(self.cover_settings)
 
     def _get_cover_settings(self) -> dict:
-        return ConfigManager().get_config("coverpage_settings", self.exam_format)
+        return ConfigManager().get_config(config_type=self.CONFIG_TYPE, exam_format=self.exam_format)
         
     def _return_pdf_images(self, pdf_path: str) -> list:
         """Returns a list of images from a PDF file, excluding the cover page."""
@@ -36,10 +38,9 @@ class PDFManager:
         try:
             question_pdf = PDFUtils.load_pdf(question_pdf_path)
             answer_pdf = PDFUtils.load_pdf(answer_pdf_path)
-        
             q_cover_text = PDFUtils.first_page_text(question_pdf)
             a_cover_text = PDFUtils.first_page_text(answer_pdf)
-        
+            logging.debug(f'\n\nFRONTPAGE q:\n {q_cover_text},\n\n\n\n a:\n {a_cover_text}\n\nEND\n')        
             cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
             questions = self._return_pdf_images(question_pdf_path)[1:]
             answers = self._return_pdf_text(answer_pdf_path)

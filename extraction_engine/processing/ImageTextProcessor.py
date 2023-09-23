@@ -1,6 +1,9 @@
 from PIL import Image
 import pytesseract
 from typing import Dict, Optional
+import logging
+
+logger = logging.getLogger(__name__)
 
 class ImageTextProcessor():
     def __init__(self, config: Dict):

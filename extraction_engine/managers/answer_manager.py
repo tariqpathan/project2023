@@ -1,8 +1,8 @@
 from typing import Dict, List, Optional
 from database.models import Answer, Question
-from exam_processor.factories.answer_factory import AnswerFactory
-from exam_processor.processing.CambridgeScienceAnswerProcessor import CambridgeScienceAnswerProcessor
-from exam_processor.processing.AbstractAnswerProcessor import AbstractAnswerProcessor
+from extraction_engine.factories.answer_factory import AnswerFactory
+from extraction_engine.processing.CambridgeScienceAnswerProcessor import CambridgeScienceAnswerProcessor
+from extraction_engine.processing.AbstractAnswerProcessor import AbstractAnswerProcessor
 
 
 class AnswerManager:

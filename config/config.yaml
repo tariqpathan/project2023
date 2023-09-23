@@ -41,17 +41,21 @@ exam_formats:
 coverpage_settings:
   # Cover page settings for Cambridge Science exams.
   cambridge_science:
-    question:
-      regex: ""                   # Regular expression for identifying questions.
-      capture_groups: [""]        # Capture groups for extracting data from questions.
-    answer:
-      regex: "(\\d{4})/(\\d{2})"  # Regular expression for identifying answers.
-      capture_groups: ["subject", "component"]  # Capture groups for extracting data from answers.
+    regexes:  # Capture groups for extracting data from answers.
+      subject: r"\b([A-Z]{6,})\b"
+      unit_code: r"\b(\d{4})\/\d{2}\b",
+      component_code: r"\b\d{4}\/(\d{2})\b",
+      month: r"\b([A-Z]{1}[a-z]+)\/?[A-Z]{1}[a-z]+\s20\d{2}\b",
+      year: r"\bUCLES\s+(\d{4})\b",
+      type: r"(MARK SCHEME)"
 
   # Example settings, could be for a different exam format.
   example:
-    question:
-      # ...
-    answer:
-      # ...
+    regexes:
+      subject: 
+      unit_code:
+      component_code:
+      month:
+      year:
+      type:
 

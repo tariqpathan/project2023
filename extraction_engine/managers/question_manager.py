@@ -1,39 +1,42 @@
 from PIL import Image
-from typing import Dict, List, Tuple, Optional
+from typing import List, Optional
 from database.models import Exam, Question
-from exam_processor.managers.config_manager import ConfigManager
-from exam_processor.question_factory import QuestionFactory
+from extraction_engine.managers.config_manager import ConfigManager
+from extraction_engine.factories.question_factory import QuestionFactory
 
-from exam_processor.processing.AbstractImageProcessor import AbstractImageProcessor
-from exam_processor.processing.CambridgeScienceImageProcessor import CambridgeScienceImageProcessor
-from exam_processor.processing.ImageTextProcessor import ImageTextProcessor
+from extraction_engine.processing.AbstractImageProcessor import AbstractImageProcessor
+from extraction_engine.processing.CambridgeScienceImageProcessor import CambridgeScienceImageProcessor
+from extraction_engine.processing.ImageTextProcessor import ImageTextProcessor
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 class QuestionManager:
     def __init__(self, exam_format) -> None:
         self.exam_format = exam_format
-        self.image_processor = self._get_image_processor(exam_format)
-        self.text_processor = self._get_text_processor(exam_format)
+        cm = ConfigManager()
+        self.config = cm.get_config(exam_format=exam_format, config_type="exam_formats")
+        self.image_processor = self._get_image_processor()
+        self.text_processor = self._get_text_processor()
         self.question_factory = None
-        self.config = ConfigManager().get_config("question_manager", exam_format)
 
-    def _get_image_processor(self, exam_format: str) -> AbstractImageProcessor:
+    def _get_image_processor(self) -> AbstractImageProcessor:
         """
         Returns an instance of the required image processor based on the document type.
         """
         # TODO: change this to a factory
-        if exam_format == "cambridge_science":
-            return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+        if self.exam_format == "cambridge_science":
+            return CambridgeScienceImageProcessor(self.config["imageProcessor"])
         else:
-            raise ValueError(f"Unsupported exam board: {exam_format}")
+            raise ValueError(f"Unsupported exam board: {self.exam_format}")
 
-    def _get_text_processor(self, exam_format: str) -> ImageTextProcessor:
+    def _get_text_processor(self) -> ImageTextProcessor:
         """
         Returns an instance of the required OCR processor based on the ocr type.
         """
-        if not exam_format: return ImageTextProcessor(self.config[exam_format]["textProcessor"])
-        else:
-            raise ValueError(f"Unsupported OCR type: {exam_format}")
-
+        return ImageTextProcessor(self.config["textProcessor"])
+    
     def validate_processor(self, image: Image.Image):
         self.image_processor.validate(image)
 

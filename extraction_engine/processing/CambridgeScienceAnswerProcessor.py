@@ -1,7 +1,7 @@
 import re
 from typing import Dict
 
-from exam_processor.processing.AbstractAnswerProcessor import AbstractAnswerProcessor
+from extraction_engine.processing.AbstractAnswerProcessor import AbstractAnswerProcessor
 
 class CambridgeScienceAnswerProcessor(AbstractAnswerProcessor):
     EXAM_FORMAT = "cambridge_science"

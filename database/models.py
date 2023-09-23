@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Integer, String, ForeignKey, Table, Column, UniqueConstraint
+from sqlalchemy import Integer, String, ForeignKey, Table, Column, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, relationship, mapped_column
 
 class Base(DeclarativeBase):
@@ -28,9 +28,8 @@ class Exam(Base):
     subject = relationship('Subject', back_populates='exams')
     questions = relationship('Question', back_populates='exam')
 
-    __table_args__ = (
-        UniqueConstraint('exam_board', 'month', 'year', 'unit_code',
-                          'component_code', 'subject_id', name='uc_exam'))
+    __table_args__ = (UniqueConstraint('exam_board', 'month', 'year', 'unit_code',
+                    'component_code', 'subject_id', name='uc_exam'),) # comma is required for tuple
 
 class Difficulty(Base):
     __tablename__ = 'difficulties'

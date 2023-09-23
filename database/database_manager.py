@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 class DatabaseManager:
     def __init__(self, db_path: str):
         self.engine = create_engine(f'sqlite:///{db_path}')
-        self.Session = sessionmaker(bind=self.engine)
+        self.Session = scoped_session(sessionmaker(bind=self.engine))
         self.session = None
     
     def get_session(self):

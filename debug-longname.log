@@ -1,0 +1,1635 @@
+2023-09-23 15:00:30,527 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:29:12,964 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:29:51,194 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:31:16,566 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:31:16,567 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:31:16,570 - exam_extractor - DEBUG - Valid formats: []
+2023-09-23 15:31:43,120 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:31:43,120 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:31:43,120 - root - DEBUG - ConfigManager.__new__ creating new instance
+2023-09-23 15:31:43,124 - exam_extractor - DEBUG - Valid formats: []
+2023-09-23 15:32:10,569 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:32:10,569 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:32:10,570 - root - DEBUG - ConfigManager.__new__ creating new instance
+2023-09-23 15:32:10,570 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.json
+2023-09-23 15:32:10,573 - exam_extractor - DEBUG - Valid formats: []
+2023-09-23 15:32:34,818 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:32:34,818 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:32:34,818 - root - DEBUG - ConfigManager.__new__ creating new instance
+2023-09-23 15:32:34,822 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 15:32:34,830 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 15:32:34,846 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 15:32:34,846 - exam_extractor - INFO - initializing exam manager...
+2023-09-23 15:32:34,847 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:36:43,196 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:36:43,196 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:36:43,196 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 15:36:43,200 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 15:36:43,211 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 15:36:43,211 - exam_extractor - INFO - initializing exam manager...
+2023-09-23 15:36:43,212 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:36:43,212 - __main__ - ERROR - 'QuestionManager' object has no attribute 'config'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 24, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 18, in __init__
+    self.image_processor = self._get_image_processor(exam_format)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 30, in _get_image_processor
+    return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+                                          ^^^^^^^^^^^
+AttributeError: 'QuestionManager' object has no attribute 'config'
+2023-09-23 15:38:42,922 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:38:42,922 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:38:42,922 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 15:38:42,926 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 15:38:42,937 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 15:38:42,937 - exam_extractor - INFO - initializing exam manager...
+2023-09-23 15:38:42,937 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:38:42,937 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:38:42,937 - root - DEBUG - QuestionManager config: None
+2023-09-23 15:38:42,937 - __main__ - ERROR - 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 24, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 20, in __init__
+    self.image_processor = self._get_image_processor(exam_format)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 30, in _get_image_processor
+    return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+                                          ~~~~~~~~~~~^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2023-09-23 15:41:38,931 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:41:38,931 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:41:38,932 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 15:41:38,936 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 15:41:38,946 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 15:41:38,947 - exam_extractor - INFO - initializing exam manager...
+2023-09-23 15:41:38,947 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:41:38,947 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:41:38,947 - root - DEBUG - QuestionManager config: None
+2023-09-23 15:41:38,947 - __main__ - ERROR - 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 24, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 21, in __init__
+    self.image_processor = self._get_image_processor(exam_format)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 31, in _get_image_processor
+    return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+                                          ~~~~~~~~~~~^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2023-09-23 15:44:25,637 - __main__ - INFO - Starting exam extraction...
+2023-09-23 15:44:25,637 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:44:25,638 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 15:44:25,642 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 15:44:25,653 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 15:44:25,653 - exam_extractor - INFO - initializing exam manager...
+2023-09-23 15:44:25,653 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:44:25,653 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: coverpage_settings, config_type: cambridge_science
+2023-09-23 15:44:25,653 - extraction_engine.managers.config_manager - DEBUG - config_type: cambridge_science, exam_format: coverpage_settings
+2023-09-23 15:44:25,653 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 15:44:25,654 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: question_manager, config_type: cambridge_science
+2023-09-23 15:44:25,654 - extraction_engine.managers.config_manager - DEBUG - config_type: cambridge_science, exam_format: question_manager
+2023-09-23 15:44:25,654 - root - DEBUG - QuestionManager config: None
+2023-09-23 15:44:25,654 - __main__ - ERROR - 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 24, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 21, in __init__
+    self.image_processor = self._get_image_processor(exam_format)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 31, in _get_image_processor
+    return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+                                          ~~~~~~~~~~~^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2023-09-23 16:01:46,576 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:01:46,577 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:01:46,577 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:01:46,581 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:01:46,590 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:01:46,591 - exam_extractor - INFO - initializing exam manager...
+2023-09-23 16:01:46,591 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:01:46,591 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: coverpage_settings, config_type: cambridge_science
+2023-09-23 16:01:46,591 - extraction_engine.managers.config_manager - DEBUG - config_type: cambridge_science, exam_format: coverpage_settings
+2023-09-23 16:01:46,591 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:01:46,591 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: cambridge_science, config_type: None
+2023-09-23 16:01:46,591 - root - DEBUG - QuestionManager config: None
+2023-09-23 16:01:46,591 - __main__ - ERROR - 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 24, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 21, in __init__
+    self.image_processor = self._get_image_processor(exam_format)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 31, in _get_image_processor
+    return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+                                          ~~~~~~~~~~~^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2023-09-23 16:05:20,225 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:05:20,226 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:05:20,226 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:05:20,230 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:05:20,239 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:05:20,239 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:05:20,239 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:05:20,239 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: coverpage_settings, config_type: cambridge_science
+2023-09-23 16:05:20,240 - extraction_engine.managers.config_manager - DEBUG - config_type: cambridge_science, exam_format: coverpage_settings
+2023-09-23 16:05:20,240 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:05:20,240 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:05:20,240 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: cambridge_science, config_type: None
+2023-09-23 16:05:20,240 - root - DEBUG - QuestionManager config: None
+2023-09-23 16:05:20,240 - __main__ - ERROR - 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 21, in __init__
+    self.image_processor = self._get_image_processor(exam_format)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 31, in _get_image_processor
+    return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+                                          ~~~~~~~~~~~^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2023-09-23 16:08:51,932 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:08:51,932 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:08:51,932 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:08:51,936 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:08:51,936 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:08:51,946 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:08:51,946 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:08:51,946 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:08:51,946 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: cambridge_science, config_type: None
+2023-09-23 16:08:51,946 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:08:51,946 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:08:51,946 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: cambridge_science, config_type: None
+2023-09-23 16:08:51,947 - root - DEBUG - QuestionManager config: None
+2023-09-23 16:08:51,947 - __main__ - ERROR - 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 21, in __init__
+    self.image_processor = self._get_image_processor(exam_format)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 31, in _get_image_processor
+    return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+                                          ~~~~~~~~~~~^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2023-09-23 16:14:48,364 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:14:48,364 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:14:48,364 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:14:48,368 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:14:48,368 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:14:48,378 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:14:48,378 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:14:48,378 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:14:48,378 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: cambridge_science, config_type: coverpage_settings
+2023-09-23 16:14:48,378 - extraction_engine.managers.config_manager - DEBUG - config_type: coverpage_settings, exam_format: cambridge_science
+2023-09-23 16:14:48,378 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:14:48,378 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:14:48,378 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with exam_format: cambridge_science, config_type: None
+2023-09-23 16:14:48,378 - root - DEBUG - QuestionManager config: None
+2023-09-23 16:14:48,379 - __main__ - ERROR - 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 21, in __init__
+    self.image_processor = self._get_image_processor(exam_format)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 31, in _get_image_processor
+    return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+                                          ~~~~~~~~~~~^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2023-09-23 16:17:01,750 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:17:01,750 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:17:01,751 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:17:01,754 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:17:01,755 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:17:01,765 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:17:01,765 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:17:01,765 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:17:01,765 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:17:01,765 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:17:01,765 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:17:01,765 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:17:01,765 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:17:01,765 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:17:01,765 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:17:01,766 - __main__ - ERROR - 'cambridge_science'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 21, in __init__
+    self.image_processor = self._get_image_processor(exam_format)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 31, in _get_image_processor
+    return CambridgeScienceImageProcessor(self.config[exam_format]["imageProcessor"])
+                                          ~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'cambridge_science'
+2023-09-23 16:18:12,783 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:18:12,783 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:18:12,784 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:18:12,788 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:18:12,788 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:18:12,798 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:18:12,799 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:18:12,799 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:18:12,799 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:18:12,799 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:18:12,800 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:18:12,800 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:18:12,800 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:18:12,800 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:18:12,800 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:18:12,801 - __main__ - ERROR - Unsupported OCR type: cambridge_science
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 22, in __init__
+    self.text_processor = self._get_text_processor(exam_format)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 41, in _get_text_processor
+    raise ValueError(f"Unsupported OCR type: {exam_format}")
+ValueError: Unsupported OCR type: cambridge_science
+2023-09-23 16:19:23,081 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:19:23,081 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:19:23,081 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:19:23,085 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:19:23,085 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:19:23,095 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:19:23,095 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:19:23,095 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:19:23,095 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:19:23,095 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:19:23,095 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:19:23,096 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:19:23,096 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:19:23,096 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:19:23,096 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:19:23,096 - root - DEBUG - QuestionManager exam_format: cambridge_science
+2023-09-23 16:19:23,096 - __main__ - ERROR - Unsupported OCR type: cambridge_science
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 23, in __init__
+    self.text_processor = self._get_text_processor(exam_format)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 42, in _get_text_processor
+    raise ValueError(f"Unsupported OCR type: {exam_format}")
+ValueError: Unsupported OCR type: cambridge_science
+2023-09-23 16:24:22,802 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:24:22,803 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:24:22,803 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:24:22,807 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:24:22,807 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:24:22,818 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:24:22,818 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:24:22,818 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:24:22,818 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:24:22,818 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:24:22,818 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:24:22,818 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:24:22,818 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:24:22,819 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:24:22,819 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:24:22,819 - root - DEBUG - QuestionManager exam_format: cambridge_science
+2023-09-23 16:24:22,819 - __main__ - ERROR - string indices must be integers, not 'str'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 23, in __init__
+    self.text_processor = self._get_text_processor(exam_format)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 40, in _get_text_processor
+    logging.debug(f"QM._gtp: {self.exam_format['textProcessor']}")
+                              ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+2023-09-23 16:25:50,395 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:25:50,395 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:25:50,395 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:25:50,399 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:25:50,400 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:25:50,409 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:25:50,409 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:25:50,409 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:25:50,409 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:25:50,410 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:25:50,410 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:25:50,410 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:25:50,410 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:25:50,410 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:25:50,410 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:25:50,410 - root - DEBUG - QuestionManager image_processor done
+2023-09-23 16:25:50,410 - __main__ - ERROR - string indices must be integers, not 'str'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 23, in __init__
+    self.text_processor = self._get_text_processor(exam_format)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 40, in _get_text_processor
+    logging.debug(f"QM._gtp: {self.exam_format['textProcessor']}")
+                              ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+2023-09-23 16:26:46,073 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:26:46,073 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:26:46,074 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:26:46,078 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:26:46,078 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:26:46,088 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:26:46,088 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:26:46,088 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:26:46,088 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:26:46,088 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:26:46,088 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:26:46,088 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:26:46,089 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:26:46,089 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:26:46,089 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:26:46,089 - root - DEBUG - QuestionManager image_processor done
+2023-09-23 16:26:46,089 - __main__ - ERROR - Error getting text processor: string indices must be integers, not 'str'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 41, in _get_text_processor
+    logging.debug(f"QM._gtp: {self.exam_format['textProcessor']}")
+                              ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 23, in __init__
+    self.text_processor = self._get_text_processor(exam_format)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 46, in _get_text_processor
+    raise Exception(f"Error getting text processor: {e}")
+Exception: Error getting text processor: string indices must be integers, not 'str'
+2023-09-23 16:27:20,960 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:27:20,961 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:27:20,961 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:27:20,965 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:27:20,965 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:27:20,976 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:27:20,976 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:27:20,976 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:27:20,976 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:27:20,976 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:27:20,977 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:27:20,977 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:27:20,977 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:27:20,977 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:27:20,977 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:27:20,977 - root - DEBUG - QuestionManager image_processor done
+2023-09-23 16:27:20,977 - root - DEBUG - QM._gtp: {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}
+2023-09-23 16:27:20,977 - __main__ - ERROR - Error getting text processor: Unsupported OCR type: cambridge_science
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 44, in _get_text_processor
+    raise ValueError(f"Unsupported OCR type: {exam_format}")
+ValueError: Unsupported OCR type: cambridge_science
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 23, in __init__
+    self.text_processor = self._get_text_processor(exam_format)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 46, in _get_text_processor
+    raise Exception(f"Error getting text processor: {e}")
+Exception: Error getting text processor: Unsupported OCR type: cambridge_science
+2023-09-23 16:29:26,585 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:29:26,585 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:29:26,585 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:29:26,589 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:29:26,590 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:29:26,600 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:29:26,600 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:29:26,600 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:29:26,600 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:29:26,600 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:29:26,600 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:29:26,600 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:29:26,600 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:29:26,600 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:29:26,601 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:29:26,601 - root - DEBUG - QuestionManager image_processor done
+2023-09-23 16:29:26,601 - root - DEBUG - QM._gtp: {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}
+2023-09-23 16:29:26,601 - __main__ - ERROR - Unsupported OCR type: cambridge_science
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 23, in __init__
+    self.text_processor = self._get_text_processor(exam_format)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 43, in _get_text_processor
+    raise ValueError(f"Unsupported OCR type: {exam_format}")
+ValueError: Unsupported OCR type: cambridge_science
+2023-09-23 16:32:26,836 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:32:26,836 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:32:26,837 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:32:26,841 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:32:26,841 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:32:26,852 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:32:26,852 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:32:26,852 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:32:26,853 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:32:26,853 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:32:26,853 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:32:26,853 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:32:26,853 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:32:26,853 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:32:26,854 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:32:26,854 - root - DEBUG - QuestionManager image_processor done
+2023-09-23 16:32:26,854 - __main__ - ERROR - name 'cambridge_science' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 29, in run_exam_extraction
+    exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 25, in __init__
+    self.question_manager = QuestionManager(exam_format)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 23, in __init__
+    logging.debug(eval(exam_format))
+                  ^^^^^^^^^^^^^^^^^
+  File "<string>", line 1, in <module>
+NameError: name 'cambridge_science' is not defined
+2023-09-23 16:34:33,076 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:34:33,076 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:34:33,076 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:34:33,080 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:34:33,081 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:34:33,091 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:34:33,092 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:34:33,092 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:34:33,092 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:34:33,092 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:34:33,092 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:34:33,092 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:34:33,092 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:34:33,093 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:34:33,093 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-23 16:34:33,093 - root - DEBUG - QuestionManager image_processor done
+2023-09-23 16:34:33,093 - root - DEBUG - QM._gtp: {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}
+2023-09-23 16:34:33,093 - root - DEBUG - ImageTextProcessor initialized with: {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}
+2023-09-23 16:34:33,094 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 16:34:33,094 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 16:34:33,094 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 16:34:33,264 - __main__ - ERROR - Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 42, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 30, in validate_cover_pages_match
+    question_data = self.extract(question_text, "question")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 11, in extract
+    extraction_config = self.cover_settings['regex'][paper_type]
+                        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'regex'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 71, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 55, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 50, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 16:36:11,732 - __main__ - INFO - Starting exam extraction...
+2023-09-23 16:36:11,733 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:36:11,733 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 16:36:11,737 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 16:36:11,737 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 16:36:11,748 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 16:36:11,748 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 16:36:11,748 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:36:11,749 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 16:36:11,749 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 16:36:11,749 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 16:36:11,749 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 16:36:11,749 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 16:36:11,749 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 16:36:11,749 - root - DEBUG - QuestionManager config: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, exam_format: cambridge_science
+2023-09-23 16:36:11,749 - root - DEBUG - QuestionManager image_processor done
+2023-09-23 16:36:11,749 - root - DEBUG - QM._gtp: {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}
+2023-09-23 16:36:11,749 - root - DEBUG - ImageTextProcessor initialized with: {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}
+2023-09-23 16:36:11,750 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 16:36:11,750 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 16:36:11,750 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 16:36:11,903 - __main__ - ERROR - Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 42, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 30, in validate_cover_pages_match
+    question_data = self.extract(question_text, "question")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 11, in extract
+    extraction_config = self.cover_settings['regex'][paper_type]
+                        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'regex'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 71, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 55, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 50, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 17:31:48,596 - __main__ - INFO - Starting exam extraction...
+2023-09-23 17:31:48,596 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 17:31:48,596 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 17:31:48,600 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 17:31:48,601 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 17:31:48,611 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 17:31:48,611 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 17:31:48,611 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 17:31:48,611 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 17:31:48,611 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 17:31:48,611 - root - DEBUG - PDFManager.__init__ cover_settings: {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}
+2023-09-23 17:31:48,611 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 17:31:48,611 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 17:31:48,612 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 17:31:48,612 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 17:31:48,612 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 17:31:48,612 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 17:31:48,612 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 17:31:48,766 - __main__ - ERROR - Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 46, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 30, in validate_cover_pages_match
+    question_data = self.extract(question_text, "question")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 11, in extract
+    extraction_config = self.cover_settings['regex'][paper_type]
+                        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'regex'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 71, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 55, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 54, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 17:33:49,762 - __main__ - INFO - Starting exam extraction...
+2023-09-23 17:33:49,762 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 17:33:49,762 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 17:33:49,766 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 17:33:49,766 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 17:33:49,775 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 17:33:49,776 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 17:33:49,776 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 17:33:49,776 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 17:33:49,776 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 17:33:49,776 - root - DEBUG - PDFManager.__init__ cover_settings: {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}
+2023-09-23 17:33:49,776 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 17:33:49,776 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 17:33:49,776 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 17:33:49,776 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 17:33:49,777 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 17:33:49,777 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 17:33:49,777 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 17:33:49,929 - __main__ - ERROR - Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 48, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 30, in validate_cover_pages_match
+    question_data = self.extract(question_text, "question")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 11, in extract
+    extraction_config = self.cover_settings['regex'][paper_type]
+                        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'regex'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 71, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 55, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 56, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 17:39:04,348 - __main__ - INFO - Starting exam extraction...
+2023-09-23 17:39:04,349 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 17:39:04,349 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 17:39:04,353 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 17:39:04,353 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 17:39:04,363 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 17:39:04,363 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 17:39:04,364 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 17:39:04,364 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 17:39:04,364 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 17:39:04,364 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 17:39:04,364 - root - DEBUG - PDFManager.__init__ cover_settings: {'question': {'regex': '', 'capture_groups': ['']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}
+2023-09-23 17:39:04,364 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 17:39:04,364 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 17:39:04,364 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 17:39:04,364 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 17:39:04,364 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 17:39:04,365 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 17:39:04,365 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 17:39:04,367 - root - DEBUG - loaded pdfs
+2023-09-23 17:39:04,517 - root - DEBUG - q:  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+, a: ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+2023-09-23 17:39:04,526 - __main__ - ERROR - Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 48, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 34, in validate_cover_pages_match
+    question_data = self.extract(question_text, "question")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 15, in extract
+    extraction_config = self.cover_settings['regex'][paper_type]
+                        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'regex'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 56, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 18:05:05,089 - __main__ - INFO - Starting exam extraction...
+2023-09-23 18:05:05,090 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 18:05:05,090 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 18:05:05,098 - __main__ - ERROR - while scanning a simple key
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 46, column 7
+could not find expected ':'
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 47, column 7
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 13, in run_exam_extraction
+    ConfigManager()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\config_manager.py", line 19, in __new__
+    cls._instance._load_config(config_path)
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\config_manager.py", line 28, in _load_config
+    self._config = yaml.safe_load(config_file)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\__init__.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\__init__.py", line 81, in load
+    return loader.get_single_data()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 36, in get_single_node
+    document = self.compose_document()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 127, in compose_mapping_node
+    while not self.check_event(MappingEndEvent):
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\parser.py", line 98, in check_event
+    self.current_event = self.state()
+                         ^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\parser.py", line 428, in parse_block_mapping_key
+    if self.check_token(KeyToken):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 115, in check_token
+    while self.need_more_tokens():
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 152, in need_more_tokens
+    self.stale_possible_simple_keys()
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 291, in stale_possible_simple_keys
+    raise ScannerError("while scanning a simple key", key.mark,
+yaml.scanner.ScannerError: while scanning a simple key
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 46, column 7
+could not find expected ':'
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 47, column 7
+2023-09-23 18:06:37,694 - __main__ - INFO - Starting exam extraction...
+2023-09-23 18:06:37,695 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 18:06:37,695 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 18:06:37,703 - __main__ - ERROR - while scanning a double-quoted scalar
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 58, column 14
+found unknown escape character 'd'
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 58, column 17
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 13, in run_exam_extraction
+    ConfigManager()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\config_manager.py", line 19, in __new__
+    cls._instance._load_config(config_path)
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\config_manager.py", line 28, in _load_config
+    self._config = yaml.safe_load(config_file)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\__init__.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\__init__.py", line 81, in load
+    return loader.get_single_data()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 36, in get_single_node
+    document = self.compose_document()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 64, in compose_node
+    if self.check_event(AliasEvent):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\parser.py", line 98, in check_event
+    self.current_event = self.state()
+                         ^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\parser.py", line 449, in parse_block_mapping_value
+    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 116, in check_token
+    self.fetch_more_tokens()
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 251, in fetch_more_tokens
+    return self.fetch_double()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 655, in fetch_double
+    self.fetch_flow_scalar(style='"')
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 666, in fetch_flow_scalar
+    self.tokens.append(self.scan_flow_scalar(style))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 1149, in scan_flow_scalar
+    chunks.extend(self.scan_flow_scalar_non_spaces(double, start_mark))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 1223, in scan_flow_scalar_non_spaces
+    raise ScannerError("while scanning a double-quoted scalar", start_mark,
+yaml.scanner.ScannerError: while scanning a double-quoted scalar
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 58, column 14
+found unknown escape character 'd'
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 58, column 17
+2023-09-23 18:08:06,417 - __main__ - INFO - Starting exam extraction...
+2023-09-23 18:08:06,417 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 18:08:06,417 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 18:08:06,426 - __main__ - ERROR - while scanning a double-quoted scalar
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 57, column 14
+found unknown escape character 'd'
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 57, column 17
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 13, in run_exam_extraction
+    ConfigManager()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\config_manager.py", line 19, in __new__
+    cls._instance._load_config(config_path)
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\config_manager.py", line 28, in _load_config
+    self._config = yaml.safe_load(config_file)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\__init__.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\__init__.py", line 81, in load
+    return loader.get_single_data()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 36, in get_single_node
+    document = self.compose_document()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\composer.py", line 64, in compose_node
+    if self.check_event(AliasEvent):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\parser.py", line 98, in check_event
+    self.current_event = self.state()
+                         ^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\parser.py", line 449, in parse_block_mapping_value
+    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 116, in check_token
+    self.fetch_more_tokens()
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 251, in fetch_more_tokens
+    return self.fetch_double()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 655, in fetch_double
+    self.fetch_flow_scalar(style='"')
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 666, in fetch_flow_scalar
+    self.tokens.append(self.scan_flow_scalar(style))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 1149, in scan_flow_scalar
+    chunks.extend(self.scan_flow_scalar_non_spaces(double, start_mark))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\yaml\scanner.py", line 1223, in scan_flow_scalar_non_spaces
+    raise ScannerError("while scanning a double-quoted scalar", start_mark,
+yaml.scanner.ScannerError: while scanning a double-quoted scalar
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 57, column 14
+found unknown escape character 'd'
+  in "C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml", line 57, column 17
+2023-09-23 18:08:21,891 - __main__ - INFO - Starting exam extraction...
+2023-09-23 18:08:21,891 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 18:08:21,891 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 18:08:21,900 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '\\\\b([A-Z]+)\\\\s+(\\\\d{4})/ (\\\\d{2})\\\\b.*\\\\b(May/June|October/November|March|November)\\\\s+ (\\\\d{4})\\\\b.*\\\\b(Cambridge International Examinations)\\\\b\n', 'capture_groups': ['unit_code', 'component_code', 'subject', 'month', 'year', 'exam_boards']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 18:08:21,901 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 18:08:21,912 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 18:08:21,912 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 18:08:21,912 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 18:08:21,912 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 18:08:21,912 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 18:08:21,913 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 18:08:21,913 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 18:08:21,913 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 18:08:21,913 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 18:08:21,913 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 18:08:21,913 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 18:08:21,913 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 18:08:21,913 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 18:08:22,071 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 18:08:22,081 - __main__ - ERROR - Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 36, in validate_cover_pages_match
+    question_data = self.extract(question_text, "question")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 15, in extract
+    extraction_config = self.cover_settings['regex'][paper_type]
+                        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'regex'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+2023-09-23 18:09:40,204 - __main__ - INFO - Starting exam extraction...
+2023-09-23 18:09:40,204 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 18:09:40,204 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 18:09:40,208 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'question': {'regex': '\\\\b([A-Z]+)\\\\s+(\\\\d{4})/ (\\\\d{2})\\\\b.*\\\\b(May/June|October/November|March|November)\\\\s+ (\\\\d{4})\\\\b.*\\\\b(Cambridge International Examinations)\\\\b\n', 'capture_groups': ['unit_code', 'component_code', 'subject', 'month', 'year', 'exam_boards']}, 'answer': {'regex': '(\\d{4})/(\\d{2})', 'capture_groups': ['subject', 'component']}}, 'example': {'question': None, 'answer': None}}}
+2023-09-23 18:09:40,209 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 18:09:40,218 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 18:09:40,218 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 18:09:40,218 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 18:09:40,218 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 18:09:40,218 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 18:09:40,219 - root - DEBUG - PDFCoverPageExtractor.__init__ called
+2023-09-23 18:09:40,219 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 18:09:40,219 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 18:09:40,219 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 18:09:40,219 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 18:09:40,219 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 18:09:40,220 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 18:09:40,220 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 18:09:40,370 - root - DEBUG - 
+
+FRONTPAGE q:
+  
+The syllabus is approved for use in England, Wales and Northern Ireland as a Cambridge International Level 1/Level 2 Certificat
+e. 
+This document consists of 
+17
+ printed pages and 
+3
+ blank pages. 
+IB16 06_0625_11/2RP 
+© UCLES 2016 
+[Turn over
+ 
+*1549637503*
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education 
+ 
+ 
+ 
+PHYSICS 
+0625/11
+ 
+ 
+ 
+Paper 1  Multiple Choice (Core)
+ 
+May/June 2016 
+ 
+ 
+45 minutes 
+ 
+Additional Materials: Multiple Choice Answer Sheet 
+ 
+Soft clean eraser 
+ 
+Soft pencil (type B or HB recommended) 
+ 
+ 
+ 
+READ THESE INSTRUCTIONS FIRST 
+ 
+Write in soft pencil. 
+Do not use staples, paper clips, glue or correction fluid. 
+
+Write your name, Centre number and candidate number on the Answer Sheet in the spaces provided 
+unless this has been done for you. 
+DO 
+NOT
+ WRITE IN ANY BARCODES. 
+ 
+
+There are 
+forty
+ questions on this paper. Answer 
+all
+ questions. For each question there are four possible 
+answers 
+A
+, 
+B
+, 
+C
+ and 
+D
+.  
+Choose the 
+one
+ you consider correct and record your choice in 
+soft pencil
+ on the separate Answer Sheet. 
+ 
+Read the instructions on the Answer Sheet very carefully. 
+ 
+
+Each correct answer will score one mark. A mark will not be deducted for a wrong answer. 
+
+Any rough working should be done in this booklet. 
+
+Electronic calculators may be used. 
+
+Take the weight of 1.0
+ 
+kg to be 10
+ 
+N (acceleration of free fall = 10
+ 
+m
+ 
+/
+ 
+s
+2
+). 
+ 
+
+ 
+PMT
+,
+
+
+
+ a:
+ ® IGCSE is the registered trademark of Cambridge International Examinations. 
+ 
+This syllabus is approved for use in England, Wales and Northern I
+reland as a Cambridge International Level 1/Level 2 Certifica
+te. 
+ 
+This document consists of 
+2
+ printed pages. 
+ 
+© UCLES 2016 
+[Turn ove
+r
+ 
+ 
+ 
+Cambridge International Examinations 
+Cambridge International General Certificate of Secondary Education
+ 
+ 
+PHYSICS 
+0625/11 
+Paper 1  Multiple Choice (Core) 
+May/June 2016
+ 
+MARK SCHEME 
+Maximum Mark: 40 
+ 
+ 
+Published 
+ 
+ 
+This mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the 
+examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the 
+
+details of the discussions that took place at an Exam
+iners™ meeting before marking began, which would have 
+considered the acceptability of alternative answers.  
+
+ 
+
+Mark schemes should be read in conjunction with the question paper and the Principal Examiner Report for 
+Teachers. 
+ 
+
+Cambridge will not enter into discussions about these mark schemes. 
+ 
+Cambridge is publishing the mark schemes for the May/June 2016 series for most Cambridge IGCSE
+®
+, 
+Cambridge International A and AS Level components and some Cambridge O Level components.
+ 
+ 
+
+
+END
+
+2023-09-23 18:09:40,381 - __main__ - ERROR - Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 44, in extract_pdf_data
+    cover_details = self.cover_page_extractor.validate_cover_pages_match(q_cover_text, a_cover_text)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 36, in validate_cover_pages_match
+    question_data = self.extract(question_text, "question")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_cover_extractor.py", line 15, in extract
+    extraction_config = self.cover_settings['regex'][paper_type]
+                        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'regex'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 54, in process
+    data = self._extract_data_from_pdfs()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 40, in _extract_data_from_pdfs
+    return self.pdf_manager.extract_pdf_data(self.question_pdf_path, self.answer_pdf_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\pdf_processing\pdf_manager.py", line 52, in extract_pdf_data
+    raise Exception(f"Error with input pdf files: {e}" \
+Exception: Error with input pdf files: 'regex'
+Input: Question PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016.pdf, Answer PDF: C:/Users/Tariq/Documents/birkbeck-project/uploads/phys-062511-may2016-ms.pdf

@@ -3630,3 +3630,99 @@ Traceback (most recent call last):
   File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1180, in _optimized_compare
     raise sa_exc.ArgumentError(
 sqlalchemy.exc.ArgumentError: Mapped instance expected for relationship comparison to object.   Classes, queries and other SQL elements are not accepted in this context; for comparison with a subquery, use Exam.subject.has(**criteria).
+2023-09-23 22:24:41,941 - __main__ - INFO - Starting exam extraction...
+2023-09-23 22:24:41,941 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:24:41,942 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 22:24:41,946 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 22:24:41,946 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 22:24:41,957 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 22:24:41,957 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 22:24:41,957 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:24:41,957 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 22:24:41,957 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 22:24:41,957 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 22:24:41,957 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:24:41,958 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 22:24:41,958 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 22:24:41,958 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 22:24:41,958 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 22:24:41,958 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 22:24:44,003 - extraction_engine.managers.exam_manager - INFO - Exam data: {'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-23 22:24:44,013 - __main__ - ERROR - Mapped instance expected for relationship comparison to object.   Classes, queries and other SQL elements are not accepted in this context; for comparison with a subquery, use Exam.subject.has(**criteria).
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 61, in process
+    exam = self._get_or_create_exam(db_session, exam_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 31, in _get_or_create_exam
+    exam = db_session.query(Exam).filter_by(**exam_data).first()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\query.py", line 1998, in filter_by
+    clauses = [
+              ^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\query.py", line 1999, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\sql\operators.py", line 582, in __eq__
+    return self.operate(eq, other)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\attributes.py", line 452, in operate
+    return op(self.comparator, *other, **kwargs)  # type: ignore[return-value,no-any-return]  # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\relationships.py", line 757, in __eq__
+    self.property._optimized_compare(
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1180, in _optimized_compare
+    raise sa_exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Mapped instance expected for relationship comparison to object.   Classes, queries and other SQL elements are not accepted in this context; for comparison with a subquery, use Exam.subject.has(**criteria).
+2023-09-23 22:55:49,455 - __main__ - INFO - Starting exam extraction...
+2023-09-23 22:55:49,455 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:55:49,456 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-23 22:55:49,460 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-23 22:55:49,460 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-23 22:55:49,472 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-23 22:55:49,472 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-23 22:55:49,472 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:55:49,472 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-23 22:55:49,473 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-23 22:55:49,473 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-23 22:55:49,473 - root - DEBUG - ConfigManager.__new__ called
+2023-09-23 22:55:49,473 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-23 22:55:49,473 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-23 22:55:49,473 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-23 22:55:49,474 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-23 22:55:49,474 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-23 22:55:51,563 - extraction_engine.managers.exam_manager - INFO - Exam data: {'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-23 22:55:51,573 - __main__ - ERROR - Mapped instance expected for relationship comparison to object.   Classes, queries and other SQL elements are not accepted in this context; for comparison with a subquery, use Exam.subject.has(**criteria).
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 17, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 70, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 61, in process
+    exam = self._get_or_create_exam(db_session, exam_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 31, in _get_or_create_exam
+    exam = db_session.query(Exam).filter_by(**exam_data).first()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\query.py", line 1998, in filter_by
+    clauses = [
+              ^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\query.py", line 1999, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\sql\operators.py", line 582, in __eq__
+    return self.operate(eq, other)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\attributes.py", line 452, in operate
+    return op(self.comparator, *other, **kwargs)  # type: ignore[return-value,no-any-return]  # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\relationships.py", line 757, in __eq__
+    self.property._optimized_compare(
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1180, in _optimized_compare
+    raise sa_exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Mapped instance expected for relationship comparison to object.   Classes, queries and other SQL elements are not accepted in this context; for comparison with a subquery, use Exam.subject.has(**criteria).

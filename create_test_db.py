@@ -1,10 +1,12 @@
 import os
+import glob
 from database.models import Base, Subject, Exam
 from database.database_manager import DatabaseManager
 
 DATABASE_PATH = 'database/dbOne.db'
 
 def initialize_database(db_manager):
+    Base.metadata.drop_all(db_manager.engine)
     Base.metadata.create_all(db_manager.engine)
     
 
@@ -38,7 +40,11 @@ def load_db():
     initialize_database(db_manager)
     add_data(db_manager)
     return db_manager
-    
 
 def delete_db(db_manager):
     Base.metadata.drop_all(db_manager.engine)
+
+def delete_images():
+    files = glob.glob('./static/question_images/*')
+    for f in files:
+        os.remove(f)

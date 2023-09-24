@@ -37,6 +37,7 @@ class PDFCoverPageExtractor:
         keys_to_compare = ['unit_code', 'component_code', 'month', 'year', 'subject']
         question_data = self.extract(question_text)
         answer_data = self.extract(answer_text)
+        logging.debug(f"question_data: {question_data}\nanswer_data: {answer_data}")
 
         for key in keys_to_compare:
             if question_data.get(key) != answer_data.get(key):

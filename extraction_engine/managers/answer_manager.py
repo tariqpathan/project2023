@@ -3,7 +3,9 @@ from database.models import Answer, Question
 from extraction_engine.factories.answer_factory import AnswerFactory
 from extraction_engine.processing.CambridgeScienceAnswerProcessor import CambridgeScienceAnswerProcessor
 from extraction_engine.processing.AbstractAnswerProcessor import AbstractAnswerProcessor
+import logging
 
+logger = logging.getLogger(__name__)
 
 class AnswerManager:
     def __init__(self, exam_format: str) -> None:

@@ -2,7 +2,8 @@ from PIL import Image
 from database.models import Exam, Question
 from typing import Optional
 import os
-import time
+from pathlib import Path
+import uuid
 from extraction_engine.managers.image_file_handler import ImageFileHandler
 from extraction_engine.managers.file_manager import FileManager
 
@@ -25,23 +26,23 @@ class QuestionFactory:
         question = Question(exam=self.exam, question_number=qnum)
         # Construct the relative path based on the question's ID or other criteria
         filename = self._generate_filename()
-        image_path = FileManager.construct_path(filename)
-        question.image_path = image_path
-        logging.debug(f"Question image path: {question.image_path}. qnum: {qnum}")
-        
+        question.image_filename = filename
+        # logging.debug(f"Question image path: {question.image_filename}. qnum: {qnum}")
+        image_save_path = None
         try:
             self.db_session.add(question)
-            ImageFileHandler.save_image(image, filename)
+            image_save_path = ImageFileHandler.save_image(image, filename)
         
         except Exception as e:
             self.db_session.rollback()
             # Remove the saved image if there's a failure after image save
-            if question.image_path:
-                os.remove(question.image_path)
+            if image_save_path is not None and image_save_path.exists():
+                os.remove(image_save_path)
             raise Exception(f"Error creating Question: {qnum} for ExamID: {question.exam_id}. Error: {e}")
         return question
 
-    def _generate_filename(self) -> str:
+    def _generate_filename(self, format: str="jpg") -> str:
         """Generates a filename for the image"""
-        timestamp = int(time.time() * 1000)
-        return f"{self.exam.unit_code}-{self.exam.unit_code}-{timestamp}"
+        unique_id = uuid.uuid4()
+        return f"{self.exam.year}-{self.exam.unit_code}{self.exam.component_code}-{unique_id}.{format}"
+    

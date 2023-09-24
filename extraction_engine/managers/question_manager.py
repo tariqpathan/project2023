@@ -17,7 +17,7 @@ class QuestionManager:
         self.exam_format = exam_format
         cm = ConfigManager()
         self.config = cm.get_config(exam_format=exam_format, config_type="exam_formats")
-        logging.debug(f"self.config in QuestionManager: {self.config}")
+        # logging.debug(f"self.config in QuestionManager: {self.config}")
         self.image_processor = self._get_image_processor()
         self.text_processor = self._get_text_processor()
         self.question_factory = None
@@ -53,6 +53,7 @@ class QuestionManager:
 
     def _post_process(self, image: Image.Image):
         """Modifies image after extracting data"""
+        logging.debug("Post processing image")
         coords = self.config["textProcessor"]
         return self.image_processor.post_process(image, coords)
 
@@ -83,6 +84,7 @@ class QuestionManager:
 
     def execute(self, db_session, exam: Exam, images: List[Image.Image]) -> List[Question]:
         """Executes the question processing pipeline"""
+        logging.debug("Executing question processing pipeline")
         self._set_question_factory(db_session, exam)
         self.image_processor.validate(images[0])
         question_nums, processed_images = self._process_images(images)

@@ -43,7 +43,7 @@ class Question(Base):
     __tablename__ = 'questions'
 
     id = mapped_column(Integer, primary_key=True)
-    image_path = mapped_column(String, unique=True, nullable=False)
+    image_filename = mapped_column(String, unique=True, nullable=False)
     question_number = mapped_column(Integer, nullable=True)
     difficulty_id = mapped_column(Integer, ForeignKey('difficulties.id'), nullable=True)
     exam_id = mapped_column(Integer, ForeignKey('exams.id'), nullable=False)

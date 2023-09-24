@@ -41,18 +41,19 @@ exam_formats:
 coverpage_settings:
   # Cover page settings for Cambridge Science exams.
   cambridge_science:
-    regexes:  # Regexes need to surrounded by single quotes only.
-      exam_board: '\b(Cambridge)\b'
-      subject: '\b([A-Z]{6,})\b'
+    regexes:  # Regexes need to surrounded by only single quotes.
+      exam_board: '(?i)\b(cambridge)\b'
+      subject: '\b(BIOLOGY|CHEMISTRY|PHYSICS)\b'
       unit_code: '\b(\d{4})\/\d{2}\b'
       component_code: '\b\d{4}\/(\d{2})\b'
       month: '\b([A-Z]{1}[a-z]+)\/?[A-Z]{1}[a-z]+\s20\d{2}\b'
-      year: '\bUCLES\s+(\d{4})\b'
+      year: '\b[A-Z]{1}[a-z]+\s(20\d{2})\b'
       answer: '(MARK SCHEME)'
 
   # Example settings, could be for a different exam format.
   example:
     regexes:
+      exam_board:
       subject: 
       unit_code:
       component_code:

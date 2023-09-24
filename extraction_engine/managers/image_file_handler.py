@@ -3,7 +3,7 @@ from pathlib import Path
 from extraction_engine.managers.file_manager import FileManager
 
 class ImageFileHandler:
-    IMAGE_FORMAT = "png"
+    IMAGE_FORMAT = "jpg"
 
     @staticmethod
     def get_image_path(filepath: str) -> Path:
@@ -12,11 +12,12 @@ class ImageFileHandler:
         return FileManager.construct_path(filepath, str(base_path))  # construct the full path using FileManager
 
     @classmethod
-    def save_image(cls, image: Image.Image, filename: str):
+    def save_image(cls, image: Image.Image, filename: str) -> Path:
         """Saves the given image data to the specified filename in the image directory."""
-        save_path = ImageFileHandler.get_image_path(filename)
+        image_save_path = ImageFileHandler.get_image_path(filename)
         try:
-            image.save(save_path, format=cls.IMAGE_FORMAT)
+            image.save(image_save_path)
+            return image_save_path
         except Exception as e:
             raise IOError(f"Unable to save image: {e}")
     

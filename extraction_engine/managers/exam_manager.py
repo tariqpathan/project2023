@@ -1,5 +1,6 @@
 from database.database_manager import DatabaseManager
 from database.models import Exam, Question, Subject
+from database.database_utils import get_exam
 from extraction_engine.managers.config_manager import ConfigManager
 from extraction_engine.pdf_processing.pdf_manager import PDFManager
 from extraction_engine.factories.exam_factory import ExamFactory
@@ -28,7 +29,8 @@ class ExamManager:
 
     def _get_or_create_exam(self, db_session, exam_data: dict) -> Exam:
         # Try to fetch an existing exam based on the unique constraint
-        exam = db_session.query(Exam).filter_by(**exam_data).first()
+        exam = get_exam(db_session, exam_data)
+
         if exam is None:
             exam_factory = ExamFactory()
             exam = exam_factory.create_exam(exam_data)
@@ -59,6 +61,7 @@ class ExamManager:
             
             with self.db_manager.get_session() as db_session:
                 exam = self._get_or_create_exam(db_session, exam_data)
+                logging.debug(f"Exam: {exam}")
                 questions = self._process_questions(db_session, exam, raw_questions)
                 self._process_answers(db_session, raw_answers, questions)
                 db_session.commit()

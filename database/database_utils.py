@@ -43,10 +43,10 @@ def retrieve_subject_id(session, subject_name):
 #     return results
 
 def get_exam(session, exam_data: dict) -> Optional[Exam]:
-        exam = session.query(Exam).filter(
-                month=exam_data["month"],
-                year=exam_data["year"],
-                unit_code=exam_data["unit_code"],
-                component_code=exam_data["component_code"],
-            ).first()
-        return exam
+    exam = session.query(Exam).filter_by(
+            month=exam_data["month"],
+            year=exam_data["year"],
+            unit_code=exam_data["unit_code"],
+            component_code=exam_data["component_code"],
+        ).first()
+    return exam

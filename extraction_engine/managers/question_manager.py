@@ -17,6 +17,7 @@ class QuestionManager:
         self.exam_format = exam_format
         cm = ConfigManager()
         self.config = cm.get_config(exam_format=exam_format, config_type="exam_formats")
+        logging.debug(f"self.config in QuestionManager: {self.config}")
         self.image_processor = self._get_image_processor()
         self.text_processor = self._get_text_processor()
         self.question_factory = None
@@ -38,6 +39,7 @@ class QuestionManager:
         return ImageTextProcessor(self.config["textProcessor"])
     
     def validate_processor(self, image: Image.Image):
+        logging.debug("&^&^&^&^&^&^&^&^&^&^&^Validating image^&^&^&^&^&^&^&^&^&^&^&^&^&^&")
         self.image_processor.validate(image)
 
     def _extract_questions(self, image: Image.Image) -> List[Image.Image]:
@@ -51,12 +53,12 @@ class QuestionManager:
 
     def _post_process(self, image: Image.Image):
         """Modifies image after extracting data"""
-        coords = self.config[self.exam_format]["textProcessor"]
+        coords = self.config["textProcessor"]
         return self.image_processor.post_process(image, coords)
 
-    def set_question_factory(self, db_session, exam: Exam) -> QuestionFactory:
+    def _set_question_factory(self, db_session, exam: Exam) -> None:
         """Returns a QuestionFactory object"""
-        return QuestionFactory(db_session, exam)
+        self.question_factory = QuestionFactory(db_session, exam)
 
     def _create_question(self, image: Image.Image, qnum: Optional[int]) -> Question:
         """Creates a Question object using the Question model"""
@@ -77,12 +79,11 @@ class QuestionManager:
             question_nums.append(self._get_question_number(image))
             post_processed_images.append(self._post_process(image))
 
-        return zip(question_nums, post_processed_images)
+        return (question_nums, post_processed_images)
 
     def execute(self, db_session, exam: Exam, images: List[Image.Image]) -> List[Question]:
         """Executes the question processing pipeline"""
-        self.set_question_factory(db_session, exam)
+        self._set_question_factory(db_session, exam)
+        self.image_processor.validate(images[0])
         question_nums, processed_images = self._process_images(images)
-        # for qnum, image in zip(question_nums, processed_images):
-        #     self._create_question(image, qnum)
         return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]

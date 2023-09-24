@@ -33,8 +33,7 @@ class ExamManager:
 
         if exam is None:
             exam_factory = ExamFactory()
-            exam = exam_factory.create_exam(exam_data)
-            db_session.add(exam)
+            exam = exam_factory.get_or_create_exam(session=db_session, exam_data=exam_data)
         return exam
 
     def _extract_data_from_pdfs(self):

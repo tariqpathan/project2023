@@ -37,3 +37,8 @@ def load_db():
     db_manager = DatabaseManager(DATABASE_PATH)
     initialize_database(db_manager)
     add_data(db_manager)
+    return db_manager
+    
+
+def delete_db(db_manager):
+    Base.metadata.drop_all(db_manager.engine)

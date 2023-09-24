@@ -2,7 +2,9 @@ from PIL import Image, ImageDraw
 from typing import Dict, List, Tuple, Optional
 import numpy as np
 from extraction_engine.processing.AbstractImageProcessor import AbstractImageProcessor
+import logging
 
+logger = logging.getLogger(__name__)
 
 class CambridgeScienceImageProcessor(AbstractImageProcessor):
     EXAM_FORMAT = "cambridge_science"
@@ -25,6 +27,7 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         self._padding = self._config["padding"]
         self._min_question_spacing = self._config["min_question_spacing"]
         self._binary_threshold = self._config["binary_threshold"]
+        logging.debug(f"self._config in _derive_attributes: {self._config}")
 
     def _validate_attributes(self) -> None:
         """Runs checks for each attribute and raises an exception"""
@@ -54,7 +57,7 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
                 'message': "Threshold must be between 0 and 255"
             }
         }
-
+        logging.debug(f"self._config in _validate_attributes: {self._config}")
         for value, check in checks.items():
             if not check['condition'](value):
                 raise ValueError(f"{check['message']}. Current value: {value}")
@@ -136,23 +139,3 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         draw = ImageDraw.Draw(modified_image)
         draw.rectangle(coords, fill="white")
         return modified_image
-    
-if __name__ == "__main__":
-    #TODO: remove this
-    # import CambridgeScienceImageProcessor
-    print("**test**")
-    image = Image.open('test-page1.jpg')
-    print(image.height)
-    config = {
-        "binary_threshold": 128,
-        "margin_end": 180,
-        "footer_height": 120,
-        "padding": 40,
-        "min_question_spacing": 25
-    }
-    csip = CambridgeScienceImageProcessor(config)
-    csip.validate(image)
-    out = csip.extract(image)
-    if out is not None:
-        for i in out:
-            i.show()

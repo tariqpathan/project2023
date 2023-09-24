@@ -3,26 +3,35 @@ from database.models import Exam, Question
 from typing import Optional
 import os
 import time
-from extraction_engine.managers.image_file_handler import ImageFileManager
+from extraction_engine.managers.image_file_handler import ImageFileHandler
 from extraction_engine.managers.file_manager import FileManager
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class QuestionFactory:
+
+    FOLDER_NAME = "images"
+
     def __init__(self, db_session, exam: Exam):
         self.db_session = db_session
         self.exam = exam
+        self.image_folder = FileManager.get_filepaths(self.FOLDER_NAME)
 
     def create_question(self, image: Image.Image, qnum: Optional[int]) -> Question:
         """creates a question object using the Question model"""
         # Attempt to create a new question without saving the image
-        question = Question(exam=self.exam, number=qnum)
+        question = Question(exam=self.exam, question_number=qnum)
         # Construct the relative path based on the question's ID or other criteria
         filename = self._generate_filename()
         image_path = FileManager.construct_path(filename)
         question.image_path = image_path
+        logging.debug(f"Question image path: {question.image_path}. qnum: {qnum}")
         
         try:
             self.db_session.add(question)
-            ImageFileManager.save_image(image, filename)
+            ImageFileHandler.save_image(image, filename)
         
         except Exception as e:
             self.db_session.rollback()
@@ -35,4 +44,4 @@ class QuestionFactory:
     def _generate_filename(self) -> str:
         """Generates a filename for the image"""
         timestamp = int(time.time() * 1000)
-        return f"{self.exam.id}-{self.exam.unit_code, self.exam.unit_code}-{timestamp}"
+        return f"{self.exam.unit_code}-{self.exam.unit_code}-{timestamp}"

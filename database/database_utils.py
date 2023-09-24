@@ -13,7 +13,7 @@ def are_keys_valid(filters, model):
     valid_columns = get_valid_columns(model)
     return all(key in valid_columns for key in filters.keys())
 
-def retrieve_subject_id(session, subject_name):
+def get_subject_id(session, subject_name):
     """Retrieve the ID of the subject with the given name."""
     subject = session.query(Subject).filter(Subject.name == subject_name).first()
     if subject:

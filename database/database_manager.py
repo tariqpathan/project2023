@@ -2,8 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 class DatabaseManager:
-    def __init__(self, db_path: str):
-        self.engine = create_engine(f'sqlite:///{db_path}')
+    def __init__(self, db_path: str, echo: bool = False):
+        self.engine = create_engine(f'sqlite:///{db_path}', echo=echo)
         self.Session = scoped_session(sessionmaker(bind=self.engine))
         self.session = None
     

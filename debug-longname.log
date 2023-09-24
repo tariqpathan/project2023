@@ -256,3 +256,1573 @@ Traceback (most recent call last):
   File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\exam_factory.py", line 13, in _validate_exam_data
     raise ValueError(f"{field} is required for Exam creation.")
 ValueError: exam_board is required for Exam creation.
+2023-09-24 02:06:22,221 - __main__ - INFO - Starting exam extraction...
+2023-09-24 02:09:16,474 - __main__ - INFO - Starting exam extraction...
+2023-09-24 02:09:16,524 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:09:16,528 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 02:09:16,536 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 02:09:16,537 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 02:09:16,537 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 02:09:16,537 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 02:09:16,537 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:09:16,537 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 02:09:16,537 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 02:09:16,538 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 02:09:16,538 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:09:16,538 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 02:09:16,538 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 02:09:16,538 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 02:09:16,538 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 02:09:16,539 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 02:09:18,793 - extraction_engine.managers.exam_manager - INFO - Exam data: {'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 02:09:18,798 - __main__ - ERROR - exam_board is required for Exam creation.
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 18, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 73, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 63, in process
+    exam = self._get_or_create_exam(db_session, exam_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 36, in _get_or_create_exam
+    exam = exam_factory.create_exam(exam_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\exam_factory.py", line 18, in create_exam
+    self._validate_exam_data(exam_data)
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\exam_factory.py", line 13, in _validate_exam_data
+    raise ValueError(f"{field} is required for Exam creation.")
+ValueError: exam_board is required for Exam creation.
+2023-09-24 02:25:00,010 - __main__ - INFO - Starting exam extraction...
+2023-09-24 02:25:00,060 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:25:00,060 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 02:25:00,064 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 02:25:00,064 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 02:25:00,065 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 02:25:00,065 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 02:25:00,065 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:25:00,065 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 02:25:00,065 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 02:25:00,065 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 02:25:00,065 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:25:00,065 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 02:25:00,066 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 02:25:00,066 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 02:25:00,066 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 02:25:00,066 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 02:25:02,111 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 02:25:02,116 - root - DEBUG - Exam: <database.models.Exam object at 0x000001DA9B084B90>
+2023-09-24 02:25:02,127 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 18, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 85, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 72, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 45, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 71, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 02:51:24,323 - __main__ - INFO - Starting exam extraction...
+2023-09-24 02:51:24,376 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:51:24,376 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 02:51:24,380 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 02:51:24,380 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 02:51:24,381 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 02:51:24,381 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 02:51:24,381 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:51:24,381 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 02:51:24,381 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 02:51:24,381 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 02:51:24,381 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:51:24,381 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 02:51:24,382 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 02:51:24,382 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 02:51:24,382 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 02:51:24,383 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 02:51:24,383 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 02:51:26,508 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 02:51:26,513 - root - DEBUG - Exam: <database.models.Exam object at 0x0000024D2141FD50>
+2023-09-24 02:51:26,526 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 18, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 86, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 73, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 46, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 71, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 02:57:54,361 - __main__ - INFO - Starting exam extraction...
+2023-09-24 02:57:54,411 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:57:54,411 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 02:57:54,414 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 02:57:54,415 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 02:57:54,415 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 02:57:54,415 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 02:57:54,415 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:57:54,416 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 02:57:54,416 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 02:57:54,416 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 02:57:54,416 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 02:57:54,416 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 02:57:54,416 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 02:57:54,416 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 02:57:54,417 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 02:57:54,417 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 02:57:54,417 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 02:57:56,456 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 02:57:56,462 - root - DEBUG - Exam: <database.models.Exam object at 0x000001E65EC4C3D0>
+2023-09-24 02:57:56,473 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 18, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 87, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 74, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 47, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 74, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 10:08:56,213 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:08:56,262 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:08:56,262 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:08:56,266 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:08:56,266 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:08:56,267 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:08:56,267 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:08:56,267 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:08:56,267 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:08:56,267 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:08:56,267 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:08:56,267 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:08:56,267 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:08:56,268 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:08:56,268 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:08:56,268 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:08:56,269 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:08:56,269 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:08:58,422 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:08:58,427 - root - DEBUG - Exam: <database.models.Exam object at 0x00000296C8AC0110>
+2023-09-24 10:08:58,439 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 87, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 74, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 47, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 74, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 10:13:37,337 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:13:37,384 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:13:37,384 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:13:37,388 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:13:37,388 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:13:37,388 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:13:37,389 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:13:37,389 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:13:37,389 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:13:37,389 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:13:37,389 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:13:37,390 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:13:37,390 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:13:37,390 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:13:37,390 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:13:37,391 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:13:37,391 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:13:37,391 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:13:39,512 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:13:39,518 - root - DEBUG - Exam: <database.models.Exam object at 0x00000248FF984E50>
+2023-09-24 10:13:39,529 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 87, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 74, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 47, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 74, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 10:23:47,181 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:23:47,231 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:23:47,232 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:23:47,235 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:23:47,236 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:23:47,236 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:23:47,236 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:23:47,236 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:23:47,236 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:23:47,236 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:23:47,237 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:23:47,237 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:23:47,237 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:23:47,237 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:23:47,237 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:23:47,238 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:23:47,238 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:23:47,238 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:23:49,353 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:23:49,359 - root - DEBUG - Exam: <database.models.Exam object at 0x000001EEB1F74050>
+2023-09-24 10:23:49,369 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 87, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 74, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 47, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 74, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 10:35:26,726 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:35:26,736 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:35:26,737 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subjects")
+2023-09-24 10:35:26,737 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,738 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("subjects")
+2023-09-24 10:35:26,738 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,738 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("exams")
+2023-09-24 10:35:26,738 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,739 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("exams")
+2023-09-24 10:35:26,739 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,739 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("difficulties")
+2023-09-24 10:35:26,739 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,740 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("difficulties")
+2023-09-24 10:35:26,740 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,740 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2023-09-24 10:35:26,741 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,741 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("questions")
+2023-09-24 10:35:26,741 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,742 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subtopics")
+2023-09-24 10:35:26,742 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,742 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("subtopics")
+2023-09-24 10:35:26,742 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,743 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("question_subtopic")
+2023-09-24 10:35:26,743 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,743 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("question_subtopic")
+2023-09-24 10:35:26,744 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,744 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("answers")
+2023-09-24 10:35:26,744 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,745 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("answers")
+2023-09-24 10:35:26,745 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:35:26,746 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE subjects (
+	id INTEGER NOT NULL, 
+	name VARCHAR NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (name)
+)
+
+
+2023-09-24 10:35:26,747 - sqlalchemy.engine.Engine - INFO - [no key 0.00124s] ()
+2023-09-24 10:35:26,751 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE difficulties (
+	id INTEGER NOT NULL, 
+	level VARCHAR NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (level)
+)
+
+
+2023-09-24 10:35:26,752 - sqlalchemy.engine.Engine - INFO - [no key 0.00132s] ()
+2023-09-24 10:35:26,756 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE exams (
+	id INTEGER NOT NULL, 
+	exam_board VARCHAR NOT NULL, 
+	month VARCHAR NOT NULL, 
+	year INTEGER NOT NULL, 
+	unit_code VARCHAR NOT NULL, 
+	component_code VARCHAR NOT NULL, 
+	subject_id INTEGER, 
+	PRIMARY KEY (id), 
+	CONSTRAINT uc_exam UNIQUE (exam_board, month, year, unit_code, component_code, subject_id), 
+	FOREIGN KEY(subject_id) REFERENCES subjects (id)
+)
+
+
+2023-09-24 10:35:26,758 - sqlalchemy.engine.Engine - INFO - [no key 0.00223s] ()
+2023-09-24 10:35:26,762 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE subtopics (
+	id INTEGER NOT NULL, 
+	name VARCHAR NOT NULL, 
+	subject_id INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(subject_id) REFERENCES subjects (id)
+)
+
+
+2023-09-24 10:35:26,763 - sqlalchemy.engine.Engine - INFO - [no key 0.00155s] ()
+2023-09-24 10:35:26,766 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE questions (
+	id INTEGER NOT NULL, 
+	image_path VARCHAR NOT NULL, 
+	question_number INTEGER, 
+	difficulty_id INTEGER, 
+	exam_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (image_path), 
+	FOREIGN KEY(difficulty_id) REFERENCES difficulties (id), 
+	FOREIGN KEY(exam_id) REFERENCES exams (id)
+)
+
+
+2023-09-24 10:35:26,768 - sqlalchemy.engine.Engine - INFO - [no key 0.00183s] ()
+2023-09-24 10:35:26,771 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE question_subtopic (
+	question_id INTEGER NOT NULL, 
+	subtopic_id INTEGER NOT NULL, 
+	PRIMARY KEY (question_id, subtopic_id), 
+	FOREIGN KEY(question_id) REFERENCES questions (id), 
+	FOREIGN KEY(subtopic_id) REFERENCES subtopics (id)
+)
+
+
+2023-09-24 10:35:26,773 - sqlalchemy.engine.Engine - INFO - [no key 0.00165s] ()
+2023-09-24 10:35:26,776 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE answers (
+	id INTEGER NOT NULL, 
+	question_id INTEGER NOT NULL, 
+	answer_text VARCHAR NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(question_id) REFERENCES questions (id)
+)
+
+
+2023-09-24 10:35:26,777 - sqlalchemy.engine.Engine - INFO - [no key 0.00144s] ()
+2023-09-24 10:35:26,780 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-09-24 10:35:26,792 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:35:26,793 - sqlalchemy.engine.Engine - INFO - INSERT INTO subjects (name) VALUES (?) RETURNING id
+2023-09-24 10:35:26,794 - sqlalchemy.engine.Engine - INFO - [generated in 0.00007s (insertmanyvalues) 1/3 (ordered; batch not supported)] ('biology',)
+2023-09-24 10:35:26,795 - sqlalchemy.engine.Engine - INFO - INSERT INTO subjects (name) VALUES (?) RETURNING id
+2023-09-24 10:35:26,795 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 2/3 (ordered; batch not supported)] ('chemistry',)
+2023-09-24 10:35:26,795 - sqlalchemy.engine.Engine - INFO - INSERT INTO subjects (name) VALUES (?) RETURNING id
+2023-09-24 10:35:26,796 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 3/3 (ordered; batch not supported)] ('physics',)
+2023-09-24 10:35:26,797 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:35:26,797 - sqlalchemy.engine.Engine - INFO - [generated in 0.00013s (insertmanyvalues) 1/5 (ordered; batch not supported)] ('Edexcel', 'June', 2022, 'U1', 'C1', 1)
+2023-09-24 10:35:26,798 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:35:26,798 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 2/5 (ordered; batch not supported)] ('Edexcel', 'June', 2021, 'U4', 'C4', 1)
+2023-09-24 10:35:26,798 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:35:26,799 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 3/5 (ordered; batch not supported)] ('AQA', 'June', 2022, 'U2', 'C2', 2)
+2023-09-24 10:35:26,799 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:35:26,800 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 4/5 (ordered; batch not supported)] ('AQA', 'June', 2021, 'U5', 'C5', 2)
+2023-09-24 10:35:26,800 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:35:26,800 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 5/5 (ordered; batch not supported)] ('OCR', 'January', 2022, 'U3', 'C3', 3)
+2023-09-24 10:35:26,801 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-09-24 10:35:26,804 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:35:26,804 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:35:26,808 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:35:26,809 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:35:26,810 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:35:26,810 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:35:26,810 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:35:26,810 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:35:26,810 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:35:26,810 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:35:26,811 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:35:26,811 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:35:26,811 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:35:26,811 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:35:26,811 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:35:26,811 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:35:26,812 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:35:29,002 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:35:29,004 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:35:29,006 - sqlalchemy.engine.Engine - INFO - SELECT exams.id AS exams_id, exams.exam_board AS exams_exam_board, exams.month AS exams_month, exams.year AS exams_year, exams.unit_code AS exams_unit_code, exams.component_code AS exams_component_code, exams.subject_id AS exams_subject_id 
+FROM exams 
+WHERE exams.month = ? AND exams.year = ? AND exams.unit_code = ? AND exams.component_code = ?
+ LIMIT ? OFFSET ?
+2023-09-24 10:35:29,007 - sqlalchemy.engine.Engine - INFO - [generated in 0.00092s] ('May', '2016', '0625', '11', 1, 0)
+2023-09-24 10:35:29,009 - sqlalchemy.engine.Engine - INFO - SELECT exams.id AS exams_id, exams.exam_board AS exams_exam_board, exams.month AS exams_month, exams.year AS exams_year, exams.unit_code AS exams_unit_code, exams.component_code AS exams_component_code, exams.subject_id AS exams_subject_id 
+FROM exams 
+WHERE lower(exams.month) LIKE lower(?) AND exams.year = ? AND lower(exams.unit_code) LIKE lower(?) AND lower(exams.component_code) LIKE lower(?)
+ LIMIT ? OFFSET ?
+2023-09-24 10:35:29,010 - sqlalchemy.engine.Engine - INFO - [generated in 0.00094s] ('May', '2016', '0625', '11', 1, 0)
+2023-09-24 10:35:29,010 - root - DEBUG - Exam: <database.models.Exam object at 0x000001F566248B90>
+2023-09-24 10:35:29,022 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2023-09-24 10:35:29,022 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 87, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 74, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 47, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 74, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 10:38:44,610 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:38:44,620 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:38:44,621 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subjects")
+2023-09-24 10:38:44,621 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,622 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("subjects")
+2023-09-24 10:38:44,622 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,622 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("exams")
+2023-09-24 10:38:44,622 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,622 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("exams")
+2023-09-24 10:38:44,623 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,623 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("difficulties")
+2023-09-24 10:38:44,623 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,624 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("difficulties")
+2023-09-24 10:38:44,624 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,625 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2023-09-24 10:38:44,625 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,626 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("questions")
+2023-09-24 10:38:44,626 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,627 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subtopics")
+2023-09-24 10:38:44,627 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,627 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("subtopics")
+2023-09-24 10:38:44,627 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,628 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("question_subtopic")
+2023-09-24 10:38:44,628 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,628 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("question_subtopic")
+2023-09-24 10:38:44,629 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,629 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("answers")
+2023-09-24 10:38:44,629 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,630 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("answers")
+2023-09-24 10:38:44,630 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:44,631 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE subjects (
+	id INTEGER NOT NULL, 
+	name VARCHAR NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (name)
+)
+
+
+2023-09-24 10:38:44,632 - sqlalchemy.engine.Engine - INFO - [no key 0.00117s] ()
+2023-09-24 10:38:44,637 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE difficulties (
+	id INTEGER NOT NULL, 
+	level VARCHAR NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (level)
+)
+
+
+2023-09-24 10:38:44,638 - sqlalchemy.engine.Engine - INFO - [no key 0.00128s] ()
+2023-09-24 10:38:44,641 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE exams (
+	id INTEGER NOT NULL, 
+	exam_board VARCHAR NOT NULL, 
+	month VARCHAR NOT NULL, 
+	year INTEGER NOT NULL, 
+	unit_code VARCHAR NOT NULL, 
+	component_code VARCHAR NOT NULL, 
+	subject_id INTEGER, 
+	PRIMARY KEY (id), 
+	CONSTRAINT uc_exam UNIQUE (exam_board, month, year, unit_code, component_code, subject_id), 
+	FOREIGN KEY(subject_id) REFERENCES subjects (id)
+)
+
+
+2023-09-24 10:38:44,643 - sqlalchemy.engine.Engine - INFO - [no key 0.00206s] ()
+2023-09-24 10:38:44,646 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE subtopics (
+	id INTEGER NOT NULL, 
+	name VARCHAR NOT NULL, 
+	subject_id INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(subject_id) REFERENCES subjects (id)
+)
+
+
+2023-09-24 10:38:44,648 - sqlalchemy.engine.Engine - INFO - [no key 0.00162s] ()
+2023-09-24 10:38:44,651 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE questions (
+	id INTEGER NOT NULL, 
+	image_path VARCHAR NOT NULL, 
+	question_number INTEGER, 
+	difficulty_id INTEGER, 
+	exam_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (image_path), 
+	FOREIGN KEY(difficulty_id) REFERENCES difficulties (id), 
+	FOREIGN KEY(exam_id) REFERENCES exams (id)
+)
+
+
+2023-09-24 10:38:44,653 - sqlalchemy.engine.Engine - INFO - [no key 0.00179s] ()
+2023-09-24 10:38:44,656 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE question_subtopic (
+	question_id INTEGER NOT NULL, 
+	subtopic_id INTEGER NOT NULL, 
+	PRIMARY KEY (question_id, subtopic_id), 
+	FOREIGN KEY(question_id) REFERENCES questions (id), 
+	FOREIGN KEY(subtopic_id) REFERENCES subtopics (id)
+)
+
+
+2023-09-24 10:38:44,657 - sqlalchemy.engine.Engine - INFO - [no key 0.00128s] ()
+2023-09-24 10:38:44,660 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE answers (
+	id INTEGER NOT NULL, 
+	question_id INTEGER NOT NULL, 
+	answer_text VARCHAR NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(question_id) REFERENCES questions (id)
+)
+
+
+2023-09-24 10:38:44,662 - sqlalchemy.engine.Engine - INFO - [no key 0.00150s] ()
+2023-09-24 10:38:44,665 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-09-24 10:38:44,676 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:38:44,678 - sqlalchemy.engine.Engine - INFO - INSERT INTO subjects (name) VALUES (?) RETURNING id
+2023-09-24 10:38:44,678 - sqlalchemy.engine.Engine - INFO - [generated in 0.00007s (insertmanyvalues) 1/3 (ordered; batch not supported)] ('biology',)
+2023-09-24 10:38:44,679 - sqlalchemy.engine.Engine - INFO - INSERT INTO subjects (name) VALUES (?) RETURNING id
+2023-09-24 10:38:44,680 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 2/3 (ordered; batch not supported)] ('chemistry',)
+2023-09-24 10:38:44,680 - sqlalchemy.engine.Engine - INFO - INSERT INTO subjects (name) VALUES (?) RETURNING id
+2023-09-24 10:38:44,680 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 3/3 (ordered; batch not supported)] ('physics',)
+2023-09-24 10:38:44,682 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:44,682 - sqlalchemy.engine.Engine - INFO - [generated in 0.00010s (insertmanyvalues) 1/5 (ordered; batch not supported)] ('Edexcel', 'June', 2022, 'U1', 'C1', 1)
+2023-09-24 10:38:44,682 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:44,683 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 2/5 (ordered; batch not supported)] ('Edexcel', 'June', 2021, 'U4', 'C4', 1)
+2023-09-24 10:38:44,683 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:44,683 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 3/5 (ordered; batch not supported)] ('AQA', 'June', 2022, 'U2', 'C2', 2)
+2023-09-24 10:38:44,684 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:44,684 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 4/5 (ordered; batch not supported)] ('AQA', 'June', 2021, 'U5', 'C5', 2)
+2023-09-24 10:38:44,684 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:44,684 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 5/5 (ordered; batch not supported)] ('OCR', 'January', 2022, 'U3', 'C3', 3)
+2023-09-24 10:38:44,685 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-09-24 10:38:44,687 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:38:44,688 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:38:44,692 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:38:44,692 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:38:44,693 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:38:44,693 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:38:44,693 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:38:44,693 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:38:44,694 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:38:44,694 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:38:44,694 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:38:44,694 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:38:44,694 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:38:44,694 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:38:44,695 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:38:44,695 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:38:44,695 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:38:46,827 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:38:46,829 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:38:46,831 - sqlalchemy.engine.Engine - INFO - SELECT exams.id AS exams_id, exams.exam_board AS exams_exam_board, exams.month AS exams_month, exams.year AS exams_year, exams.unit_code AS exams_unit_code, exams.component_code AS exams_component_code, exams.subject_id AS exams_subject_id 
+FROM exams 
+WHERE exams.month = ? AND exams.year = ? AND exams.unit_code = ? AND exams.component_code = ?
+ LIMIT ? OFFSET ?
+2023-09-24 10:38:46,832 - sqlalchemy.engine.Engine - INFO - [generated in 0.00105s] ('May', '2016', '0625', '11', 1, 0)
+2023-09-24 10:38:46,834 - sqlalchemy.engine.Engine - INFO - SELECT exams.id AS exams_id, exams.exam_board AS exams_exam_board, exams.month AS exams_month, exams.year AS exams_year, exams.unit_code AS exams_unit_code, exams.component_code AS exams_component_code, exams.subject_id AS exams_subject_id 
+FROM exams 
+WHERE lower(exams.month) LIKE lower(?) AND exams.year = ? AND lower(exams.unit_code) LIKE lower(?) AND lower(exams.component_code) LIKE lower(?)
+ LIMIT ? OFFSET ?
+2023-09-24 10:38:46,835 - sqlalchemy.engine.Engine - INFO - [generated in 0.00108s] ('May', '2016', '0625', '11', 1, 0)
+2023-09-24 10:38:46,836 - root - DEBUG - Exam: <database.models.Exam object at 0x0000022BA1FFA050>
+2023-09-24 10:38:46,848 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2023-09-24 10:38:46,849 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 87, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 74, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 47, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 74, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 10:38:46,869 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:38:46,869 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subjects")
+2023-09-24 10:38:46,870 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:46,870 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("exams")
+2023-09-24 10:38:46,871 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:46,871 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("difficulties")
+2023-09-24 10:38:46,872 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:46,872 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2023-09-24 10:38:46,872 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:46,873 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subtopics")
+2023-09-24 10:38:46,873 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:46,874 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("question_subtopic")
+2023-09-24 10:38:46,874 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:46,874 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("answers")
+2023-09-24 10:38:46,875 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:46,875 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE answers
+2023-09-24 10:38:46,876 - sqlalchemy.engine.Engine - INFO - [no key 0.00047s] ()
+2023-09-24 10:38:46,880 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE question_subtopic
+2023-09-24 10:38:46,881 - sqlalchemy.engine.Engine - INFO - [no key 0.00059s] ()
+2023-09-24 10:38:46,885 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE questions
+2023-09-24 10:38:46,885 - sqlalchemy.engine.Engine - INFO - [no key 0.00064s] ()
+2023-09-24 10:38:46,888 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE subtopics
+2023-09-24 10:38:46,889 - sqlalchemy.engine.Engine - INFO - [no key 0.00097s] ()
+2023-09-24 10:38:46,893 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE exams
+2023-09-24 10:38:46,894 - sqlalchemy.engine.Engine - INFO - [no key 0.00089s] ()
+2023-09-24 10:38:46,898 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE difficulties
+2023-09-24 10:38:46,899 - sqlalchemy.engine.Engine - INFO - [no key 0.00091s] ()
+2023-09-24 10:38:46,902 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE subjects
+2023-09-24 10:38:46,903 - sqlalchemy.engine.Engine - INFO - [no key 0.00067s] ()
+2023-09-24 10:38:46,906 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-09-24 10:38:53,433 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:38:53,444 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:38:53,445 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subjects")
+2023-09-24 10:38:53,445 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,446 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("subjects")
+2023-09-24 10:38:53,446 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,447 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("exams")
+2023-09-24 10:38:53,447 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,447 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("exams")
+2023-09-24 10:38:53,448 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,448 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("difficulties")
+2023-09-24 10:38:53,448 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,449 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("difficulties")
+2023-09-24 10:38:53,449 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,449 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2023-09-24 10:38:53,449 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,450 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("questions")
+2023-09-24 10:38:53,450 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,451 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subtopics")
+2023-09-24 10:38:53,451 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,451 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("subtopics")
+2023-09-24 10:38:53,452 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,452 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("question_subtopic")
+2023-09-24 10:38:53,452 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,453 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("question_subtopic")
+2023-09-24 10:38:53,453 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,453 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("answers")
+2023-09-24 10:38:53,453 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,454 - sqlalchemy.engine.Engine - INFO - PRAGMA temp.table_info("answers")
+2023-09-24 10:38:53,454 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:53,455 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE subjects (
+	id INTEGER NOT NULL, 
+	name VARCHAR NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (name)
+)
+
+
+2023-09-24 10:38:53,456 - sqlalchemy.engine.Engine - INFO - [no key 0.00116s] ()
+2023-09-24 10:38:53,459 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE difficulties (
+	id INTEGER NOT NULL, 
+	level VARCHAR NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (level)
+)
+
+
+2023-09-24 10:38:53,461 - sqlalchemy.engine.Engine - INFO - [no key 0.00124s] ()
+2023-09-24 10:38:53,464 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE exams (
+	id INTEGER NOT NULL, 
+	exam_board VARCHAR NOT NULL, 
+	month VARCHAR NOT NULL, 
+	year INTEGER NOT NULL, 
+	unit_code VARCHAR NOT NULL, 
+	component_code VARCHAR NOT NULL, 
+	subject_id INTEGER, 
+	PRIMARY KEY (id), 
+	CONSTRAINT uc_exam UNIQUE (exam_board, month, year, unit_code, component_code, subject_id), 
+	FOREIGN KEY(subject_id) REFERENCES subjects (id)
+)
+
+
+2023-09-24 10:38:53,466 - sqlalchemy.engine.Engine - INFO - [no key 0.00220s] ()
+2023-09-24 10:38:53,469 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE subtopics (
+	id INTEGER NOT NULL, 
+	name VARCHAR NOT NULL, 
+	subject_id INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(subject_id) REFERENCES subjects (id)
+)
+
+
+2023-09-24 10:38:53,471 - sqlalchemy.engine.Engine - INFO - [no key 0.00147s] ()
+2023-09-24 10:38:53,474 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE questions (
+	id INTEGER NOT NULL, 
+	image_path VARCHAR NOT NULL, 
+	question_number INTEGER, 
+	difficulty_id INTEGER, 
+	exam_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (image_path), 
+	FOREIGN KEY(difficulty_id) REFERENCES difficulties (id), 
+	FOREIGN KEY(exam_id) REFERENCES exams (id)
+)
+
+
+2023-09-24 10:38:53,476 - sqlalchemy.engine.Engine - INFO - [no key 0.00194s] ()
+2023-09-24 10:38:53,479 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE question_subtopic (
+	question_id INTEGER NOT NULL, 
+	subtopic_id INTEGER NOT NULL, 
+	PRIMARY KEY (question_id, subtopic_id), 
+	FOREIGN KEY(question_id) REFERENCES questions (id), 
+	FOREIGN KEY(subtopic_id) REFERENCES subtopics (id)
+)
+
+
+2023-09-24 10:38:53,481 - sqlalchemy.engine.Engine - INFO - [no key 0.00159s] ()
+2023-09-24 10:38:53,484 - sqlalchemy.engine.Engine - INFO - 
+CREATE TABLE answers (
+	id INTEGER NOT NULL, 
+	question_id INTEGER NOT NULL, 
+	answer_text VARCHAR NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(question_id) REFERENCES questions (id)
+)
+
+
+2023-09-24 10:38:53,486 - sqlalchemy.engine.Engine - INFO - [no key 0.00144s] ()
+2023-09-24 10:38:53,489 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-09-24 10:38:53,501 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:38:53,502 - sqlalchemy.engine.Engine - INFO - INSERT INTO subjects (name) VALUES (?) RETURNING id
+2023-09-24 10:38:53,502 - sqlalchemy.engine.Engine - INFO - [generated in 0.00008s (insertmanyvalues) 1/3 (ordered; batch not supported)] ('biology',)
+2023-09-24 10:38:53,504 - sqlalchemy.engine.Engine - INFO - INSERT INTO subjects (name) VALUES (?) RETURNING id
+2023-09-24 10:38:53,504 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 2/3 (ordered; batch not supported)] ('chemistry',)
+2023-09-24 10:38:53,504 - sqlalchemy.engine.Engine - INFO - INSERT INTO subjects (name) VALUES (?) RETURNING id
+2023-09-24 10:38:53,505 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 3/3 (ordered; batch not supported)] ('physics',)
+2023-09-24 10:38:53,506 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:53,506 - sqlalchemy.engine.Engine - INFO - [generated in 0.00010s (insertmanyvalues) 1/5 (ordered; batch not supported)] ('Edexcel', 'June', 2022, 'U1', 'C1', 1)
+2023-09-24 10:38:53,507 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:53,507 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 2/5 (ordered; batch not supported)] ('Edexcel', 'June', 2021, 'U4', 'C4', 1)
+2023-09-24 10:38:53,508 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:53,508 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 3/5 (ordered; batch not supported)] ('AQA', 'June', 2022, 'U2', 'C2', 2)
+2023-09-24 10:38:53,508 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:53,509 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 4/5 (ordered; batch not supported)] ('AQA', 'June', 2021, 'U5', 'C5', 2)
+2023-09-24 10:38:53,509 - sqlalchemy.engine.Engine - INFO - INSERT INTO exams (exam_board, month, year, unit_code, component_code, subject_id) VALUES (?, ?, ?, ?, ?, ?) RETURNING id
+2023-09-24 10:38:53,509 - sqlalchemy.engine.Engine - INFO - [insertmanyvalues 5/5 (ordered; batch not supported)] ('OCR', 'January', 2022, 'U3', 'C3', 3)
+2023-09-24 10:38:53,510 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-09-24 10:38:53,512 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:38:53,513 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:38:53,517 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:38:53,518 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:38:53,518 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:38:53,518 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:38:53,519 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:38:53,519 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:38:53,519 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:38:53,519 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:38:53,519 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:38:53,519 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:38:53,519 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:38:53,520 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:38:53,520 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:38:53,520 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:38:53,520 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:38:55,571 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:38:55,573 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:38:55,576 - sqlalchemy.engine.Engine - INFO - SELECT exams.id AS exams_id, exams.exam_board AS exams_exam_board, exams.month AS exams_month, exams.year AS exams_year, exams.unit_code AS exams_unit_code, exams.component_code AS exams_component_code, exams.subject_id AS exams_subject_id 
+FROM exams 
+WHERE exams.month = ? AND exams.year = ? AND exams.unit_code = ? AND exams.component_code = ?
+ LIMIT ? OFFSET ?
+2023-09-24 10:38:55,576 - sqlalchemy.engine.Engine - INFO - [generated in 0.00096s] ('May', '2016', '0625', '11', 1, 0)
+2023-09-24 10:38:55,578 - sqlalchemy.engine.Engine - INFO - SELECT exams.id AS exams_id, exams.exam_board AS exams_exam_board, exams.month AS exams_month, exams.year AS exams_year, exams.unit_code AS exams_unit_code, exams.component_code AS exams_component_code, exams.subject_id AS exams_subject_id 
+FROM exams 
+WHERE lower(exams.month) LIKE lower(?) AND exams.year = ? AND lower(exams.unit_code) LIKE lower(?) AND lower(exams.component_code) LIKE lower(?)
+ LIMIT ? OFFSET ?
+2023-09-24 10:38:55,579 - sqlalchemy.engine.Engine - INFO - [generated in 0.00111s] ('May', '2016', '0625', '11', 1, 0)
+2023-09-24 10:38:55,580 - root - DEBUG - Exam: <database.models.Exam object at 0x00000185BF6A2150>
+2023-09-24 10:38:55,591 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2023-09-24 10:38:55,592 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 87, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 74, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 47, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 74, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 10:38:55,610 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-09-24 10:38:55,611 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subjects")
+2023-09-24 10:38:55,611 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:55,612 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("exams")
+2023-09-24 10:38:55,612 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:55,613 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("difficulties")
+2023-09-24 10:38:55,613 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:55,614 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2023-09-24 10:38:55,614 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:55,615 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("subtopics")
+2023-09-24 10:38:55,615 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:55,616 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("question_subtopic")
+2023-09-24 10:38:55,616 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:55,616 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("answers")
+2023-09-24 10:38:55,617 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2023-09-24 10:38:55,617 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE answers
+2023-09-24 10:38:55,618 - sqlalchemy.engine.Engine - INFO - [no key 0.00038s] ()
+2023-09-24 10:38:55,621 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE question_subtopic
+2023-09-24 10:38:55,621 - sqlalchemy.engine.Engine - INFO - [no key 0.00054s] ()
+2023-09-24 10:38:55,624 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE questions
+2023-09-24 10:38:55,625 - sqlalchemy.engine.Engine - INFO - [no key 0.00044s] ()
+2023-09-24 10:38:55,628 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE subtopics
+2023-09-24 10:38:55,628 - sqlalchemy.engine.Engine - INFO - [no key 0.00041s] ()
+2023-09-24 10:38:55,631 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE exams
+2023-09-24 10:38:55,631 - sqlalchemy.engine.Engine - INFO - [no key 0.00053s] ()
+2023-09-24 10:38:55,635 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE difficulties
+2023-09-24 10:38:55,635 - sqlalchemy.engine.Engine - INFO - [no key 0.00048s] ()
+2023-09-24 10:38:55,638 - sqlalchemy.engine.Engine - INFO - 
+DROP TABLE subjects
+2023-09-24 10:38:55,638 - sqlalchemy.engine.Engine - INFO - [no key 0.00041s] ()
+2023-09-24 10:38:55,641 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-09-24 10:39:54,914 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:39:54,963 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:39:54,964 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:39:54,967 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:39:54,967 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:39:54,968 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:39:54,968 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:39:54,968 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:39:54,968 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:39:54,968 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:39:54,968 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:39:54,968 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:39:54,968 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:39:54,969 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:39:54,969 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:39:54,970 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:39:54,970 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:39:54,970 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:39:57,089 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:39:57,094 - root - DEBUG - Exam: <database.models.Exam object at 0x000001A357856390>
+2023-09-24 10:39:57,106 - __main__ - ERROR - 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 87, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 74, in _process_images
+    questions.extend(self._extract_questions(image))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 47, in _extract_questions
+    return self.image_processor.extract(image)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\processing\CambridgeScienceImageProcessor.py", line 74, in extract
+    binary = self._convert_to_binary_image(grayscale, self._binary_threshold)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CambridgeScienceImageProcessor' object has no attribute '_binary_threshold'
+2023-09-24 10:44:53,347 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:44:53,397 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:44:53,397 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:44:53,401 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:44:53,401 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:44:53,402 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:44:53,402 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:44:53,402 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:44:53,402 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:44:53,403 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:44:53,403 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:44:53,403 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:44:53,403 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:44:53,403 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:44:53,403 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:44:53,404 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:44:53,404 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:44:53,404 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:44:55,502 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:44:55,508 - root - DEBUG - Exam: <database.models.Exam object at 0x000001DBBB1C9E50>
+2023-09-24 10:44:55,508 - root - DEBUG - self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 10:44:55,508 - root - DEBUG - self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 10:44:56,175 - __main__ - ERROR - 'cambridge_science'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 88, in execute
+    question_nums, processed_images = self._process_images(images)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 80, in _process_images
+    post_processed_images.append(self._post_process(image))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 56, in _post_process
+    coords = self.config[self.exam_format]["textProcessor"]
+             ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'cambridge_science'
+2023-09-24 10:49:38,250 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:49:38,299 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:49:38,299 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:49:38,303 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:49:38,303 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:49:38,304 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:49:38,304 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:49:38,304 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:49:38,304 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:49:38,304 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:49:38,304 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:49:38,304 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:49:38,304 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:49:38,304 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:49:38,305 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:49:38,305 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:49:38,305 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:49:38,305 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:49:40,390 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:49:40,396 - root - DEBUG - Exam: <database.models.Exam object at 0x0000020BE4281910>
+2023-09-24 10:49:40,396 - root - DEBUG - self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 10:49:40,396 - root - DEBUG - self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 10:49:46,233 - __main__ - ERROR - too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 88, in execute
+    question_nums, processed_images = self._process_images(images)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: too many values to unpack (expected 2)
+2023-09-24 10:51:47,020 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:51:47,068 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:51:47,069 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:51:47,072 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:51:47,073 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:51:47,074 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:51:47,074 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:51:47,074 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:51:47,074 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:51:47,075 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:51:47,075 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:51:47,075 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:51:47,075 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:51:47,075 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:51:47,076 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:51:47,076 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:51:47,076 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:51:47,076 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:51:49,114 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:51:49,119 - root - DEBUG - Exam: <database.models.Exam object at 0x000002E037582110>
+2023-09-24 10:51:49,120 - root - DEBUG - self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 10:51:49,120 - root - DEBUG - self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 10:51:54,755 - __main__ - ERROR - QuestionFactory not set
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in execute
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in <listcomp>
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 68, in _create_question
+    raise Exception("QuestionFactory not set")
+Exception: QuestionFactory not set
+2023-09-24 10:53:44,809 - __main__ - INFO - Starting exam extraction...
+2023-09-24 10:53:44,858 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:53:44,858 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 10:53:44,862 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 10:53:44,862 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 10:53:44,863 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 10:53:44,863 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 10:53:44,863 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:53:44,863 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 10:53:44,863 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 10:53:44,863 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 10:53:44,863 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 10:53:44,864 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 10:53:44,864 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 10:53:44,864 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 10:53:44,864 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 10:53:44,864 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 10:53:44,864 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 10:53:46,939 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 10:53:46,944 - root - DEBUG - Exam: <database.models.Exam object at 0x0000024CDCF52710>
+2023-09-24 10:53:46,944 - root - DEBUG - self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 10:53:46,945 - root - DEBUG - self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 10:53:52,611 - __main__ - ERROR - 'number' is an invalid keyword argument for Question
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in execute
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in <listcomp>
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 66, in _create_question
+    return self.question_factory.create_question(image, qnum)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\question_factory.py", line 17, in create_question
+    question = Question(exam=self.exam, number=qnum)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 4, in __init__
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\state.py", line 566, in _initialize_instance
+    with util.safe_reraise():
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\state.py", line 564, in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\sqlalchemy\orm\decl_base.py", line 2134, in _declarative_constructor
+    raise TypeError(
+TypeError: 'number' is an invalid keyword argument for Question
+2023-09-24 11:00:45,432 - __main__ - INFO - Starting exam extraction...
+2023-09-24 11:00:45,480 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 11:00:45,480 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 11:00:45,484 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 11:00:45,484 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 11:00:45,485 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 11:00:45,485 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 11:00:45,485 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 11:00:45,485 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 11:00:45,485 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 11:00:45,485 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 11:00:45,486 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 11:00:45,486 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 11:00:45,486 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 11:00:45,486 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 11:00:45,486 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 11:00:45,487 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 11:00:45,487 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 11:00:47,560 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 11:00:47,566 - root - DEBUG - Exam: <database.models.Exam object at 0x000001FC8A1B5FD0>
+2023-09-24 11:00:47,566 - root - DEBUG - self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 11:00:47,567 - root - DEBUG - self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 11:00:53,258 - PIL.Image - DEBUG - Importing BlpImagePlugin
+2023-09-24 11:00:53,260 - PIL.Image - DEBUG - Importing BmpImagePlugin
+2023-09-24 11:00:53,260 - PIL.Image - DEBUG - Importing BufrStubImagePlugin
+2023-09-24 11:00:53,261 - PIL.Image - DEBUG - Importing CurImagePlugin
+2023-09-24 11:00:53,262 - PIL.Image - DEBUG - Importing DcxImagePlugin
+2023-09-24 11:00:53,263 - PIL.Image - DEBUG - Importing DdsImagePlugin
+2023-09-24 11:00:53,264 - PIL.Image - DEBUG - Importing EpsImagePlugin
+2023-09-24 11:00:53,293 - PIL.Image - DEBUG - Importing FitsImagePlugin
+2023-09-24 11:00:53,294 - PIL.Image - DEBUG - Importing FliImagePlugin
+2023-09-24 11:00:53,295 - PIL.Image - DEBUG - Importing FpxImagePlugin
+2023-09-24 11:00:53,297 - PIL.Image - DEBUG - Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-09-24 11:00:53,297 - PIL.Image - DEBUG - Importing FtexImagePlugin
+2023-09-24 11:00:53,298 - PIL.Image - DEBUG - Importing GbrImagePlugin
+2023-09-24 11:00:53,299 - PIL.Image - DEBUG - Importing GifImagePlugin
+2023-09-24 11:00:53,299 - PIL.Image - DEBUG - Importing GribStubImagePlugin
+2023-09-24 11:00:53,300 - PIL.Image - DEBUG - Importing Hdf5StubImagePlugin
+2023-09-24 11:00:53,301 - PIL.Image - DEBUG - Importing IcnsImagePlugin
+2023-09-24 11:00:53,304 - PIL.Image - DEBUG - Importing IcoImagePlugin
+2023-09-24 11:00:53,305 - PIL.Image - DEBUG - Importing ImImagePlugin
+2023-09-24 11:00:53,307 - PIL.Image - DEBUG - Importing ImtImagePlugin
+2023-09-24 11:00:53,308 - PIL.Image - DEBUG - Importing IptcImagePlugin
+2023-09-24 11:00:53,308 - PIL.Image - DEBUG - Importing JpegImagePlugin
+2023-09-24 11:00:53,309 - PIL.Image - DEBUG - Importing Jpeg2KImagePlugin
+2023-09-24 11:00:53,309 - PIL.Image - DEBUG - Importing McIdasImagePlugin
+2023-09-24 11:00:53,310 - PIL.Image - DEBUG - Importing MicImagePlugin
+2023-09-24 11:00:53,311 - PIL.Image - DEBUG - Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-09-24 11:00:53,311 - PIL.Image - DEBUG - Importing MpegImagePlugin
+2023-09-24 11:00:53,312 - PIL.Image - DEBUG - Importing MpoImagePlugin
+2023-09-24 11:00:53,316 - PIL.Image - DEBUG - Importing MspImagePlugin
+2023-09-24 11:00:53,317 - PIL.Image - DEBUG - Importing PalmImagePlugin
+2023-09-24 11:00:53,318 - PIL.Image - DEBUG - Importing PcdImagePlugin
+2023-09-24 11:00:53,319 - PIL.Image - DEBUG - Importing PcxImagePlugin
+2023-09-24 11:00:53,320 - PIL.Image - DEBUG - Importing PdfImagePlugin
+2023-09-24 11:00:53,325 - PIL.Image - DEBUG - Importing PixarImagePlugin
+2023-09-24 11:00:53,326 - PIL.Image - DEBUG - Importing PngImagePlugin
+2023-09-24 11:00:53,326 - PIL.Image - DEBUG - Importing PpmImagePlugin
+2023-09-24 11:00:53,326 - PIL.Image - DEBUG - Importing PsdImagePlugin
+2023-09-24 11:00:53,327 - PIL.Image - DEBUG - Importing QoiImagePlugin
+2023-09-24 11:00:53,328 - PIL.Image - DEBUG - Importing SgiImagePlugin
+2023-09-24 11:00:53,329 - PIL.Image - DEBUG - Importing SpiderImagePlugin
+2023-09-24 11:00:53,330 - PIL.Image - DEBUG - Importing SunImagePlugin
+2023-09-24 11:00:53,331 - PIL.Image - DEBUG - Importing TgaImagePlugin
+2023-09-24 11:00:53,332 - PIL.Image - DEBUG - Importing TiffImagePlugin
+2023-09-24 11:00:53,332 - PIL.Image - DEBUG - Importing WebPImagePlugin
+2023-09-24 11:00:53,349 - PIL.Image - DEBUG - Importing WmfImagePlugin
+2023-09-24 11:00:53,351 - PIL.Image - DEBUG - Importing XbmImagePlugin
+2023-09-24 11:00:53,352 - PIL.Image - DEBUG - Importing XpmImagePlugin
+2023-09-24 11:00:53,353 - PIL.Image - DEBUG - Importing XVThumbImagePlugin
+2023-09-24 11:00:53,355 - __main__ - ERROR - [WinError 2] The system cannot find the file specified: "C:\\Users\\Tariq\\Documents\\birkbeck-project\\None-('0625', '0625')-1695549653258"
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\PIL\Image.py", line 2390, in save
+    format = EXTENSION[ext]
+             ~~~~~~~~~^^^^^
+KeyError: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\image_file_handler.py", line 18, in save_image
+    image.save(save_path)
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\PIL\Image.py", line 2393, in save
+    raise ValueError(msg) from e
+ValueError: unknown file extension: 
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\question_factory.py", line 25, in create_question
+    ImageFileManager.save_image(image, filename)
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\image_file_handler.py", line 20, in save_image
+    raise IOError(f"Unable to save image: {e}")
+OSError: Unable to save image: unknown file extension: 
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in execute
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in <listcomp>
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 66, in _create_question
+    return self.question_factory.create_question(image, qnum)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\question_factory.py", line 31, in create_question
+    os.remove(question.image_path)
+FileNotFoundError: [WinError 2] The system cannot find the file specified: "C:\\Users\\Tariq\\Documents\\birkbeck-project\\None-('0625', '0625')-1695549653258"
+2023-09-24 11:02:26,697 - __main__ - INFO - Starting exam extraction...
+2023-09-24 11:02:26,747 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 11:02:26,747 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 11:02:26,751 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 11:02:26,751 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 11:02:26,751 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 11:02:26,752 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 11:02:26,752 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 11:02:26,752 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 11:02:26,752 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 11:02:26,752 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 11:02:26,752 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 11:02:26,753 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 11:02:26,753 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 11:02:26,753 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 11:02:26,754 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 11:02:26,754 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 11:02:26,754 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 11:02:28,829 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 11:02:28,834 - root - DEBUG - Exam: <database.models.Exam object at 0x0000018578525A90>
+2023-09-24 11:02:28,834 - root - DEBUG - self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 11:02:28,835 - root - DEBUG - self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 11:02:34,551 - root - DEBUG - Question image path: C:\Users\Tariq\Documents\birkbeck-project\None-('0625', '0625')-1695549754551. qnum: 1
+2023-09-24 11:02:34,551 - PIL.Image - DEBUG - Importing BlpImagePlugin
+2023-09-24 11:02:34,552 - PIL.Image - DEBUG - Importing BmpImagePlugin
+2023-09-24 11:02:34,552 - PIL.Image - DEBUG - Importing BufrStubImagePlugin
+2023-09-24 11:02:34,553 - PIL.Image - DEBUG - Importing CurImagePlugin
+2023-09-24 11:02:34,554 - PIL.Image - DEBUG - Importing DcxImagePlugin
+2023-09-24 11:02:34,555 - PIL.Image - DEBUG - Importing DdsImagePlugin
+2023-09-24 11:02:34,555 - PIL.Image - DEBUG - Importing EpsImagePlugin
+2023-09-24 11:02:34,581 - PIL.Image - DEBUG - Importing FitsImagePlugin
+2023-09-24 11:02:34,582 - PIL.Image - DEBUG - Importing FliImagePlugin
+2023-09-24 11:02:34,583 - PIL.Image - DEBUG - Importing FpxImagePlugin
+2023-09-24 11:02:34,584 - PIL.Image - DEBUG - Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-09-24 11:02:34,584 - PIL.Image - DEBUG - Importing FtexImagePlugin
+2023-09-24 11:02:34,585 - PIL.Image - DEBUG - Importing GbrImagePlugin
+2023-09-24 11:02:34,586 - PIL.Image - DEBUG - Importing GifImagePlugin
+2023-09-24 11:02:34,586 - PIL.Image - DEBUG - Importing GribStubImagePlugin
+2023-09-24 11:02:34,587 - PIL.Image - DEBUG - Importing Hdf5StubImagePlugin
+2023-09-24 11:02:34,587 - PIL.Image - DEBUG - Importing IcnsImagePlugin
+2023-09-24 11:02:34,589 - PIL.Image - DEBUG - Importing IcoImagePlugin
+2023-09-24 11:02:34,589 - PIL.Image - DEBUG - Importing ImImagePlugin
+2023-09-24 11:02:34,590 - PIL.Image - DEBUG - Importing ImtImagePlugin
+2023-09-24 11:02:34,591 - PIL.Image - DEBUG - Importing IptcImagePlugin
+2023-09-24 11:02:34,592 - PIL.Image - DEBUG - Importing JpegImagePlugin
+2023-09-24 11:02:34,592 - PIL.Image - DEBUG - Importing Jpeg2KImagePlugin
+2023-09-24 11:02:34,592 - PIL.Image - DEBUG - Importing McIdasImagePlugin
+2023-09-24 11:02:34,593 - PIL.Image - DEBUG - Importing MicImagePlugin
+2023-09-24 11:02:34,593 - PIL.Image - DEBUG - Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-09-24 11:02:34,594 - PIL.Image - DEBUG - Importing MpegImagePlugin
+2023-09-24 11:02:34,594 - PIL.Image - DEBUG - Importing MpoImagePlugin
+2023-09-24 11:02:34,597 - PIL.Image - DEBUG - Importing MspImagePlugin
+2023-09-24 11:02:34,598 - PIL.Image - DEBUG - Importing PalmImagePlugin
+2023-09-24 11:02:34,599 - PIL.Image - DEBUG - Importing PcdImagePlugin
+2023-09-24 11:02:34,600 - PIL.Image - DEBUG - Importing PcxImagePlugin
+2023-09-24 11:02:34,600 - PIL.Image - DEBUG - Importing PdfImagePlugin
+2023-09-24 11:02:34,604 - PIL.Image - DEBUG - Importing PixarImagePlugin
+2023-09-24 11:02:34,605 - PIL.Image - DEBUG - Importing PngImagePlugin
+2023-09-24 11:02:34,605 - PIL.Image - DEBUG - Importing PpmImagePlugin
+2023-09-24 11:02:34,605 - PIL.Image - DEBUG - Importing PsdImagePlugin
+2023-09-24 11:02:34,606 - PIL.Image - DEBUG - Importing QoiImagePlugin
+2023-09-24 11:02:34,606 - PIL.Image - DEBUG - Importing SgiImagePlugin
+2023-09-24 11:02:34,607 - PIL.Image - DEBUG - Importing SpiderImagePlugin
+2023-09-24 11:02:34,608 - PIL.Image - DEBUG - Importing SunImagePlugin
+2023-09-24 11:02:34,608 - PIL.Image - DEBUG - Importing TgaImagePlugin
+2023-09-24 11:02:34,609 - PIL.Image - DEBUG - Importing TiffImagePlugin
+2023-09-24 11:02:34,609 - PIL.Image - DEBUG - Importing WebPImagePlugin
+2023-09-24 11:02:34,610 - PIL.Image - DEBUG - Importing WmfImagePlugin
+2023-09-24 11:02:34,611 - PIL.Image - DEBUG - Importing XbmImagePlugin
+2023-09-24 11:02:34,612 - PIL.Image - DEBUG - Importing XpmImagePlugin
+2023-09-24 11:02:34,613 - PIL.Image - DEBUG - Importing XVThumbImagePlugin
+2023-09-24 11:02:34,614 - __main__ - ERROR - [WinError 2] The system cannot find the file specified: "C:\\Users\\Tariq\\Documents\\birkbeck-project\\None-('0625', '0625')-1695549754551"
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\PIL\Image.py", line 2390, in save
+    format = EXTENSION[ext]
+             ~~~~~~~~~^^^^^
+KeyError: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\image_file_handler.py", line 18, in save_image
+    image.save(save_path)
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\PIL\Image.py", line 2393, in save
+    raise ValueError(msg) from e
+ValueError: unknown file extension: 
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\question_factory.py", line 30, in create_question
+    ImageFileManager.save_image(image, filename)
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\image_file_handler.py", line 20, in save_image
+    raise IOError(f"Unable to save image: {e}")
+OSError: Unable to save image: unknown file extension: 
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in execute
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in <listcomp>
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 66, in _create_question
+    return self.question_factory.create_question(image, qnum)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\question_factory.py", line 36, in create_question
+    os.remove(question.image_path)
+FileNotFoundError: [WinError 2] The system cannot find the file specified: "C:\\Users\\Tariq\\Documents\\birkbeck-project\\None-('0625', '0625')-1695549754551"
+2023-09-24 11:04:56,904 - __main__ - INFO - Starting exam extraction...
+2023-09-24 11:04:56,956 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 11:04:56,956 - root - DEBUG - ConfigManager.__new__ config_path: C:\Users\Tariq\Documents\birkbeck-project\config\config.yaml
+2023-09-24 11:04:56,960 - root - DEBUG - self._config in ConfigManager: {'exam_formats': {'cambridge_science': {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}, 'aqa_maths': {'imageProcessor': None, 'OCRProcessor': None}}, 'coverpage_settings': {'cambridge_science': {'regexes': {'exam_board': '\\b(Cambridge)\\b', 'subject': '\\b([A-Z]{6,})\\b', 'unit_code': '\\b(\\d{4})\\/\\d{2}\\b', 'component_code': '\\b\\d{4}\\/(\\d{2})\\b', 'month': '\\b([A-Z]{1}[a-z]+)\\/?[A-Z]{1}[a-z]+\\s20\\d{2}\\b', 'year': '\\bUCLES\\s+(\\d{4})\\b', 'answer': '(MARK SCHEME)'}}, 'example': {'regexes': {'subject': None, 'unit_code': None, 'component_code': None, 'month': None, 'year': None, 'type': None}}}}
+2023-09-24 11:04:56,960 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-24 11:04:56,960 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-24 11:04:56,961 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-24 11:04:56,961 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 11:04:56,961 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, coverpage_settings
+2023-09-24 11:04:56,961 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctcoverpage_settings, efcambridge_science
+2023-09-24 11:04:56,961 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-24 11:04:56,962 - root - DEBUG - ConfigManager.__new__ called
+2023-09-24 11:04:56,962 - extraction_engine.managers.config_manager - DEBUG - ConfigManager.get_config called with ef: cambridge_science, exam_formats
+2023-09-24 11:04:56,962 - extraction_engine.managers.config_manager - DEBUG - inside 3rd if: ctexam_formats, efcambridge_science
+2023-09-24 11:04:56,962 - root - DEBUG - self.config in QuestionManager: {'imageProcessor': {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}, 'textProcessor': {'question_x_start': 100, 'question_y_start': 40, 'question_x_end': 190, 'question_y_end': 100, 'tesseract_psm_mode': 7}}
+2023-09-24 11:04:56,963 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-24 11:04:56,963 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-24 11:04:56,963 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-24 11:04:59,051 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'Cambridge', 'subject': 'PHYSICS', 'unit_code': '0625', 'component_code': '11', 'month': 'May', 'year': '2016', 'answer': None}
+2023-09-24 11:04:59,056 - root - DEBUG - Exam: <database.models.Exam object at 0x000001B9C09852D0>
+2023-09-24 11:04:59,056 - root - DEBUG - self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 11:04:59,057 - root - DEBUG - self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-24 11:05:04,676 - root - DEBUG - Question image path: C:\Users\Tariq\Documents\birkbeck-project\None-('0625', '0625')-1695549904675. qnum: 1
+2023-09-24 11:05:04,676 - PIL.Image - DEBUG - Importing BlpImagePlugin
+2023-09-24 11:05:04,677 - PIL.Image - DEBUG - Importing BmpImagePlugin
+2023-09-24 11:05:04,677 - PIL.Image - DEBUG - Importing BufrStubImagePlugin
+2023-09-24 11:05:04,678 - PIL.Image - DEBUG - Importing CurImagePlugin
+2023-09-24 11:05:04,678 - PIL.Image - DEBUG - Importing DcxImagePlugin
+2023-09-24 11:05:04,679 - PIL.Image - DEBUG - Importing DdsImagePlugin
+2023-09-24 11:05:04,680 - PIL.Image - DEBUG - Importing EpsImagePlugin
+2023-09-24 11:05:04,707 - PIL.Image - DEBUG - Importing FitsImagePlugin
+2023-09-24 11:05:04,708 - PIL.Image - DEBUG - Importing FliImagePlugin
+2023-09-24 11:05:04,708 - PIL.Image - DEBUG - Importing FpxImagePlugin
+2023-09-24 11:05:04,709 - PIL.Image - DEBUG - Image: failed to import FpxImagePlugin: No module named 'olefile'
+2023-09-24 11:05:04,709 - PIL.Image - DEBUG - Importing FtexImagePlugin
+2023-09-24 11:05:04,710 - PIL.Image - DEBUG - Importing GbrImagePlugin
+2023-09-24 11:05:04,711 - PIL.Image - DEBUG - Importing GifImagePlugin
+2023-09-24 11:05:04,711 - PIL.Image - DEBUG - Importing GribStubImagePlugin
+2023-09-24 11:05:04,712 - PIL.Image - DEBUG - Importing Hdf5StubImagePlugin
+2023-09-24 11:05:04,712 - PIL.Image - DEBUG - Importing IcnsImagePlugin
+2023-09-24 11:05:04,714 - PIL.Image - DEBUG - Importing IcoImagePlugin
+2023-09-24 11:05:04,715 - PIL.Image - DEBUG - Importing ImImagePlugin
+2023-09-24 11:05:04,716 - PIL.Image - DEBUG - Importing ImtImagePlugin
+2023-09-24 11:05:04,716 - PIL.Image - DEBUG - Importing IptcImagePlugin
+2023-09-24 11:05:04,717 - PIL.Image - DEBUG - Importing JpegImagePlugin
+2023-09-24 11:05:04,717 - PIL.Image - DEBUG - Importing Jpeg2KImagePlugin
+2023-09-24 11:05:04,717 - PIL.Image - DEBUG - Importing McIdasImagePlugin
+2023-09-24 11:05:04,718 - PIL.Image - DEBUG - Importing MicImagePlugin
+2023-09-24 11:05:04,719 - PIL.Image - DEBUG - Image: failed to import MicImagePlugin: No module named 'olefile'
+2023-09-24 11:05:04,719 - PIL.Image - DEBUG - Importing MpegImagePlugin
+2023-09-24 11:05:04,720 - PIL.Image - DEBUG - Importing MpoImagePlugin
+2023-09-24 11:05:04,724 - PIL.Image - DEBUG - Importing MspImagePlugin
+2023-09-24 11:05:04,724 - PIL.Image - DEBUG - Importing PalmImagePlugin
+2023-09-24 11:05:04,725 - PIL.Image - DEBUG - Importing PcdImagePlugin
+2023-09-24 11:05:04,726 - PIL.Image - DEBUG - Importing PcxImagePlugin
+2023-09-24 11:05:04,726 - PIL.Image - DEBUG - Importing PdfImagePlugin
+2023-09-24 11:05:04,730 - PIL.Image - DEBUG - Importing PixarImagePlugin
+2023-09-24 11:05:04,731 - PIL.Image - DEBUG - Importing PngImagePlugin
+2023-09-24 11:05:04,731 - PIL.Image - DEBUG - Importing PpmImagePlugin
+2023-09-24 11:05:04,731 - PIL.Image - DEBUG - Importing PsdImagePlugin
+2023-09-24 11:05:04,732 - PIL.Image - DEBUG - Importing QoiImagePlugin
+2023-09-24 11:05:04,733 - PIL.Image - DEBUG - Importing SgiImagePlugin
+2023-09-24 11:05:04,733 - PIL.Image - DEBUG - Importing SpiderImagePlugin
+2023-09-24 11:05:04,734 - PIL.Image - DEBUG - Importing SunImagePlugin
+2023-09-24 11:05:04,735 - PIL.Image - DEBUG - Importing TgaImagePlugin
+2023-09-24 11:05:04,735 - PIL.Image - DEBUG - Importing TiffImagePlugin
+2023-09-24 11:05:04,736 - PIL.Image - DEBUG - Importing WebPImagePlugin
+2023-09-24 11:05:04,737 - PIL.Image - DEBUG - Importing WmfImagePlugin
+2023-09-24 11:05:04,737 - PIL.Image - DEBUG - Importing XbmImagePlugin
+2023-09-24 11:05:04,739 - PIL.Image - DEBUG - Importing XpmImagePlugin
+2023-09-24 11:05:04,739 - PIL.Image - DEBUG - Importing XVThumbImagePlugin
+2023-09-24 11:05:04,740 - __main__ - ERROR - [WinError 2] The system cannot find the file specified: "C:\\Users\\Tariq\\Documents\\birkbeck-project\\None-('0625', '0625')-1695549904675"
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\PIL\Image.py", line 2390, in save
+    format = EXTENSION[ext]
+             ~~~~~~~~~^^^^^
+KeyError: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\image_file_handler.py", line 18, in save_image
+    image.save(save_path)
+  File "C:\Users\Tariq\Documents\birkbeck-project\project-env\Lib\site-packages\PIL\Image.py", line 2393, in save
+    raise ValueError(msg) from e
+ValueError: unknown file extension: 
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\question_factory.py", line 30, in create_question
+    ImageFileManager.save_image(image, filename)
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\image_file_handler.py", line 20, in save_image
+    raise IOError(f"Unable to save image: {e}")
+OSError: Unable to save image: unknown file extension: 
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 19, in <module>
+    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 72, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 64, in process
+    questions = self._process_questions(db_session, exam, raw_questions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 45, in _process_questions
+    return self.question_manager.execute(db_session, exam, questions_images)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in execute
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 89, in <listcomp>
+    return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\question_manager.py", line 66, in _create_question
+    return self.question_factory.create_question(image, qnum)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\factories\question_factory.py", line 36, in create_question
+    os.remove(question.image_path)
+FileNotFoundError: [WinError 2] The system cannot find the file specified: "C:\\Users\\Tariq\\Documents\\birkbeck-project\\None-('0625', '0625')-1695549904675"

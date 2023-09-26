@@ -78,3 +78,14 @@ class Answer(Base):
     answer_text = mapped_column(String, nullable=False)
 
     question = relationship('Question', back_populates='answer')
+
+class HashQuestionMapping(Base):
+    __tablename__ = 'hash_question_mappings'
+    id = mapped_column(Integer, primary_key=True)
+    hash_str = mapped_column(String, index=True, nullable=False)
+    question_id = Column(Integer, ForeignKey('questions.id'), nullable=False)
+
+    question = relationship('Question', back_populates='hash_mapping')
+
+    __table_args__ = (UniqueConstraint('hash_str', 'question_id', 
+                                       name='uc_hash_mapping'),)

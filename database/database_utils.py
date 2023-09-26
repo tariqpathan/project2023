@@ -1,17 +1,5 @@
 
-from typing import Optional
-from database.models import Exam, Subject
-from sqlalchemy.orm import aliased
-
-
-def get_valid_columns(model):
-    """Retrieve valid column names for a given SQLAlchemy model."""
-    return [col.name for col in model.__table__.columns]
-
-def are_keys_valid(filters, model):
-    """Check if all keys in filters are valid columns of the given model."""
-    valid_columns = get_valid_columns(model)
-    return all(key in valid_columns for key in filters.keys())
+from database.models import Exam, Subject, Subtopic, Difficulty
 
 def get_subject_id(session, subject_name):
     """Retrieve the ID of the subject with the given name."""
@@ -21,32 +9,17 @@ def get_subject_id(session, subject_name):
     else:
         raise ValueError(f"Subject with name {subject_name} does not exist.")
 
-# def find_records(model, **filters):
-#     """
-#     Retrieve records from the specified model based on provided filters.
-#     """
-#     # Check if all filter keys are valid
-#     if not are_keys_valid(filters, model):
-#         raise ValueError("Invalid column name provided in filters.")
-    
-#     session = Session()
-#     query = session.query(model)
-    
-#     # Apply filters to the query
-#     for key, value in filters.items():
-#         query = query.filter(getattr(model, key) == value)
+def list_subject_names(session):
+    return [s.name for s in session.query(Subject.name).all()]
 
-#     # Execute and fetch the results
-#     results = query.all()
-#     session.close()
+def get_ids_from_names(session, model, names):
+    return [item.id for item in session.query(model.id).filter(model.name.in_(names)).all()]
 
-#     return results
+def list_available_difficulties(session):
+    return [d.level for d in session.query(Difficulty.level).all()]
 
-def get_exam(session, exam_data: dict) -> Optional[Exam]:
-    exam = session.query(Exam).filter_by(
-            month=exam_data["month"],
-            year=exam_data["year"],
-            unit_code=exam_data["unit_code"],
-            component_code=exam_data["component_code"],
-        ).first()
-    return exam
+def list_available_subtopics(session, subject_id=None):
+    query = session.query(Subtopic.name)
+    if subject_id:
+        query = query.filter(Subtopic.subject_id == subject_id)
+    return [s.name for s in query.all()]

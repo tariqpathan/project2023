@@ -10,10 +10,26 @@ logging.basicConfig(level=logging.DEBUG,
 
 logger = logging.getLogger(__name__)
 
+
+def get_mode():
+    input_str = input("""
+    Select from the following options:\n
+    1: Run exam extraction\n
+    2: Retrieve questions\n
+    3: Run a machine learning process\n
+    4: Exit\n                   
+    """)
+    try: 
+        input_mode = int(input_str)
+    except ValueError:
+        print("Please enter a valid number")
+        return get_mode()
+
+
+
 if __name__ == "__main__":
     delete_images()
     print("#######---BEGIN---#######")
-    logger.info("Starting exam extraction...")
     session = load_db()
     exam_format = "cambridge_science"
     try:

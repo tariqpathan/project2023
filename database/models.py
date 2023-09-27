@@ -1,6 +1,7 @@
 from sqlalchemy import Integer, String, ForeignKey, Table, Column, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, relationship, mapped_column
 
+
 class Base(DeclarativeBase):
     pass
 
@@ -30,7 +31,7 @@ class Exam(Base):
     questions = relationship('Question', back_populates='exam')
 
     __table_args__ = (UniqueConstraint('exam_board', 'month', 'year', 'unit_code',
-                    'component_code', 'subject_id', name='uc_exam'),) # comma is required for tuple
+                                       'component_code', 'subject_id', name='uc_exam'),)  # comma is required for tuple
 
 
 class Difficulty(Base):
@@ -50,9 +51,9 @@ class Question(Base):
     question_number = mapped_column(Integer, nullable=True)
     difficulty_id = mapped_column(Integer, ForeignKey('difficulties.id'), nullable=True)
     exam_id = mapped_column(Integer, ForeignKey('exams.id'), nullable=False)
-    
+
     # uselist = False means it's a one-to-one relationship
-    answer = relationship('Answer', back_populates='question', uselist=False) 
+    answer = relationship('Answer', back_populates='question', uselist=False)
     difficulty = relationship('Difficulty', back_populates='questions')
     exam = relationship('Exam', back_populates='questions')
     subtopics = relationship('Subtopic', secondary='question_subtopic', back_populates='questions')
@@ -91,26 +92,21 @@ class Code(Base):
 
 # Association table for many-to-many relationship between questions and subtopics
 question_subtopic_table = Table('question_subtopic', Base.metadata,
-    Column('question_id', Integer, ForeignKey('questions.id'), primary_key=True),
-    Column('subtopic_id', Integer, ForeignKey('subtopics.id'), primary_key=True)
-)
+                                Column('question_id', Integer, ForeignKey('questions.id'), primary_key=True),
+                                Column('subtopic_id', Integer, ForeignKey('subtopics.id'), primary_key=True)
+                                )
 
 question_code_table = Table('question_code', Base.metadata,
-    Column('question_id', Integer, ForeignKey('questions.id'), primary_key=True),
-    Column('code_id', Integer, ForeignKey('codes.id'), primary_key=True)
-)
-
-
-
-
-
+                            Column('question_id', Integer, ForeignKey('questions.id'), primary_key=True),
+                            Column('code_id', Integer, ForeignKey('codes.id'), primary_key=True)
+                            )
 
 # class QuestionCodeMapping(Base):
 #     __tablename__ = 'question_code_mappings'
 #     id = mapped_column(Integer, primary_key=True)
 #     code_str = mapped_column(String, index=True, nullable=False)
 #     question_id = mapped_column(Integer, ForeignKey('questions.id'), nullable=False)
-    
+
 #     question = relationship('Question', back_populates='question_code_mapping')
 
 #     __table_args__ = (UniqueConstraint('code_str', 'question_id', 

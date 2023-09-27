@@ -1,6 +1,6 @@
 import logging
-import time
-from create_test_db import load_db, delete_db, delete_images
+
+from create_test_db import load_db, delete_images
 from exam_extractor import run_exam_extraction
 
 logging.basicConfig(level=logging.DEBUG,
@@ -19,12 +19,11 @@ def get_mode():
     3: Run a machine learning process\n
     4: Exit\n                   
     """)
-    try: 
+    try:
         input_mode = int(input_str)
     except ValueError:
         print("Please enter a valid number")
         return get_mode()
-
 
 
 if __name__ == "__main__":
@@ -36,7 +35,7 @@ if __name__ == "__main__":
         run_exam_extraction(exam_format, 'bio-may2010.pdf', 'bio-may2010-ms.pdf')
     except Exception as e:
         logger.exception(e)
-    
+
     finally:
         # delete_db(session)
         # time.sleep(10)

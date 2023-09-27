@@ -1,12 +1,14 @@
-from database.models import Answer, Question
 import logging
 
+from database.models import Answer, Question
+
 logger = logging.getLogger(__name__)
+
 
 class AnswerFactory:
     def __init__(self, db_session) -> None:
         self.db_session = db_session
-    
+
     def create_answer(self, question: Question, correct_answer: str) -> Answer:
         """creates an answer object using the Answer model"""
         answer = Answer(question_id=question.id, answer_text=correct_answer)

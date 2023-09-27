@@ -1,14 +1,16 @@
-import os
 import glob
-from database.models import Base, Subject, Exam
+import os
+
 from database.database_manager import DatabaseManager
+from database.models import Base, Subject, Exam
 
 DATABASE_PATH = 'database/dbOne.db'
+
 
 def initialize_database(db_manager):
     Base.metadata.drop_all(db_manager.engine)
     Base.metadata.create_all(db_manager.engine)
-    
+
 
 def add_data(db_manager):
     with db_manager as session:
@@ -35,14 +37,17 @@ def populate_db(session):
     session.add_all([biology, chemistry, physics] + exams)
     print("Added data to database")
 
+
 def load_db():
     db_manager = DatabaseManager(DATABASE_PATH)
     initialize_database(db_manager)
     add_data(db_manager)
     return db_manager
 
+
 def delete_db(db_manager):
     Base.metadata.drop_all(db_manager.engine)
+
 
 def delete_images():
     files = glob.glob('./static/question_images/*')

@@ -3,8 +3,9 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database.models import Base, Code, Question, Difficulty, Subtopic, Exam, Subject
 import database.database_utils as dbu
+from database.models import Base, Code, Question, Difficulty, Subtopic, Exam, Subject
+
 
 @pytest.fixture(scope="function")
 def db_session():
@@ -16,6 +17,7 @@ def db_session():
     session.rollback()
     session.close()
 
+
 @pytest.fixture(scope="function")
 def sample_data(db_session):
     # Populate the database with some sample data
@@ -26,10 +28,11 @@ def sample_data(db_session):
     subtopic_2 = Subtopic(name='animals', subject=subject)
     exam = Exam(exam_board="tariq", month="march", year=2020, unit_code="12", component_code="01", subject=subject)
     code = Code(code_str='123456')
-    
+
     questions = [
         Question(image_filename='test1.jpg', question_number=1, difficulty=difficulty, subtopics=[subtopic], exam=exam),
-        Question(image_filename='test2.jpg', question_number=2, difficulty=difficulty, subtopics=[subtopic_2], exam=exam),
+        Question(image_filename='test2.jpg', question_number=2, difficulty=difficulty, subtopics=[subtopic_2],
+                 exam=exam),
     ]
     db_session.add_all([difficulty, subject, subtopic, subtopic_2, exam])
     db_session.add_all(questions)
@@ -45,6 +48,7 @@ def test_get_subject_id(db_session):
     with pytest.raises(ValueError):
         dbu.get_subject_id(db_session, 'Physics')
 
+
 def test_list_subject_names(db_session):
     sub1 = Subject(name='Math')
     sub2 = Subject(name='Physics')
@@ -52,6 +56,7 @@ def test_list_subject_names(db_session):
     db_session.commit()
 
     assert dbu.list_subject_names(db_session) == ['Math', 'Physics']
+
 
 def test_get_ids_from_names(db_session):
     sub1 = Subject(name='Math')
@@ -61,12 +66,14 @@ def test_get_ids_from_names(db_session):
 
     assert dbu.get_ids_from_names(db_session, Subject, ['Math', 'Physics']) == [sub1.id, sub2.id]
 
+
 def test_get_from_name(db_session):
     sub1 = Subject(name='Math')
     db_session.add(sub1)
     db_session.commit()
 
     assert dbu.get_from_name(db_session, Subject, 'Math') == sub1
+
 
 def test_list_available_difficulties(db_session):
     diff1 = Difficulty(level='Easy')
@@ -76,6 +83,7 @@ def test_list_available_difficulties(db_session):
 
     assert dbu.list_available_difficulties(db_session) == ['Easy', 'Hard']
 
+
 def test_list_available_subtopics(db_session):
     sub1 = Subject(name='Math')
     subtopic1 = Subtopic(name='Algebra', subject=sub1)
@@ -84,6 +92,7 @@ def test_list_available_subtopics(db_session):
 
     assert dbu.list_available_subtopics(db_session) == ['Algebra']
     assert dbu.list_available_subtopics(db_session, subject_id=sub1.id) == ['Algebra']
+
 
 def test_list_all_subtopics(db_session):
     sub1 = Subject(name='Math')

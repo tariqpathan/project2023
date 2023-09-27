@@ -1,6 +1,7 @@
-from PyPDF4 import utils as PyPDF4_utils
 import PyPDF4
+from PyPDF4 import utils as PyPDF4_utils
 from pdf2image import pdf2image
+
 
 class PDFUtils:
 
@@ -18,7 +19,8 @@ class PDFUtils:
         except IsADirectoryError:
             raise IsADirectoryError(f"'{file_path}' is a directory, not a file.")
         except PyPDF4_utils.PdfReadError:
-            raise PyPDF4_utils.PdfReadError(f"Could not read the PDF file '{file_path}'. It might be corrupted or unsupported.")
+            raise PyPDF4_utils.PdfReadError(
+                f"Could not read the PDF file '{file_path}'. It might be corrupted or unsupported.")
         except IOError:
             raise IOError(f"An I/O error occurred while accessing '{file_path}'.")
         except Exception as e:
@@ -47,7 +49,7 @@ class PDFUtils:
         except Exception as e:
             raise Exception(f'Error in converting the PDF to images: {str(e)}')
 
-    @staticmethod    
+    @staticmethod
     def extract_text_except_first_page(filepath: str) -> str:
         """Extracts text from a PDF, excluding the first page."""
         with open(filepath, 'rb') as file:

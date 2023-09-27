@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
-from PIL import Image
 from typing import Dict, List
+
+from PIL import Image
+
 
 class AbstractImageProcessor(ABC):
     EXAM_FORMAT = ""
@@ -23,20 +25,20 @@ class AbstractImageProcessor(ABC):
     def post_process(self, image: Image.Image, *args) -> Image.Image:
         """Modifies images after data has been extracted"""
         pass
-    
+
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
         if not hasattr(cls, "EXAM_FORMAT"):
-            raise TypeError(f"Subclasses of AbstractImageProcessor must have an "\
-                "'EXAM_FORMAT' attribute. {cls.__name__} doesn't.")
+            raise TypeError(f"Subclasses of AbstractImageProcessor must have an " \
+                            "'EXAM_FORMAT' attribute. {cls.__name__} doesn't.")
 
     @abstractmethod
-    def validate(self, image:Image.Image):
+    def validate(self, image: Image.Image):
         """Validate ImageProcessor-specific configuration"""
         pass
 
     @staticmethod
-    def _convert_to_grayscale_image(image:Image.Image) -> Image.Image:
+    def _convert_to_grayscale_image(image: Image.Image) -> Image.Image:
         """Converts image to grayscale"""
         return image.convert('L')
 
@@ -47,4 +49,3 @@ class AbstractImageProcessor(ABC):
         1 represents a white pixel, 0 represents black
         """
         return image.point(lambda x: 0 if x < threshold else 255, "1")
-    

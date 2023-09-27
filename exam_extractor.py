@@ -1,12 +1,14 @@
 # exam_extraction.py
 
-from extraction_engine.managers.config_manager import ConfigManager
-from database.database_manager import DatabaseManager
-from extraction_engine.managers.exam_manager import ExamManager
-from extraction_engine.managers.file_manager import FileManager
 import logging
 
+from database.database_manager import DatabaseManager
+from extraction_engine.managers.config_manager import ConfigManager
+from extraction_engine.managers.exam_manager import ExamManager
+from extraction_engine.managers.file_manager import FileManager
+
 logger = logging.getLogger(__name__)
+
 
 def run_exam_extraction(exam_format: str, question_pdf_path: str, answer_pdf_path: str):
     """Runs the exam extraction process."""
@@ -28,6 +30,7 @@ def run_exam_extraction(exam_format: str, question_pdf_path: str, answer_pdf_pat
     logger.info(f"Using database: {db_path_str}")
     exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
     exam_manager.process()
+
 
 if __name__ == "__main__":
     exam_format = "cambridge_science"

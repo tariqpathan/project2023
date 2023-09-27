@@ -1,7 +1,7 @@
 {
-    "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.extraPaths": [
-        "./extraction_engine/managers",
-        "./extraction_engine/managers"
-    ]
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.extraPaths": [
+    "./extraction_engine/managers",
+    "./extraction_engine/managers"
+  ]
 }

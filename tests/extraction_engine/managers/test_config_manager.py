@@ -1,11 +1,13 @@
 # Test for config_manager.py
-import shutil
+import json
+import os
+from pathlib import Path
+
 import pytest
+
 from extraction_engine.managers.config_manager import ConfigManager
 from extraction_engine.managers.file_manager import FileManager
-import json
-from pathlib import Path
-import os
+
 
 # Fixture to set up the paths.json and other required config files
 @pytest.fixture()
@@ -30,6 +32,7 @@ def setup_files(tmp_path):
     # teardown (if necessary)
     # shutil.rmtree(tmp_path)
 
+
 def test_load_paths(setup_files):
     paths = ConfigManager._load_paths()
     assert paths == {
@@ -37,10 +40,12 @@ def test_load_paths(setup_files):
         "coverpage_settings": "config/coverpage_settings.json"
     }
 
+
 def test_get_path_from_env_or_default(setup_files, monkeypatch):
     monkeypatch.setenv("CONFIG_PATH", str(Path("alternate/config.json")))
     path = ConfigManager._get_path_from_env_or_default("config/config.json", "CONFIG_PATH")
     assert path == Path("alternate/config.json")
+
 
 def test_load_config(setup_files):
     cm = ConfigManager.get_instance()
@@ -52,6 +57,7 @@ def test_load_config(setup_files):
         }
     }
 
+
 def test_get_config(setup_files):
     cm = ConfigManager.get_instance()
     config = cm.get_config("config", "exam_board")
@@ -59,6 +65,7 @@ def test_get_config(setup_files):
         "setting1": "value1",
         "setting2": "value2"
     }
+
 
 def test_invalid_json(tmpdir, setup_files):
     # setup_files(tmpdir)
@@ -71,6 +78,7 @@ def test_invalid_json(tmpdir, setup_files):
         ConfigManager.get_instance().get_config("invalidconfig", "exam_board")
     assert "Error decoding the config file. Ensure it's valid JSON." in str(exc_info.value)
 
+
 def test_missing_json_keys(tmpdir, setup_files):
     # setup_files(tmpdir)
 
@@ -82,6 +90,7 @@ def test_missing_json_keys(tmpdir, setup_files):
         ConfigManager.get_instance().get_config("config", "some_format")
     # assert "No configuration found for exam board: some_format" in str(exc_info.value)
 
+
 def test_missing_files(tmpdir, setup_files):
     # setup_files(tmpdir)
 
@@ -92,6 +101,7 @@ def test_missing_files(tmpdir, setup_files):
         ConfigManager.get_instance()
     assert "paths.json not found." in str(exc_info.value)
 
+
 def test_unknown_config_type(tmpdir, setup_files):
     # setup_files(tmpdir)
 
@@ -99,12 +109,14 @@ def test_unknown_config_type(tmpdir, setup_files):
         ConfigManager.get_instance().get_config("unknown", "some_format")
     assert "Unknown config type: unknown" in str(exc_info.value)
 
+
 def test_nonexistent_file_path(tmpdir, setup_files):
     # setup_files(tmpdir)
 
     with pytest.raises(FileNotFoundError) as exc_info:
         FileManager.construct_path("nonexistent_file.txt")
     assert "File or directory not found:" in str(exc_info.value)
+
 
 def test_invalid_root_path(setup_files):
     with pytest.raises(ValueError) as exc_info:

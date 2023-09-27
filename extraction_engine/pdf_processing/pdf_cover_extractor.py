@@ -1,10 +1,9 @@
+import logging
 import re
 from typing import Dict, Union
-import logging
-
-import yaml
 
 logger = logging.getLogger(__name__)
+
 
 class PDFCoverPageExtractor:
     KEY_NAME_FOR_YAML_CONFIG = "regexes"
@@ -28,7 +27,7 @@ class PDFCoverPageExtractor:
                 extracted_data[group_name] = None
         return extracted_data
 
-    def validate_cover_pages_match(self, question_text: str, answer_text: str) -> Dict[str, str|int]:
+    def validate_cover_pages_match(self, question_text: str, answer_text: str) -> Dict[str, str | int]:
         """
         Checks if the cover pages from the provided texts match.
         Requires the cover pages in text format.
@@ -42,7 +41,7 @@ class PDFCoverPageExtractor:
         for key in keys_to_compare:
             if question_data.get(key) != answer_data.get(key):
                 raise ValueError(f"The cover pages do not match for {key}.\n" \
-                    f"They are: {question_data.get(key)}, and {answer_data.get(key)}")
+                                 f"They are: {question_data.get(key)}, and {answer_data.get(key)}")
         if question_data.get('answer') != None and not answer_data.get('answer'):
             raise ValueError(f"Mark scheme not correctly identified. Check file names.")
         return question_data

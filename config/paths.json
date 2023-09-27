@@ -1,7 +1,7 @@
 {
-    "config": "./config/config.yaml",
-    "coverpage_settings": "./config/coverpage_settings.json",
-    "images": "./static/question_images/",
-    "uploads": "./uploads",
-    "db_path": "./database/dbOne.db"
+  "config": "./config/config.yaml",
+  "coverpage_settings": "./config/coverpage_settings.json",
+  "images": "./static/question_images/",
+  "uploads": "./uploads",
+  "db_path": "./database/dbOne.db"
 }

@@ -1,7 +1,5 @@
-import pytest
-from unittest.mock import Mock
-from PIL import Image
 from your_module import CambridgeScienceImageProcessor
+
 
 def test_validate_attributes():
     config = {
@@ -18,6 +16,7 @@ def test_validate_attributes():
 
     processor._derive_attributes(mock_image)
     processor._validate_attributes()
+
 
 def test_validate_attributes_invalid():
     config = {
@@ -36,9 +35,10 @@ def test_validate_attributes_invalid():
     with pytest.raises(ValueError):
         processor._validate_attributes()
 
-import pytest
-from unittest.mock import Mock, patch
+
+from unittest.mock import patch
 from your_module import ExamManager
+
 
 @patch("your_module.PDFManager")
 @patch("your_module.QuestionManager")
@@ -63,12 +63,12 @@ def test_process(mock_db_manager, mock_answer_manager, mock_question_manager, mo
 
     # Now you would add assertions to check that each of the mocks was called as expected
 
-import pytest
+
 from unittest.mock import patch, Mock
 from pathlib import Path
 from PIL import Image
 from extraction_engine.managers.file_manager import FileManager
-from extraction_engine.managers.image_file_handler import ImageFileHandler
+
 
 @patch("builtins.open", new_callable=Mock)
 @patch.object(FileManager, "get_filepaths")
@@ -76,12 +76,13 @@ from extraction_engine.managers.image_file_handler import ImageFileHandler
 def test_get_image(mock_construct_path, mock_get_filepaths, mock_open):
     mock_construct_path.return_value = Path("some/path/to/image.jpg")
     mock_get_filepaths.return_value = Path("some/path/to/")
-    
+
     # Assume the image file is found and can be read
     mock_open.return_value.__enter__.return_value.read.return_value = b"image_data"
-    
+
     image_data = ImageFileHandler.get_image("filename.jpg")
     assert image_data == b"image_data"
+
 
 @patch.object(FileManager, "get_filepaths")
 @patch.object(FileManager, "construct_path")
@@ -89,17 +90,19 @@ def test_save_image(mock_construct_path, mock_get_filepaths):
     mock_image = Mock(spec=Image.Image)
     mock_construct_path.return_value = Path("some/path/to/image.jpg")
     mock_get_filepaths.return_value = Path("some/path/to/")
-    
+
     path = ImageFileHandler.save_image(mock_image, "filename.jpg")
     mock_image.save.assert_called_once_with(Path("some/path/to/image.jpg"))
     assert path == Path("some/path/to/image.jpg")
+
 
 import pytest
 from unittest.mock import patch, Mock
 from extraction_engine.managers.image_file_handler import ImageFileHandler
 from extraction_engine.managers.file_manager import FileManager
 from extraction_engine.managers.question_factory import QuestionFactory
-from database.models import Exam, Question
+from database.models import Exam
+
 
 @patch.object(FileManager, "get_filepaths")
 @patch.object(ImageFileHandler, "save_image")
@@ -108,12 +111,12 @@ def test_create_question(mock_save_image, mock_get_filepaths):
     mock_get_filepaths.return_value = Path("some/path/to/")
     db_session = Mock()
     exam = Exam(year=2023, unit_code="CS101", component_code="01")
-    
+
     question_factory = QuestionFactory(db_session, exam)
     mock_image = Mock(spec=Image.Image)
-    
+
     question = question_factory.create_question(mock_image, 1)
-    
+
     db_session.add.assert_called_once()
     mock_save_image.assert_called_once_with(mock_image, question.image_filename)
     assert question.exam == exam

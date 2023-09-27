@@ -1,23 +1,25 @@
-import string
-import random
 import logging
-from sqlalchemy import and_
-from sqlalchemy.orm import Session
+import random
+import string
 from typing import List
 
-from database.models import Difficulty, Exam, Code, Question, Subject, Subtopic
+from sqlalchemy import and_
+from sqlalchemy.orm import Session
+
 from database.database_utils import get_ids_from_names
+from database.models import Difficulty, Exam, Code, Question, Subject, Subtopic
 
 logger = logging.getLogger(__name__)
 
 
 class QuestionRetriever:
-
     FILTER_MAP = {
-            'difficulty_levels': lambda x, session: Question.difficulty_id.in_(get_ids_from_names(session, Difficulty, x)),
-            'subtopic_names': lambda x, session: Question.subtopics.any(Subtopic.id.in_(get_ids_from_names(session, Subtopic, x))),
-            'subject_names': lambda x, session: Question.exam.has(Exam.subject_id.in_(get_ids_from_names(session, Subject, x))),
-        }
+        'difficulty_levels': lambda x, session: Question.difficulty_id.in_(get_ids_from_names(session, Difficulty, x)),
+        'subtopic_names': lambda x, session: Question.subtopics.any(
+            Subtopic.id.in_(get_ids_from_names(session, Subtopic, x))),
+        'subject_names': lambda x, session: Question.exam.has(
+            Exam.subject_id.in_(get_ids_from_names(session, Subject, x))),
+    }
 
     @classmethod
     def get_random_questions(cls, session: Session, num_questions: int, **filters) -> List[Question]:
@@ -48,7 +50,7 @@ class QuestionRetriever:
 
         random_ids = random.sample(all_ids, min(num_questions, len(all_ids)))
         return session.query(Question).filter(Question.id.in_(random_ids)).all()
-    
+
     @staticmethod
     def check_code_unique(session: Session, code: str) -> bool:
         """Returns True if the hash is unique, False otherwise"""
@@ -56,7 +58,7 @@ class QuestionRetriever:
             Code.code_str == code).count() == 0
 
     @staticmethod
-    def generate_code(length:int = 6) -> str:
+    def generate_code(length: int = 6) -> str:
         letters = string.ascii_lowercase
         digits = string.digits
         random_letters = ''.join(random.choice(letters) for i in range(length - 2))
@@ -71,7 +73,7 @@ class QuestionRetriever:
         code = session.query(Code).filter(Code.code_str == code_str).one_or_none()
         if not code: return []
         return code.questions
-    
+
     @staticmethod
     def link_questions_with_code(session: Session, questions: List[Question]) -> str:
         unique = False
@@ -83,9 +85,9 @@ class QuestionRetriever:
         session.add(code)
         code.questions.extend(questions)
         return code.code_str
-    
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     qr = QuestionRetriever()
     engine = None
     session = Session(bind=engine)

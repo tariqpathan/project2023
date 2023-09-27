@@ -1,6 +1,9 @@
-from PIL import Image
 from pathlib import Path
+
+from PIL import Image
+
 from extraction_engine.managers.file_manager import FileManager
+
 
 class ImageFileHandler:
     IMAGE_FORMAT = "jpg"
@@ -20,7 +23,7 @@ class ImageFileHandler:
             return image_save_path
         except Exception as e:
             raise IOError(f"Unable to save image: {e}")
-    
+
     @staticmethod
     def get_image(filename: str) -> bytes:
         """Returns the image data for the specified filename."""
@@ -32,7 +35,7 @@ class ImageFileHandler:
             raise ValueError(f"Image file {image_path} not found.")
         except Exception as e:
             raise IOError(f"Unable to read image: {e}")
-        
+
     @staticmethod
     def delete_image(filename: str) -> None:
         """Deletes the image with the specified filename."""

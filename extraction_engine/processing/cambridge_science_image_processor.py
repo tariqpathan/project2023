@@ -1,10 +1,13 @@
-from PIL import Image, ImageDraw
-from typing import Dict, List, Tuple, Optional
-import numpy as np
-from extraction_engine.processing.abstract_image_processor import AbstractImageProcessor
 import logging
+from typing import Dict, List, Tuple
+
+import numpy as np
+from PIL import Image, ImageDraw
+
+from extraction_engine.processing.abstract_image_processor import AbstractImageProcessor
 
 logger = logging.getLogger(__name__)
+
 
 class CambridgeScienceImageProcessor(AbstractImageProcessor):
     EXAM_FORMAT = "cambridge_science"
@@ -15,10 +18,10 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         "padding",
         "min_question_spacing",
     ]
-    
+
     def __init__(self, config):
         super().__init__(config)
-    
+
     def _derive_attributes(self, image: Image.Image) -> None:
         """Derive and set specific attributes from the configuration parameters."""
         self._image_height = image.height - self._config["footer_height"]
@@ -27,7 +30,8 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         self._padding = self._config["padding"]
         self._min_question_spacing = self._config["min_question_spacing"]
         self._binary_threshold = self._config["binary_threshold"]
-        logging.debug(f"height: {self._image_height}, width: {self._image_width}, margin: {self._margin}, space: {self._min_question_spacing}")
+        logging.debug(
+            f"height: {self._image_height}, width: {self._image_width}, margin: {self._margin}, space: {self._min_question_spacing}")
 
     def _validate_attributes(self) -> None:
         """Runs checks for each attribute and raises an exception"""
@@ -64,7 +68,6 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
     def validate(self, image: Image.Image):
         self._derive_attributes(image)
         self._validate_attributes()
-        
 
     def extract(self, image: Image.Image) -> List[Image.Image]:
         """Converts an image of a page and returns a list of question-images"""
@@ -111,7 +114,7 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         # treat as a false positive (i.e. not a new question)
         question_rows = candidate_starts[np.all(
             full_array[candidate_starts - self._min_question_spacing] == 1, axis=1
-            )]
+        )]
         return question_rows
 
     def _get_question_coordinates(self, ques_start_rows: np.ndarray) -> List[Tuple[int, int]]:
@@ -126,8 +129,9 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         top = max(non_white_rows[0] - self._padding, 0)
         bottom = min(non_white_rows[-1] + self._padding, image.height)
         return image.crop((0, top, image.width, bottom))
-    
-    def _crop_image(self, image: Image.Image, width: Tuple[int, int], coords: List[Tuple[int, int]]) -> List[Image.Image]:
+
+    def _crop_image(self, image: Image.Image, width: Tuple[int, int], coords: List[Tuple[int, int]]) -> List[
+        Image.Image]:
         """Crops images in the y-plane to produce a question-image fragment"""
         (xstart, xend) = width
         return [image.crop((xstart, ystart, xend, yend)) for (ystart, yend) in coords]
@@ -139,11 +143,12 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         draw.rectangle(coords, fill="white")
         return modified_image
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
 
     config = {
         "binary_threshold": 180,
-        "margin_end": 170,             
+        "margin_end": 170,
         "footer_height": 140,
         "padding": 50,
         "min_question_spacing": 25,
@@ -156,7 +161,7 @@ if __name__=="__main__":
     # image.show()
     # out = csip._remove_vertical_whitespace(image)
     # out.show()
-    
+
     images = []
     # for i in range(1, 4):
     #     cur_image = Image.open(f"tests/test_resources/2010-qp-{i}.jpg")
@@ -167,10 +172,10 @@ if __name__=="__main__":
     #     image.save(f"tests/test_resources/processed_images/2010-qp-{index + 1}.jpg")
 
     pp_config = {
-        "question_x_start": 100,        
-        "question_x_end" : 190,        
-        "question_y_start" : 40,
-        "question_y_end" : 100, 
+        "question_x_start": 100,
+        "question_x_end": 190,
+        "question_y_start": 40,
+        "question_y_end": 100,
     }
     processed_images = []
     for i in range(1, 4):

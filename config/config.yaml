@@ -33,15 +33,15 @@ exam_formats:
     # Similar settings as for Cambridge Science exams.
     # Settings for image processing and OCR processing are grouped similarly.
     imageProcessor:
-      # ...
+    # ...
     OCRProcessor:
-      # ...
+    # ...
 
 # Cover page settings. Will be translated to key-value pairs.
 coverpage_settings:
   # Cover page settings for Cambridge Science exams.
   cambridge_science:
-    regexes:  # Regexes need to surrounded by only single quotes.
+    regexes: # Regexes need to surrounded by only single quotes.
       exam_board: '(?i)\b(cambridge)\b'
       subject: '\b(BIOLOGY|CHEMISTRY|PHYSICS)\b'
       unit_code: '\b(\d{4})\/\d{2}\b'
@@ -54,7 +54,7 @@ coverpage_settings:
   example:
     regexes:
       exam_board:
-      subject: 
+      subject:
       unit_code:
       component_code:
       month:

@@ -1,7 +1,7 @@
+from database.models import Subject, Subtopic, Difficulty
 
-from database.models import Exam, Subject, Subtopic, Difficulty
 
-#TODO: check if this is needed
+# TODO: check if this is needed
 def get_subject_id(session, subject_name):
     """Retrieve the ID of the subject with the given name."""
     subject = session.query(Subject).filter(Subject.name == subject_name).first()
@@ -10,11 +10,14 @@ def get_subject_id(session, subject_name):
     else:
         raise ValueError(f"Subject with name {subject_name} does not exist.")
 
+
 def list_subject_names(session):
     return [s.name for s in session.query(Subject.name).all()]
 
+
 def get_ids_from_names(session, model, names):
     return [item.id for item in session.query(model.id).filter(model.name.in_(names)).all()]
+
 
 # #TODO: marked for removal
 # def get_from_name(session, model, name):
@@ -23,11 +26,13 @@ def get_ids_from_names(session, model, names):
 def list_available_difficulties(session):
     return [d.level for d in session.query(Difficulty.level).all()]
 
+
 def list_available_subtopics(session, subject_id=None):
     query = session.query(Subtopic.name)
     if subject_id:
         query = query.filter(Subtopic.subject_id == subject_id)
     return [s.name for s in query.all()]
+
 
 def list_all_subtopics(session):
     return [s.name for s in session.query(Subtopic.name).distinct(Subtopic.name).all()]

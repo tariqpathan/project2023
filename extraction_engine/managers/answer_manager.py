@@ -1,22 +1,24 @@
-from typing import Dict, List, Optional
-from database.models import Answer, Question
-from extraction_engine.factories.answer_factory import AnswerFactory
-from extraction_engine.processing.cambridge_science_answer_processor import CambridgeScienceAnswerProcessor
-from extraction_engine.processing.abstract_answer_processor import AbstractAnswerProcessor
 import logging
+from typing import Dict, List
+
+from database.models import Question
+from extraction_engine.factories.answer_factory import AnswerFactory
+from extraction_engine.processing.abstract_answer_processor import AbstractAnswerProcessor
+from extraction_engine.processing.cambridge_science_answer_processor import CambridgeScienceAnswerProcessor
 
 logger = logging.getLogger(__name__)
+
 
 class AnswerManager:
     def __init__(self, exam_format: str) -> None:
         self.exam_format = exam_format
         self.answer_processor = self._get_answer_processor()
         self.answer_factory = None
-    
+
     def _get_answer_processor(self) -> AbstractAnswerProcessor:
         """Returns an instance of the required answer processor based on exam board."""
         return AnswerProcessorFactory.create_processor(self.exam_format)
-    
+
     def _set_answer_factory(self, db_session) -> None:
         """Returns an instance of the required answer factory based on exam board."""
         self.answer_factory = AnswerFactory(db_session)
@@ -36,7 +38,7 @@ class AnswerManager:
         for qnum, answer_text in qnum_answer_dict.items():
             question = question_map.get(qnum)
             if not question:
-                print(f"No matching question for qnum: {qnum}") #log this - maybe
+                print(f"No matching question for qnum: {qnum}")  # log this - maybe
                 continue
             # Create a new Answer object and associate it with the question
             if self.answer_factory: self.answer_factory.create_answer(question, answer_text)
@@ -51,7 +53,7 @@ class AnswerProcessorFactory:
         }
         # Fetch the appropriate class based on the exam_format string
         processor_class = processor_map.get(exam_format)
-        
+
         if not processor_class:
             raise ValueError(f"No processor found for exam board '{exam_format}'")
         else:

@@ -1,10 +1,13 @@
-from typing import Dict, Optional
-import yaml
-from pathlib import Path
-from .file_manager import FileManager
 import logging
+from pathlib import Path
+from typing import Dict
+
+import yaml
+
+from .file_manager import FileManager
 
 logger = logging.getLogger(__name__)
+
 
 class ConfigManager:
     _instance = None
@@ -19,7 +22,7 @@ class ConfigManager:
         return cls._instance
 
     @classmethod
-    def _get_file_path(cls, filepath: str='config') -> Path:
+    def _get_file_path(cls, filepath: str = 'config') -> Path:
         return FileManager.get_filepaths(filepath)
 
     def _load_config(self, file: Path) -> Dict:
@@ -37,7 +40,7 @@ class ConfigManager:
         if config_type:
             return cls._instance._config.get(config_type, {}).get(exam_format)
         return cls._instance._config.get(exam_format)
-    
+
     @classmethod
     def get_all_exam_formats(cls):
         if not cls._instance:

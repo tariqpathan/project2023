@@ -1,18 +1,20 @@
-from database.database_manager import DatabaseManager
-from database.models import Exam, Question, Subject
-# from database.database_utils import get_from_name
-# from extraction_engine.managers.config_manager import ConfigManager
-from extraction_engine.pdf_processing.pdf_manager import PDFManager
-from extraction_engine.factories.exam_factory import ExamFactory
-from extraction_engine.managers.answer_manager import AnswerManager
-from extraction_engine.managers.question_manager import QuestionManager
 import logging
 from typing import List
 
+from database.database_manager import DatabaseManager
+from database.models import Question
+from extraction_engine.factories.exam_factory import ExamFactory
+from extraction_engine.managers.answer_manager import AnswerManager
+from extraction_engine.managers.question_manager import QuestionManager
+# from database.database_utils import get_from_name
+# from extraction_engine.managers.config_manager import ConfigManager
+from extraction_engine.pdf_processing.pdf_manager import PDFManager
+
 logger = logging.getLogger(__name__)
 
+
 class ExamManager:
-    def __init__(self, exam_format: str, question_pdf_path: str, answer_pdf_path: str, 
+    def __init__(self, exam_format: str, question_pdf_path: str, answer_pdf_path: str,
                  db_manager: DatabaseManager):
         self.exam_format = exam_format
         self.question_pdf_path = question_pdf_path
@@ -47,7 +49,7 @@ class ExamManager:
             raw_questions = data["questions"]
             raw_answers = data["answers"]
             logger.debug(f'Exam data: {exam_data}')
-            
+
             with self.db_manager.get_session() as db_session:
                 exam = self.exam_factory.get_or_create_exam(db_session, exam_data)
                 db_session.flush()

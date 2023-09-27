@@ -1,16 +1,17 @@
-from PIL import Image
-from database.models import Exam, Question
-from typing import Optional
-import uuid
-from extraction_engine.managers.image_file_handler import ImageFileHandler
-from extraction_engine.managers.file_manager import FileManager
-
 import logging
+import uuid
+from typing import Optional
+
+from PIL import Image
+
+from database.models import Exam, Question
+from extraction_engine.managers.file_manager import FileManager
+from extraction_engine.managers.image_file_handler import ImageFileHandler
 
 logger = logging.getLogger(__name__)
 
-class QuestionFactory:
 
+class QuestionFactory:
     FOLDER_NAME = "images"
 
     def __init__(self, db_session, exam: Exam):
@@ -29,7 +30,7 @@ class QuestionFactory:
         try:
             self.db_session.add(question)
             ImageFileHandler.save_image(image, filename)
-        
+
         except Exception as e:
             self.db_session.rollback()
             # Remove the saved image if there's a failure after image save
@@ -37,8 +38,7 @@ class QuestionFactory:
             raise Exception(f"Error creating Question: {qnum} for ExamID: {question.exam_id}. Error: {e}")
         return question
 
-    def _generate_filename(self, format: str="jpg") -> str:
+    def _generate_filename(self, format: str = "jpg") -> str:
         """Generates a filename for the image"""
         unique_id = uuid.uuid4()
         return f"{self.exam.year}-{self.exam.unit_code}{self.exam.component_code}-{unique_id}.{format}"
-    

@@ -1,16 +1,17 @@
-from PIL import Image
+import logging
 from typing import List, Optional
+
+from PIL import Image
+
 from database.models import Exam, Question
-from extraction_engine.managers.config_manager import ConfigManager
 from extraction_engine.factories.ImageProcessorFactory import ImageProcessorFactory
 from extraction_engine.factories.question_factory import QuestionFactory
-from extraction_engine.processing.abstract_image_processor import AbstractImageProcessor
-from extraction_engine.processing.cambridge_science_image_processor import CambridgeScienceImageProcessor
+from extraction_engine.managers.config_manager import ConfigManager
 from extraction_engine.processing.ImageTextProcessor import ImageTextProcessor
-
-import logging
+from extraction_engine.processing.abstract_image_processor import AbstractImageProcessor
 
 logger = logging.getLogger(__name__)
+
 
 class QuestionManager:
     def __init__(self, exam_format) -> None:
@@ -33,7 +34,7 @@ class QuestionManager:
         Returns an instance of the required OCR processor based on the ocr type.
         """
         return ImageTextProcessor(self.config["textProcessor"])
-    
+
     def validate_processor(self, image: Image.Image):
         logging.debug("&^&^&^&^&^&^&^&^&^&^&^Validating image^&^&^&^&^&^&^&^&^&^&^&^&^&^&")
         self.image_processor.validate(image)
@@ -63,7 +64,7 @@ class QuestionManager:
             return self.question_factory.create_question(image, qnum)
         else:
             raise Exception("QuestionFactory not set")
-    
+
     def _process_images(self, images: List[Image.Image]):
         """Processes a list of images and returns a list of questions"""
         questions = []

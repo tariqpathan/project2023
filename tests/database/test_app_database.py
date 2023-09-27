@@ -1,12 +1,14 @@
 import os
-from database.models import Base, Subject, Exam
+
 from database.database_manager import DatabaseManager
+from database.models import Base, Subject, Exam
 
 DATABASE_PATH = 'tests/database/test.db'
 
+
 def initialize_database():
     Base.metadata.create_all(db_manager.engine)
-    
+
 
 def add_data(db_manager):
     with db_manager as session:
@@ -14,9 +16,11 @@ def add_data(db_manager):
         query_data(session)
         session.commit()
 
+
 def destroy_database():
     Base.metadata.drop_all(db_manager.engine)
     os.remove(DATABASE_PATH)
+
 
 def populate_db(session):
     # Create subjects
@@ -37,10 +41,12 @@ def populate_db(session):
     session.add_all([biology, chemistry, physics] + exams)
     print("Added data to database")
 
+
 def query_data(session):
     exam_data = {'exam_board': 'OCR'}
     exam = session.query(Exam).filter_by(**exam_data).first()
     print(exam.subject.name)
+
 
 if __name__ == '__main__':
     db_manager = DatabaseManager(DATABASE_PATH)

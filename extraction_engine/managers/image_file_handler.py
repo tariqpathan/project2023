@@ -33,4 +33,13 @@ class ImageFileHandler:
         except Exception as e:
             raise IOError(f"Unable to read image: {e}")
         
-    #delete image
+    @staticmethod
+    def delete_image(filename: str):
+        """Deletes the image with the specified filename."""
+        image_path = ImageFileHandler.get_image_path(filename)
+        try:
+            image_path.unlink()
+        except FileNotFoundError:
+            raise ValueError(f"Image file {image_path} not found.")
+        except Exception as e:
+            raise IOError(f"Unable to delete image: {e}")

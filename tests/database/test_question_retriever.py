@@ -2,7 +2,7 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database.models import Base, Question, Difficulty, Subtopic, Exam, Subject, QuestionCodeMapping
+from database.models import Base, Code, Question, Difficulty, Subtopic, Exam, Subject
 from database.question_retriever import QuestionRetriever
 
 @pytest.fixture(scope="function")
@@ -21,8 +21,8 @@ def sample_data(db_session):
     subject = Subject(name='biology')
     subtopic = Subtopic(name='plants', subject=subject)
     subtopic_2 = Subtopic(name='animals', subject=subject)
-    exam_test = Exam(exam_board="tariq", month="march", year=2020, unit_code="12", component_code="01", subject=subject)
-    
+    exam_test = Exam(exam_board="ocr", month="march", year=2020, unit_code="12", component_code="01", subject=subject)
+    code = Code(code_str='123456')
     mapped_questions = [
         Question(image_filename='test1.jpg', question_number=1, difficulty=difficulty, subtopics=[subtopic], exam=exam_test),
         Question(image_filename='test2.jpg', question_number=2, difficulty=difficulty, subtopics=[subtopic_2], exam=exam_test)]
@@ -32,17 +32,11 @@ def sample_data(db_session):
         Question(image_filename='test4.jpg', question_number=4, exam=exam_test),
         Question(image_filename='test5.jpg', question_number=5, exam=exam_test)]
 
-    code_maps =  [
-        QuestionCodeMapping(code_str='123456', question=mapped_questions[0]),
-        QuestionCodeMapping(code_str='123456', question=mapped_questions[1])]
 
-    question_ids = db_session.query(Question.id).all()
-    print(question_ids)
-
-    db_session.add_all([difficulty, subject, subtopic, subtopic_2, exam_test])
+    db_session.add_all([difficulty, subject, subtopic, subtopic_2, exam_test, code])
     db_session.add_all(mapped_questions)
     db_session.add_all(unmapped_questions)
-    db_session.add_all(code_maps)
+    code.questions.extend(mapped_questions)
     db_session.commit()
 
 def test_get_random_questions(db_session, sample_data):

@@ -5,7 +5,7 @@ from sqlalchemy import and_
 from sqlalchemy.orm import Session
 from typing import List
 
-from database.models import Difficulty, Exam, QuestionCodeMapping, Question, Subject, Subtopic
+from database.models import Difficulty, Exam, Code, Question, Subject, Subtopic
 from database.database_utils import get_ids_from_names
 
 logger = logging.getLogger(__name__)
@@ -52,8 +52,8 @@ class QuestionRetriever:
     @staticmethod
     def check_code_unique(session: Session, code: str) -> bool:
         """Returns True if the hash is unique, False otherwise"""
-        return session.query(QuestionCodeMapping).filter(
-            QuestionCodeMapping.code_str == code).count() == 0
+        return session.query(Code).filter(
+            Code.code_str == code).count() == 0
 
     @staticmethod
     def generate_code(length:int = 6) -> str:
@@ -65,8 +65,12 @@ class QuestionRetriever:
 
     @staticmethod
     def get_questions_from_code(session: Session, code_str: str) -> List[Question]:
-        return session.query(Question).join(QuestionCodeMapping).filter(
-            QuestionCodeMapping.code_str == code_str).all()
+        """
+        Raises exception if more than one code is found.
+        """
+        code = session.query(Code).filter(Code.code_str == code_str).one_or_none()
+        if not code: return []
+        return code.questions
     
     @staticmethod
     def link_questions_with_code(session: Session, questions: List[Question]) -> str:
@@ -75,11 +79,10 @@ class QuestionRetriever:
         while not unique:
             code_str = QuestionRetriever.generate_code()
             unique = QuestionRetriever.check_code_unique(session, code_str)
-
-        for q in questions:
-            hash_question_mapping = QuestionCodeMapping(code_str=code_str, question_id=q.id)
-            session.add(hash_question_mapping)
-        return code_str
+        code = Code(code_str=code_str)
+        session.add(code)
+        code.questions.extend(questions)
+        return code.code_str
     
 
 if __name__=="__main__":

@@ -1,0 +1,27 @@
+DEBUG:root:self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:extract called
+DEBUG:root:full_array: [[ True  True  True ...  True  True  True]
+ [ True  True  True ...  True  True  True]
+ [ True  True  True ...  True  True  True]
+ ...
+ [ True  True  True ...  True  True  True]
+ [ True  True  True ...  True  True  True]
+ [ True  True  True ...  True  True  True]]
+DEBUG:root:question_rows: []
+DEBUG:root:self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:extract called
+DEBUG:root:question_rows: []
+DEBUG:root:self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:extract called
+DEBUG:root:question_rows: []
+DEBUG:root:self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:extract called
+DEBUG:root:question_rows: []
+DEBUG:root:self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+DEBUG:root:extract called
+DEBUG:root:question_rows: []

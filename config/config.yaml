@@ -15,7 +15,7 @@ exam_formats:
       question_x_start: ""        # X-coordinate start position for question region.
       question_x_end: ""          # X-coordinate end position for question region.
       question_y_start: ""        # Y-coordinate start position for question region.
-      footer_height: 120          # Height of the footer region.
+      footer_height: 140          # Height of the footer region.
       padding: 50                 # Padding around the processed area.
       min_question_spacing: 25    # Minimum spacing between questions.
       whitespace_threshold: 128   # Threshold value for detecting whitespace.

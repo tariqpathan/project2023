@@ -4,5 +4,7 @@
 project-env
 deleteThis*
 codesofar.py
+create_test_resources.py
 directory-structure.yml
 static
+**/tests/test-resources/*

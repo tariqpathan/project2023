@@ -3993,3 +3993,27 @@ answer_data: {'exam_board': 'CAMBRIDGE', 'subject': 'BIOLOGY', 'unit_code': '061
 2023-09-27 17:59:01,982 - root - DEBUG - Post processing image
 2023-09-27 17:59:02,099 - root - DEBUG - Post processing image
 2023-09-27 17:59:02,215 - root - DEBUG - Post processing image
+2023-09-27 21:13:28,611 - root - DEBUG - self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+2023-09-27 21:13:28,611 - root - DEBUG - self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 100, 'question_x_start': 0, 'question_x_end': '', 'question_y_start': '', 'whitespace_threshold': 128, 'footer_height': 100, 'padding': 5, 'min_question_spacing': 25}
+2023-09-27 21:13:28,611 - root - DEBUG - extract called
+2023-09-27 21:13:28,813 - root - DEBUG - question_rows: []
+2023-09-27 21:17:15,104 - root - DEBUG - height: 2239, width: 1653, margin: 100, space: 25
+2023-09-27 21:17:15,104 - root - DEBUG - extract called
+2023-09-27 21:17:15,122 - root - DEBUG - question_rows: []
+2023-09-27 21:17:44,582 - root - DEBUG - height: 2239, width: 1653, margin: 100, space: 25
+2023-09-27 21:17:44,582 - root - DEBUG - extract called
+2023-09-27 21:17:44,603 - root - DEBUG - question_rows: []
+2023-09-27 21:24:45,334 - root - DEBUG - height: 2239, width: 1653, margin: 100, space: 25
+2023-09-27 21:24:45,335 - root - DEBUG - extract called
+2023-09-27 21:24:45,354 - root - DEBUG - question_rows: []
+2023-09-27 21:26:35,097 - root - DEBUG - height: 2239, width: 1653, margin: 100, space: 25
+2023-09-27 21:26:35,098 - root - DEBUG - extract called
+2023-09-27 21:26:35,116 - root - DEBUG - question_rows: []
+2023-09-27 21:27:11,350 - root - DEBUG - height: 2239, width: 1653, margin: 200, space: 25
+2023-09-27 21:27:11,350 - root - DEBUG - extract called
+2023-09-27 21:27:11,372 - root - DEBUG - question_rows: [ 180  294  341  406  461  566  913  993 1039 1104 1160 2218]
+2023-09-27 21:27:53,162 - root - DEBUG - height: 2239, width: 1653, margin: 170, space: 25
+2023-09-27 21:27:53,162 - root - DEBUG - extract called
+2023-09-27 21:27:53,182 - root - DEBUG - question_rows: [ 180  566 2218]
+2023-09-27 21:39:26,062 - root - DEBUG - height: 2219, width: 1653, margin: 170, space: 25
+2023-09-27 21:53:44,918 - root - DEBUG - height: 2199, width: 1653, margin: 170, space: 25

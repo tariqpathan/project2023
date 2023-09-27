@@ -16,9 +16,9 @@ def list_subject_names(session):
 def get_ids_from_names(session, model, names):
     return [item.id for item in session.query(model.id).filter(model.name.in_(names)).all()]
 
-#TODO: marked for removal
-def get_from_name(session, model, name):
-    return session.query(model).filter(model.name == name).first()
+# #TODO: marked for removal
+# def get_from_name(session, model, name):
+#     return session.query(model).filter(model.name == name).first()
 
 def list_available_difficulties(session):
     return [d.level for d in session.query(Difficulty.level).all()]

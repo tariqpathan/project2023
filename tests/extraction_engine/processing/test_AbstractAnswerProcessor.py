@@ -1,1 +1,0 @@
-# Test for AbstractAnswerProcessor.py

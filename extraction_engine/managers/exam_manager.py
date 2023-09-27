@@ -17,9 +17,8 @@ class ExamManager:
         self.exam_format = exam_format
         self.question_pdf_path = question_pdf_path
         self.answer_pdf_path = answer_pdf_path
-
-        # self.config_manager = ConfigManager()
         self.db_manager = db_manager
+
         logger.debug("Setting PDFManager")
         self.pdf_manager = PDFManager(exam_format)
         logger.debug("Setting QuestionManager")
@@ -43,12 +42,11 @@ class ExamManager:
     def process(self):
         logger.info(f"Processing exam: {self.exam_format}")
         try:
-            logger.info("Extracting data from PDFs...")
             data = self._extract_data_from_pdfs()
             exam_data = data["cover_details"]
             raw_questions = data["questions"]
             raw_answers = data["answers"]
-            logger.info(f'Exam data: {exam_data}')
+            logger.debug(f'Exam data: {exam_data}')
             
             with self.db_manager.get_session() as db_session:
                 exam = self.exam_factory.get_or_create_exam(db_session, exam_data)

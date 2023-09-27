@@ -1,5 +1,6 @@
 # Test for file_manager.py
 import pytest
+import json
 from pathlib import Path
 from extraction_engine.managers.file_manager import FileManager
 
@@ -14,7 +15,6 @@ def test_to_path():
     assert path == Path("/some/path")
 
     with pytest.raises(ValueError):
-        FileManager._to_path(None)   # type: ignore
         FileManager._to_path('incorrect')    
 
 def test_construct_path():
@@ -31,14 +31,35 @@ def test_is_valid_file(tmp_path):
 
     non_existent_path = tmp_path / "non_existent.txt"
     assert FileManager.is_valid_file(str(non_existent_path)) is False
-#TODO: fix this test
-def test_resolve_path(monkeypatch):
-    monkeypatch.setenv("TEST_ENV_VAR", "/env/var/path")
-    path = FileManager.resolve_path("file.txt", "TEST_ENV_VAR")
-    assert path == Path("/env/var/path/file.txt")
 
-    path = FileManager.resolve_path("file.txt", "NON_EXISTENT_ENV_VAR")
-    assert path == FileManager.root_path / "file.txt"
+def test_load_paths(mocker):
+    mock_json_data = json.dumps({"some_path": "/some/path"})
+    mocker.patch('builtins.open', mocker.mock_open(read_data=mock_json_data))
+    mocker.patch('json.load', json.load)
+
+    FileManager._load_paths()
+    assert FileManager._paths_cache == {"some_path": "/some/path"}
+
+def test_get_cached_path():
+    FileManager._paths_cache = {"some_path": "/some/path"}
+    path = FileManager._get_cached_path("some_path")
+    assert path == "/some/path"
+
+def test_get_filepaths(mocker):
+    mocker.patch.object(FileManager, '_get_cached_path', return_value="/some/path")
+    mocker.patch.object(FileManager, 'construct_path', return_value=Path("/root/some/path"))
+
+    path = FileManager.get_filepaths("some_path")
+    assert path == Path("/root/some/path")
+
+def test_get_env_paths_or_default(mocker, monkeypatch):
+    mocker.patch.object(FileManager, '_load_paths')
+    monkeypatch.setenv("ENV_PATH", "/env/path")
+
+    FileManager.get_env_paths_or_default("ENV_PATH")
+
+    FileManager._load_paths.assert_called_once()
+    assert FileManager.paths_location == Path("/env/path")
 
 # This is for running the tests if you're not using a separate test runner
 if __name__ == "__main__":

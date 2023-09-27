@@ -3906,3 +3906,90 @@ answer_data: {'exam_board': 'CAMBRIDGE', 'subject': 'BIOLOGY', 'unit_code': '061
 2023-09-24 15:52:35,759 - root - DEBUG - Post processing image
 2023-09-24 15:52:35,875 - root - DEBUG - Post processing image
 2023-09-24 15:52:35,997 - root - DEBUG - Post processing image
+2023-09-27 17:50:47,976 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-27 17:50:47,976 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-27 17:50:47,976 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-27 17:50:47,976 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-27 17:50:47,977 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-27 17:50:47,977 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-27 17:50:47,977 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-27 17:50:48,070 - root - DEBUG - question_data: {'exam_board': 'CAMBRIDGE', 'subject': 'BIOLOGY', 'unit_code': '0610', 'component_code': '11', 'month': 'May', 'year': '2010', 'answer': None}
+answer_data: {'exam_board': 'CAMBRIDGE', 'subject': 'BIOLOGY', 'unit_code': '0610', 'component_code': '11', 'month': 'May', 'year': '2010', 'answer': True}
+2023-09-27 17:50:50,482 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'CAMBRIDGE', 'subject': 'BIOLOGY', 'unit_code': '0610', 'component_code': '11', 'month': 'May', 'year': '2010', 'answer': None}
+2023-09-27 17:50:50,482 - __main__ - ERROR - type object 'Exam' has no attribute 'name'
+Traceback (most recent call last):
+  File "C:\Users\Tariq\Documents\birkbeck-project\main.py", line 36, in <module>
+    run_exam_extraction(exam_format, 'bio-may2010.pdf', 'bio-may2010-ms.pdf')
+  File "C:\Users\Tariq\Documents\birkbeck-project\exam_extractor.py", line 30, in run_exam_extraction
+    exam_manager.process()
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 74, in process
+    raise e
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 62, in process
+    exam = self._get_or_create_exam(db_session, exam_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\extraction_engine\managers\exam_manager.py", line 32, in _get_or_create_exam
+    exam = get_from_name(db_session, Exam, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tariq\Documents\birkbeck-project\database\database_utils.py", line 20, in get_from_name
+    return session.query(model).filter(model.name == name).first()
+                                       ^^^^^^^^^^
+AttributeError: type object 'Exam' has no attribute 'name'
+2023-09-27 17:58:54,059 - exam_extractor - DEBUG - Valid formats: ['cambridge_science', 'aqa_maths']
+2023-09-27 17:58:54,060 - exam_extractor - INFO - Using database: C:/Users/Tariq/Documents/birkbeck-project/database/dbOne.db
+2023-09-27 17:58:54,060 - extraction_engine.managers.exam_manager - DEBUG - Setting PDFManager
+2023-09-27 17:58:54,060 - extraction_engine.managers.exam_manager - DEBUG - Setting QuestionManager
+2023-09-27 17:58:54,060 - extraction_engine.managers.exam_manager - DEBUG - Setting AnswerManager
+2023-09-27 17:58:54,060 - extraction_engine.managers.exam_manager - INFO - Processing exam: cambridge_science
+2023-09-27 17:58:54,060 - extraction_engine.managers.exam_manager - INFO - Extracting data from PDFs...
+2023-09-27 17:58:54,129 - root - DEBUG - question_data: {'exam_board': 'CAMBRIDGE', 'subject': 'BIOLOGY', 'unit_code': '0610', 'component_code': '11', 'month': 'May', 'year': '2010', 'answer': None}
+answer_data: {'exam_board': 'CAMBRIDGE', 'subject': 'BIOLOGY', 'unit_code': '0610', 'component_code': '11', 'month': 'May', 'year': '2010', 'answer': True}
+2023-09-27 17:58:56,360 - extraction_engine.managers.exam_manager - INFO - Exam data: {'exam_board': 'CAMBRIDGE', 'subject': 'BIOLOGY', 'unit_code': '0610', 'component_code': '11', 'month': 'May', 'year': '2010', 'answer': None}
+2023-09-27 17:58:56,368 - root - DEBUG - Exam: <database.models.Exam object at 0x0000025BFF575A90>
+2023-09-27 17:58:56,368 - root - DEBUG - Executing question processing pipeline
+2023-09-27 17:58:56,368 - root - DEBUG - self._config in _derive_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-27 17:58:56,369 - root - DEBUG - self._config in _validate_attributes: {'binary_threshold': 180, 'margin_start': 0, 'margin_end': 180, 'question_x_start': '', 'question_x_end': '', 'question_y_start': '', 'footer_height': 120, 'padding': 50, 'min_question_spacing': 25, 'whitespace_threshold': 128}
+2023-09-27 17:58:56,974 - root - DEBUG - Post processing image
+2023-09-27 17:58:57,093 - root - DEBUG - Post processing image
+2023-09-27 17:58:57,211 - root - DEBUG - Post processing image
+2023-09-27 17:58:57,329 - root - DEBUG - Post processing image
+2023-09-27 17:58:57,450 - root - DEBUG - Post processing image
+2023-09-27 17:58:57,572 - root - DEBUG - Post processing image
+2023-09-27 17:58:57,692 - root - DEBUG - Post processing image
+2023-09-27 17:58:57,813 - root - DEBUG - Post processing image
+2023-09-27 17:58:57,932 - root - DEBUG - Post processing image
+2023-09-27 17:58:58,047 - root - DEBUG - Post processing image
+2023-09-27 17:58:58,164 - root - DEBUG - Post processing image
+2023-09-27 17:58:58,281 - root - DEBUG - Post processing image
+2023-09-27 17:58:58,399 - root - DEBUG - Post processing image
+2023-09-27 17:58:58,519 - root - DEBUG - Post processing image
+2023-09-27 17:58:58,637 - root - DEBUG - Post processing image
+2023-09-27 17:58:58,760 - root - DEBUG - Post processing image
+2023-09-27 17:58:58,880 - root - DEBUG - Post processing image
+2023-09-27 17:58:58,995 - root - DEBUG - Post processing image
+2023-09-27 17:58:59,111 - root - DEBUG - Post processing image
+2023-09-27 17:58:59,230 - root - DEBUG - Post processing image
+2023-09-27 17:58:59,347 - root - DEBUG - Post processing image
+2023-09-27 17:58:59,464 - root - DEBUG - Post processing image
+2023-09-27 17:58:59,584 - root - DEBUG - Post processing image
+2023-09-27 17:58:59,701 - root - DEBUG - Post processing image
+2023-09-27 17:58:59,822 - root - DEBUG - Post processing image
+2023-09-27 17:58:59,941 - root - DEBUG - Post processing image
+2023-09-27 17:59:00,064 - root - DEBUG - Post processing image
+2023-09-27 17:59:00,185 - root - DEBUG - Post processing image
+2023-09-27 17:59:00,303 - root - DEBUG - Post processing image
+2023-09-27 17:59:00,428 - root - DEBUG - Post processing image
+2023-09-27 17:59:00,552 - root - DEBUG - Post processing image
+2023-09-27 17:59:00,670 - root - DEBUG - Post processing image
+2023-09-27 17:59:00,789 - root - DEBUG - Post processing image
+2023-09-27 17:59:00,909 - root - DEBUG - Post processing image
+2023-09-27 17:59:01,026 - root - DEBUG - Post processing image
+2023-09-27 17:59:01,145 - root - DEBUG - Post processing image
+2023-09-27 17:59:01,270 - root - DEBUG - Post processing image
+2023-09-27 17:59:01,386 - root - DEBUG - Post processing image
+2023-09-27 17:59:01,502 - root - DEBUG - Post processing image
+2023-09-27 17:59:01,622 - root - DEBUG - Post processing image
+2023-09-27 17:59:01,745 - root - DEBUG - Post processing image
+2023-09-27 17:59:01,866 - root - DEBUG - Post processing image
+2023-09-27 17:59:01,982 - root - DEBUG - Post processing image
+2023-09-27 17:59:02,099 - root - DEBUG - Post processing image
+2023-09-27 17:59:02,215 - root - DEBUG - Post processing image

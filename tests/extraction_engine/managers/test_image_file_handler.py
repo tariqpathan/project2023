@@ -1,5 +1,4 @@
 import pytest
-from unittest.mock import Mock
 from PIL import Image
 from extraction_engine.managers.file_manager import FileManager
 from extraction_engine.managers.image_file_handler import ImageFileHandler  # Replace with the actual import
@@ -32,8 +31,17 @@ def test_get_image(mocker):
     result = ImageFileHandler.get_image("image.jpg")
     assert result == "data"
 
+# Mock exists to always return True
+def mock_exists(*args, **kwargs):
+    return True
+
 # Test delete_image
 def test_delete_image(mocker):
+    mocker.patch('pathlib.Path.exists', mock_exists)
     mock_unlink = mocker.patch('pathlib.Path.unlink')
     ImageFileHandler.delete_image("image.jpg")
     mock_unlink.assert_called_once()
+
+def test_delete_image_without_path(mocker):
+    result = ImageFileHandler.delete_image("incorrectname.jpg")
+    assert result is None

@@ -22,7 +22,7 @@ class ImageFileHandler:
             raise IOError(f"Unable to save image: {e}")
     
     @staticmethod
-    def get_image(filename: str):
+    def get_image(filename: str) -> bytes:
         """Returns the image data for the specified filename."""
         image_path = ImageFileHandler.get_image_path(filename)
         try:
@@ -34,9 +34,10 @@ class ImageFileHandler:
             raise IOError(f"Unable to read image: {e}")
         
     @staticmethod
-    def delete_image(filename: str):
+    def delete_image(filename: str) -> None:
         """Deletes the image with the specified filename."""
         image_path = ImageFileHandler.get_image_path(filename)
+        if not image_path.exists(): return
         try:
             image_path.unlink()
         except FileNotFoundError:

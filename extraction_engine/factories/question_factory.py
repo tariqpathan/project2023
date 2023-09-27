@@ -1,8 +1,6 @@
 from PIL import Image
 from database.models import Exam, Question
 from typing import Optional
-import os
-from pathlib import Path
 import uuid
 from extraction_engine.managers.image_file_handler import ImageFileHandler
 from extraction_engine.managers.file_manager import FileManager
@@ -28,16 +26,14 @@ class QuestionFactory:
         filename = self._generate_filename()
         question.image_filename = filename
         # logging.debug(f"Question image path: {question.image_filename}. qnum: {qnum}")
-        image_save_path = None
         try:
             self.db_session.add(question)
-            image_save_path = ImageFileHandler.save_image(image, filename)
+            ImageFileHandler.save_image(image, filename)
         
         except Exception as e:
             self.db_session.rollback()
             # Remove the saved image if there's a failure after image save
-            if image_save_path is not None and image_save_path.exists():
-                os.remove(image_save_path)
+            ImageFileHandler.delete_image(filename)
             raise Exception(f"Error creating Question: {qnum} for ExamID: {question.exam_id}. Error: {e}")
         return question
 

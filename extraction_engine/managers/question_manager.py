@@ -2,8 +2,8 @@ from PIL import Image
 from typing import List, Optional
 from database.models import Exam, Question
 from extraction_engine.managers.config_manager import ConfigManager
+from extraction_engine.factories.ImageProcessorFactory import ImageProcessorFactory
 from extraction_engine.factories.question_factory import QuestionFactory
-
 from extraction_engine.processing.AbstractImageProcessor import AbstractImageProcessor
 from extraction_engine.processing.CambridgeScienceImageProcessor import CambridgeScienceImageProcessor
 from extraction_engine.processing.ImageTextProcessor import ImageTextProcessor
@@ -26,11 +26,7 @@ class QuestionManager:
         """
         Returns an instance of the required image processor based on the document type.
         """
-        # TODO: change this to a factory
-        if self.exam_format == "cambridge_science":
-            return CambridgeScienceImageProcessor(self.config["imageProcessor"])
-        else:
-            raise ValueError(f"Unsupported exam board: {self.exam_format}")
+        return ImageProcessorFactory.create_processor(self.exam_format, self.config["imageProcessor"])
 
     def _get_text_processor(self) -> ImageTextProcessor:
         """

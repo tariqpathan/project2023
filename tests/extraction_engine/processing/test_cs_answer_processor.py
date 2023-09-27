@@ -2,7 +2,7 @@
 import pytest
 from unittest.mock import Mock, patch
 from PIL import Image
-from extraction_engine.processing.CambridgeScienceImageProcessor import CambridgeScienceImageProcessor
+from extraction_engine.processing.cambridge_science_image_processor import CambridgeScienceImageProcessor
 
 @pytest.fixture
 def mock_image():
@@ -37,4 +37,3 @@ def test_convert_to_binary_image(mock_point, mock_image, config):
     processor._convert_to_binary_image(mock_image, config["binary_threshold"])
     mock_point.assert_called_once()
 
-# ... and so on for other methods

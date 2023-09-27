@@ -1,8 +1,8 @@
 from typing import Dict, List, Optional
 from database.models import Answer, Question
 from extraction_engine.factories.answer_factory import AnswerFactory
-from extraction_engine.processing.CambridgeScienceAnswerProcessor import CambridgeScienceAnswerProcessor
-from extraction_engine.processing.AbstractAnswerProcessor import AbstractAnswerProcessor
+from extraction_engine.processing.cambridge_science_answer_processor import CambridgeScienceAnswerProcessor
+from extraction_engine.processing.abstract_answer_processor import AbstractAnswerProcessor
 import logging
 
 logger = logging.getLogger(__name__)

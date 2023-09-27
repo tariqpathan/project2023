@@ -1,5 +1,5 @@
-from extraction_engine.processing.AbstractImageProcessor import AbstractImageProcessor
-from extraction_engine.processing.CambridgeScienceImageProcessor import CambridgeScienceImageProcessor
+from extraction_engine.processing.abstract_image_processor import AbstractImageProcessor
+from extraction_engine.processing.cambridge_science_image_processor import CambridgeScienceImageProcessor
 
 class ImageProcessorFactory:
     @staticmethod

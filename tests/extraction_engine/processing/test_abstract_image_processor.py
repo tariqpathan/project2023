@@ -1,7 +1,7 @@
 # Test for AbstractImageProcessor.py
 import pytest
 from unittest.mock import Mock
-from extraction_engine.processing.AbstractImageProcessor import AbstractImageProcessor
+from extraction_engine.processing.abstract_image_processor import AbstractImageProcessor
 
 def test_convert_to_grayscale_image():
     mock_img = Mock()

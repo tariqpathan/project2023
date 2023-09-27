@@ -32,3 +32,5 @@ class ImageFileHandler:
             raise ValueError(f"Image file {image_path} not found.")
         except Exception as e:
             raise IOError(f"Unable to read image: {e}")
+        
+    #delete image

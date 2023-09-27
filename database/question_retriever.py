@@ -5,7 +5,7 @@ from sqlalchemy import and_
 from sqlalchemy.orm import Session
 from typing import List
 
-from database.models import Difficulty, Exam, HashQuestionMapping, Question, Subject, Subtopic
+from database.models import Difficulty, Exam, QuestionCodeMapping, Question, Subject, Subtopic
 from database.database_utils import get_ids_from_names
 
 logger = logging.getLogger(__name__)
@@ -52,8 +52,8 @@ class QuestionRetriever:
     @staticmethod
     def check_code_unique(session: Session, code: str) -> bool:
         """Returns True if the hash is unique, False otherwise"""
-        return session.query(HashQuestionMapping).filter(
-            HashQuestionMapping.hash_str == code).count() == 0
+        return session.query(QuestionCodeMapping).filter(
+            QuestionCodeMapping.code_str == code).count() == 0
 
     @staticmethod
     def generate_code(length:int = 6) -> str:
@@ -64,22 +64,22 @@ class QuestionRetriever:
         return random_letters + random_digits
 
     @staticmethod
-    def get_questions_from_code(session: Session, hash_str: str) -> List[Question]:
-        return session.query(Question).join(HashQuestionMapping).filter(
-            HashQuestionMapping.hash_str == hash_str).all()
+    def get_questions_from_code(session: Session, code_str: str) -> List[Question]:
+        return session.query(Question).join(QuestionCodeMapping).filter(
+            QuestionCodeMapping.code_str == code_str).all()
     
     @staticmethod
     def link_questions_with_code(session: Session, questions: List[Question]) -> str:
         unique = False
-        hash_str = ''
+        code_str = ''
         while not unique:
-            hash_str = QuestionRetriever.generate_code()
-            unique = QuestionRetriever.check_code_unique(session, hash_str)
+            code_str = QuestionRetriever.generate_code()
+            unique = QuestionRetriever.check_code_unique(session, code_str)
 
         for q in questions:
-            hash_question_mapping = HashQuestionMapping(hash_str=hash_str, question_id=q.id)
+            hash_question_mapping = QuestionCodeMapping(code_str=code_str, question_id=q.id)
             session.add(hash_question_mapping)
-        return hash_str
+        return code_str
     
 
 if __name__=="__main__":

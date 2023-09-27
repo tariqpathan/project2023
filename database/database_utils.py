@@ -15,6 +15,9 @@ def list_subject_names(session):
 def get_ids_from_names(session, model, names):
     return [item.id for item in session.query(model.id).filter(model.name.in_(names)).all()]
 
+def get_from_name(session, model, name):
+    return session.query(model).filter(model.name == name).first()
+
 def list_available_difficulties(session):
     return [d.level for d in session.query(Difficulty.level).all()]
 
@@ -23,3 +26,6 @@ def list_available_subtopics(session, subject_id=None):
     if subject_id:
         query = query.filter(Subtopic.subject_id == subject_id)
     return [s.name for s in query.all()]
+
+def list_all_subtopics(session):
+    return [s.name for s in session.query(Subtopic.name).distinct(Subtopic.name).all()]

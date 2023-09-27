@@ -1,5 +1,4 @@
 from database.models import Exam, Subject
-from database.database_utils import get_subject_id
 import logging
 
 logger = logging.getLogger(__name__)

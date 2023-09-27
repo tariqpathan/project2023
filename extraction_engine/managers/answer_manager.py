@@ -36,7 +36,7 @@ class AnswerManager:
         for qnum, answer_text in qnum_answer_dict.items():
             question = question_map.get(qnum)
             if not question:
-                print(f"No matching question for qnum: {qnum}")
+                print(f"No matching question for qnum: {qnum}") #log this - maybe
                 continue
             # Create a new Answer object and associate it with the question
             if self.answer_factory: self.answer_factory.create_answer(question, answer_text)

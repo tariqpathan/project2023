@@ -53,6 +53,7 @@ class Question(Base):
     difficulty = relationship('Difficulty', back_populates='questions')
     exam = relationship('Exam', back_populates='questions')
     subtopics = relationship('Subtopic', secondary='question_subtopic', back_populates='questions')
+    question_code_mapping = relationship('QuestionCodeMapping', back_populates='question')
 
 class Subtopic(Base):
     __tablename__ = 'subtopics'
@@ -79,13 +80,13 @@ class Answer(Base):
 
     question = relationship('Question', back_populates='answer')
 
-class HashQuestionMapping(Base):
-    __tablename__ = 'hash_question_mappings'
+class QuestionCodeMapping(Base):
+    __tablename__ = 'question_code_mappings'
     id = mapped_column(Integer, primary_key=True)
-    hash_str = mapped_column(String, index=True, nullable=False)
-    question_id = Column(Integer, ForeignKey('questions.id'), nullable=False)
+    code_str = mapped_column(String, index=True, nullable=False)
+    question_id = mapped_column(Integer, ForeignKey('questions.id'), nullable=False)
+    
+    question = relationship('Question', back_populates='question_code_mapping')
 
-    question = relationship('Question', back_populates='hash_mapping')
-
-    __table_args__ = (UniqueConstraint('hash_str', 'question_id', 
-                                       name='uc_hash_mapping'),)
+    __table_args__ = (UniqueConstraint('code_str', 'question_id', 
+                                       name='uc_code_mapping'),)

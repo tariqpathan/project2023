@@ -8,3 +8,4 @@ create_test_resources.py
 directory-structure.yml
 static
 **/tests/test-resources/*
+uploads

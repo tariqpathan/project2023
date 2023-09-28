@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from database.models import Base, Code, Question, Difficulty, Subtopic, Exam, Subject
-from database.question_retriever import QuestionRetriever
+from test_generator.question_retriever import QuestionRetriever
 
 @pytest.fixture(scope="function")
 def db_session():

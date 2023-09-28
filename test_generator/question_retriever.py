@@ -2,10 +2,10 @@ import string
 import random
 import logging
 from sqlalchemy import and_
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import List
 
-from database.models import Difficulty, Exam, Code, Question, Subject, Subtopic
+from database.models import Difficulty, Exam, Code, Question, Subject, Subtopic, Answer
 from database.database_utils import get_ids_from_names
 
 logger = logging.getLogger(__name__)
@@ -47,7 +47,12 @@ class QuestionRetriever:
             return []
 
         random_ids = random.sample(all_ids, min(num_questions, len(all_ids)))
-        return session.query(Question).filter(Question.id.in_(random_ids)).all()
+        # Question.id == Answer.question_id makes sure than an answer exists
+        return session.query(Question)\
+            .filter(Question.id.in_(random_ids))\
+            .filter(Question.id == Answer.question_id)\
+            .options(joinedload(Question.answer))\
+            .all()
     
     @staticmethod
     def check_code_unique(session: Session, code: str) -> bool:

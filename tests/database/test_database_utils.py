@@ -51,7 +51,7 @@ def test_list_subject_names(db_session):
     db_session.add_all([sub1, sub2])
     db_session.commit()
 
-    assert dbu.list_subject_names(db_session) == ['Math', 'Physics']
+    assert dbu.get_all_subjects(db_session) == ['Math', 'Physics']
 
 def test_get_ids_from_names(db_session):
     sub1 = Subject(name='Math')
@@ -61,12 +61,12 @@ def test_get_ids_from_names(db_session):
 
     assert dbu.get_ids_from_names(db_session, Subject, ['Math', 'Physics']) == [sub1.id, sub2.id]
 
-def test_get_from_name(db_session):
-    sub1 = Subject(name='Math')
-    db_session.add(sub1)
-    db_session.commit()
+# def test_get_from_name(db_session): #TODO: marked for removal
+#     sub1 = Subject(name='Math')
+#     db_session.add(sub1)
+#     db_session.commit()
 
-    assert dbu.get_from_name(db_session, Subject, 'Math') == sub1
+#     assert dbu.get_from_name(db_session, Subject, 'Math') == sub1
 
 def test_list_available_difficulties(db_session):
     diff1 = Difficulty(level='Easy')
@@ -74,7 +74,7 @@ def test_list_available_difficulties(db_session):
     db_session.add_all([diff1, diff2])
     db_session.commit()
 
-    assert dbu.list_available_difficulties(db_session) == ['Easy', 'Hard']
+    assert dbu.get_all_difficulties(db_session) == ['Easy', 'Hard']
 
 def test_list_available_subtopics(db_session):
     sub1 = Subject(name='Math')
@@ -82,8 +82,8 @@ def test_list_available_subtopics(db_session):
     db_session.add_all([sub1, subtopic1])
     db_session.commit()
 
-    assert dbu.list_available_subtopics(db_session) == ['Algebra']
-    assert dbu.list_available_subtopics(db_session, subject_id=sub1.id) == ['Algebra']
+    assert dbu.get_subtopic_for_subject(db_session) == ['Algebra']
+    assert dbu.get_subtopic_for_subject(db_session, subject_id=sub1.id) == ['Algebra']
 
 def test_list_all_subtopics(db_session):
     sub1 = Subject(name='Math')
@@ -93,4 +93,4 @@ def test_list_all_subtopics(db_session):
     db_session.add_all([sub1, subtopic1, sub2, subtopic2])
     db_session.commit()
 
-    assert dbu.list_all_subtopics(db_session) == ['Algebra', 'Mechanics']
+    assert dbu.get_all_subtopics(db_session) == ['Algebra', 'Mechanics']

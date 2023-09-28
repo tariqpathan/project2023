@@ -10,7 +10,7 @@ def get_subject_id(session, subject_name):
     else:
         raise ValueError(f"Subject with name {subject_name} does not exist.")
 
-def list_subject_names(session):
+def get_all_subjects(session):
     return [s.name for s in session.query(Subject.name).all()]
 
 def get_ids_from_names(session, model, names):
@@ -20,14 +20,14 @@ def get_ids_from_names(session, model, names):
 # def get_from_name(session, model, name):
 #     return session.query(model).filter(model.name == name).first()
 
-def list_available_difficulties(session):
+def get_all_difficulties(session):
     return [d.level for d in session.query(Difficulty.level).all()]
 
-def list_available_subtopics(session, subject_id=None):
+def get_subtopic_for_subject(session, subject_id=None):
     query = session.query(Subtopic.name)
     if subject_id:
         query = query.filter(Subtopic.subject_id == subject_id)
     return [s.name for s in query.all()]
 
-def list_all_subtopics(session):
+def get_all_subtopics(session):
     return [s.name for s in session.query(Subtopic.name).distinct(Subtopic.name).all()]

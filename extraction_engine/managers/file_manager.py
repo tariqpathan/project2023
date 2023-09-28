@@ -17,9 +17,7 @@ class FileManager:
     @classmethod
     def set_root_path(cls, path: str):
         """Sets the root path for file management operations.
-
-        Args:
-            path (str): The new root path.
+        Args: path (str): The new root path.
         """
         cls.root_path = cls._to_path(path)
 
@@ -27,14 +25,9 @@ class FileManager:
     def _to_path(cls, path_str: str) -> Path:
         """Converts a string to a Path object, raising an exception if the conversion fails.
 
-        Args:
-            path_str (str): The string to convert.
-
-        Returns:
-            Path: The resulting Path object.
-
-        Raises:
-            ValueError: If the string cannot be converted to a Path object.
+        Args: path_str (str): The string to convert.
+        Returns: Path: The resulting Path object.
+        Raises: ValueError: If the string cannot be converted to a Path object.
         """
         try:
             return Path(path_str)

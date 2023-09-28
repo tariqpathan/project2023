@@ -1,9 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
+from pathlib import Path
+from typing import Union
 
 class DatabaseManager:
-    def __init__(self, db_path: str, echo: bool = False):
-        self.engine = create_engine(f'sqlite:///{db_path}', echo=echo)
+    def __init__(self, db_path: Union[str, Path], echo: bool = False):
+        path = Path(db_path).as_posix() if isinstance(db_path, Path) else db_path
+        self.engine = create_engine(f'sqlite:///{path}', echo=echo)
         self.Session = scoped_session(sessionmaker(bind=self.engine))
         self.session = None
     

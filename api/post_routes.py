@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-
 from fastapi import APIRouter, Depends, HTTPException
+
+from extraction_engine.extract import run_extraction
 
 class ExtractionRequest(BaseModel):
     question_paper: str
@@ -8,20 +9,20 @@ class ExtractionRequest(BaseModel):
     exam_format: str
 
 
-post_router = APIRouter(
-    dependencies = []
-)
+post_router = APIRouter(dependencies = [])
 
 # TODO: Complete
 @post_router.post("/extract/")
 def initiate_extraction(request: ExtractionRequest):
-    # Logic to start the extraction process
-    # Use request.question_paper, request.answer_paper, and request.exam_format
-    return {"status": "Extraction initiated"}
+    try:
+        status = run_extraction(request.exam_format, request.question_paper, request.answer_paper)
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
-@post_router.get("/status/")
-def get_extraction_status():
-    return {"status": "TODO"}
+    return {"status": status}
+
 
 def setup_post_routes(app):
     app.include_router(post_router, prefix="/api")

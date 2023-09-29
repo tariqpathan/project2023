@@ -22,11 +22,12 @@ def run_extraction(exam_format: str, question_pdf_path: str, answer_pdf_path: st
 
     # Fetch the db_path using FileManager
     db_path = FileManager.get_filepaths("database")
-    db_manager = DatabaseManager(':memory:')
+    db_manager = DatabaseManager(':memory:') #TODO: don't forget to change
     db_initial_setup(db_manager)
     logger.info(f"Using database: {db_path.as_posix()}")
     exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
-    exam_manager.process()
+    status = exam_manager.process()
+    return status
 
 if __name__=="__main__":
     import os

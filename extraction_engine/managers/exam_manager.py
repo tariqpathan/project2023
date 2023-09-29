@@ -54,7 +54,7 @@ class ExamManager:
                 db_session.flush()
                 self._process_answers(db_session, raw_answers, questions)
                 db_session.commit()
-
+            return 0
         except Exception as e:
             # If any error occurs, rollback the session.
             if self.db_manager.session:

@@ -2,6 +2,7 @@ import re
 import nltk
 import numpy as np
 import pytesseract
+import joblib
 
 from typing import Dict, List
 from sqlalchemy.orm import Session

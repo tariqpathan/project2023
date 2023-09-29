@@ -23,7 +23,7 @@ def convert_to_array(vectorized_texts: List[str]) -> np.ndarray:
     """ Converts a list of string representations of arrays to a 2D numpy array.
 
     :param vectorized_texts:
-    :return:
+    :return: a 2D numpy array
 
     """
     all_arrays = []
@@ -49,6 +49,15 @@ def main(filename: str):
 
     joblib.dump(classifier, 'ml_resources/bio-classifier-1.joblib')
 
+def predict():
+    vectorizer = joblib.load('ml_resources/vectorizer.joblib')
+    classifier = joblib.load('ml_resources/bio-classifier-1.joblib')
+    text = 'engine car'
+    vectorized_text = vectorizer.transform([text]).toarray()
+    prediction = classifier.predict(vectorized_text)
+    print(prediction)
+
 
 if __name__ == "__main__":
-    main('bio-training')
+    # main('bio-training')
+    predict()

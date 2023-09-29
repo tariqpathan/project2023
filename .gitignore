@@ -1,6 +1,7 @@
 *.db
 *.jpg
 *.pdf
+*.pyc
 project-env
 deleteThis*
 codesofar.py

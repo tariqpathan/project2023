@@ -24,8 +24,9 @@ class AnswerManager:
     def execute(self, db_session, text: str, questions: List[Question]) -> None:
         self._set_answer_factory(db_session)
         answers = self.answer_processor.process(text)
+        logger.debug(f"Answers found: {answers}")
         if not answers:
-            print("No answers found in the provided text.")
+            logger.warning("No answers found")
             return
         self._match_questions(answers, questions)
 
@@ -36,7 +37,7 @@ class AnswerManager:
         for qnum, answer_text in qnum_answer_dict.items():
             question = question_map.get(qnum)
             if not question:
-                print(f"No matching question for qnum: {qnum}") #log this - maybe
+                logger.info(f"No question found for question number {qnum}")
                 continue
             # Create a new Answer object and associate it with the question
             if self.answer_factory: self.answer_factory.create_answer(question, answer_text)

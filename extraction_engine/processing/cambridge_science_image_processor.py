@@ -3,7 +3,9 @@ from typing import Dict, List, Tuple, Optional
 import numpy as np
 from extraction_engine.processing.abstract_image_processor import AbstractImageProcessor
 import logging
+from utilities.logger import setup_logging
 
+setup_logging()
 logger = logging.getLogger(__name__)
 
 class CambridgeScienceImageProcessor(AbstractImageProcessor):
@@ -75,9 +77,11 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         full_array, margin_array = self._create_image_arrays(binary)
         # find the content using the numpy arrays
         question_rows = self._detect_question_start(full_array, margin_array)
+        logging.debug(f"Question rows in extract: {question_rows}")
         if question_rows.size == 0: return []
         # find the top and bottom of a question in the form of coords
         question_coords = self._get_question_coordinates(question_rows)
+        logging.debug(f"Question coords in extract: {question_coords}")
         # use coords to crop grayscale image and then remove whitespace
         cropped_images = self._crop_image(grayscale, (0, self._image_width), question_coords)
         cleaned_images = [self._remove_vertical_whitespace(i) for i in cropped_images]
@@ -110,14 +114,20 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         # if there is content within the minimum question spacing value,
         # treat as a false positive (i.e. not a new question)
         question_rows = candidate_starts[np.all(
-            full_array[candidate_starts - self._min_question_spacing] == 1, axis=1
-            )]
+            full_array[candidate_starts - self._min_question_spacing] == 1, axis=1)]
         return question_rows
 
     def _get_question_coordinates(self, ques_start_rows: np.ndarray) -> List[Tuple[int, int]]:
         """Converts start location of question into(start, end) y-coordinates"""
-        return [(ques_start_rows[i] - self._padding, ques_start_rows[i + 1]) for i in range(len(ques_start_rows) - 1)]
+        coordinates = [(ques_start_rows[i] - self._padding, ques_start_rows[i + 1]) for i in range(len(ques_start_rows) - 1)]
 
+        # Add the last question
+        if len(ques_start_rows) > 0:
+            last_question_start = ques_start_rows[-1] - self._padding
+            last_question_end = self._image_height  # Assuming this variable contains the height of the image
+            coordinates.append((last_question_start, last_question_end))
+
+        return coordinates
     def _remove_vertical_whitespace(self, image: Image.Image):
         """Removes vertical whitespace, leaving some padding"""
         data = np.array(image)
@@ -139,41 +149,22 @@ class CambridgeScienceImageProcessor(AbstractImageProcessor):
         draw.rectangle(coords, fill="white")
         return modified_image
 
-if __name__=="__main__":
+# if __name__=="__main__":
+#     config = {
+#         "binary_threshold": 180,
+#         "margin_end": 170,             
+#         "footer_height": 140,
+#         "padding": 50,
+#         "min_question_spacing": 25,
+#     }
 
-    config = {
-        "binary_threshold": 180,
-        "margin_end": 170,             
-        "footer_height": 140,
-        "padding": 50,
-        "min_question_spacing": 25,
-    }
-
-    csip = CambridgeScienceImageProcessor(config)
-    # csip._binary_threshold = 180  
-    # csip._padding = 50  
-    # image = Image.open("tests/test_resources/processed_images/2010-qp-4.jpg")
-    # image.show()
-    # out = csip._remove_vertical_whitespace(image)
-    # out.show()
+#     csip = CambridgeScienceImageProcessor(config)
+#     csip._binary_threshold = 180  
+#     csip._padding = 50  
+#     image = Image.open("static/debug/2016-phys-1.jpg")
+#     csip.validate(image)
+#     images_out = csip.extract(image)
+#     for i in images_out:
+#         # pass
+#         i.show()
     
-    images = []
-    # for i in range(1, 4):
-    #     cur_image = Image.open(f"tests/test_resources/2010-qp-{i}.jpg")
-    #     if i == 1:
-    #         csip.validate(cur_image)
-    #     images.extend(csip.extract(cur_image))
-    # for index, image in enumerate(images):
-    #     image.save(f"tests/test_resources/processed_images/2010-qp-{index + 1}.jpg")
-
-    pp_config = {
-        "question_x_start": 100,        
-        "question_x_end" : 190,        
-        "question_y_start" : 40,
-        "question_y_end" : 100, 
-    }
-    processed_images = []
-    for i in range(1, 4):
-        image = Image.open(f"tests/test_resources/processed_images/2010-qp-{i}.jpg")
-        new_image = csip.post_process(image, pp_config)
-        new_image.show()

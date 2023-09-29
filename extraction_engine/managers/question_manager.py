@@ -34,8 +34,7 @@ class QuestionManager:
         """
         return ImageTextProcessor(self.config["textProcessor"])
     
-    def validate_processor(self, image: Image.Image):
-        logging.debug("&^&^&^&^&^&^&^&^&^&^&^Validating image^&^&^&^&^&^&^&^&^&^&^&^&^&^&")
+    def validate_processor(self, image: Image.Image) -> None:
         self.image_processor.validate(image)
 
     def _extract_questions(self, image: Image.Image) -> List[Image.Image]:
@@ -49,7 +48,6 @@ class QuestionManager:
 
     def _post_process(self, image: Image.Image):
         """Modifies image after extracting data"""
-        logging.debug("Post processing image")
         coords = self.config["textProcessor"]
         return self.image_processor.post_process(image, coords)
 
@@ -82,6 +80,7 @@ class QuestionManager:
         """Executes the question processing pipeline"""
         logging.debug("Executing question processing pipeline")
         self._set_question_factory(db_session, exam)
-        self.image_processor.validate(images[0])
+        self.validate_processor(images[0])
         question_nums, processed_images = self._process_images(images)
+        logging.info(f"Number of questions: {len(question_nums)}, number of images: {len(processed_images)}")
         return [self._create_question(i, q) for i, q in zip(processed_images, question_nums)]

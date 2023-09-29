@@ -1,7 +1,7 @@
 import logging
 import time
 from create_test_db import load_db, delete_db, delete_images
-from extraction_engine.exam_extractor import run_exam_extraction
+from extraction_engine.extract import run_exam_extraction
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',

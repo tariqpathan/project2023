@@ -2,6 +2,12 @@
 # This is the main configuration file that consolidates settings
 # for different exam formats as well as cover page settings.
 
+# list of subjects that are supported by the application.
+subjects:
+  - biology
+  - chemistry
+  - physics
+
 # Configuration for different exam formats.
 exam_formats:
 
@@ -12,12 +18,13 @@ exam_formats:
       binary_threshold: 180       # Threshold value for binary conversion.
       margin_start: 0             # Start margin for processing.
       margin_end: 180             # End margin for processing.
-      question_x_start: ""        # X-coordinate start position for question region.
-      question_x_end: ""          # X-coordinate end position for question region.
-      question_y_start: ""        # Y-coordinate start position for question region.
       footer_height: 140          # Height of the footer region.
       padding: 50                 # Padding around the processed area.
       min_question_spacing: 25    # Minimum spacing between questions.
+      # unused settings for now.
+      question_x_start: ""        # X-coordinate start position for question region.
+      question_x_end: ""          # X-coordinate end position for question region.
+      question_y_start: ""        # Y-coordinate start position for question region.
       whitespace_threshold: 128   # Threshold value for detecting whitespace.
 
     # Settings related to text processing.

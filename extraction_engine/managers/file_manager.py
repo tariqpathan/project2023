@@ -86,11 +86,9 @@ class FileManager:
     def get_filepaths(cls, filepath_name: str) -> Path:
         """Returns the path to the file location.
 
-        Args:
-            filepath_name (str): The name of the file path in the paths.json file.
+        Args:filepath_name (str): The name of the file path in the paths.json file.
 
-        Returns:
-            Path: The path to the file.
+        Returns: Path: The path to the file.
         """
         relative_path_str = cls._get_cached_path(filepath_name)
         if not relative_path_str:

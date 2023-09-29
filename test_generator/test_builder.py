@@ -44,6 +44,32 @@ def draw_question(c, question, y_position, question_number):
     text_y = y_position - 0.4 * inch
     c.drawString(text_x, text_y, f"{question_number + 1}")
 
+    """
+    alternative
+    # Relative position of rectangle to image
+    rect_x = image_x + 10  # 10 points from the left edge of the image
+    rect_y = image_y + image_height - 30  # 30 points from the top edge of the image
+    rect_width = 60  # width of the rectangle
+    rect_height = 20  # height of the rectangle
+
+    # Draw rectangle with fill
+    c.setFillColorRGB(1, 1, 1)  # White
+    c.rect(rect_x, rect_y, rect_width, rect_height, fill=1)
+
+    # Draw text on top of the rectangle
+    text_x = rect_x + 5  # 5 points from the left edge of the rectangle
+    text_y = rect_y + 5  # 5 points from the bottom edge of the rectangle
+
+    # Set font and text color
+    c.setFont("Helvetica-Bold", 14)
+    c.setFillColorRGB(0, 0, 0)  # Black
+
+    # Draw the question number on top of the rectangle
+    c.drawString(text_x, text_y, f"Q{question_number + 1}")
+    
+    """
+
+
     # Update y_position
     y_position -= (new_image_height + 1 * inch)
     return y_position

@@ -2,8 +2,7 @@ import logging
 import yaml
 from pathlib import Path
 from database.models import Base, Subject, Subtopic
-from database.database_manager import DatabaseManager
-
+from typing import Type, TypeVar, Optional
 from sqlalchemy.exc import IntegrityError
 
 logger = logging.getLogger(__name__)
@@ -15,8 +14,8 @@ def get_subjects_from_config():
         data = yaml.safe_load(file)
     return data['topics']
 
-
-def insert_or_ignore_model(session, model_class, **kwargs):
+ModelType = TypeVar("ModelType", bound=Base)
+def insert_or_ignore_model(session, model_class: Type[ModelType], **kwargs) -> Optional[ModelType]:
     new_instance = model_class(**kwargs)
     session.add(new_instance)
     try:
@@ -37,15 +36,17 @@ def count_subjects(session, data) -> bool:
 def update_subjects(session, data):
     for s, topic_list in data.items():
         subject = insert_or_ignore_model(session, Subject, name=s)
+        if subject is None: continue
         for topic_name in topic_list:
             insert_or_ignore_model(session, Subtopic, name=topic_name, subject_id=subject.id)
     session.commit()
 
-def initial_setup(session):
+def initial_setup(db_manager):
     logging.info("Creating database tables")
     data = get_subjects_from_config()
-    if count_subjects(session, data):
-        update_subjects(session, data)
+    with db_manager.get_session() as session:
+        if count_subjects(session, data):
+            update_subjects(session, data)
     logging.info("Database updated")
 
 

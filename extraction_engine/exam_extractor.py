@@ -1,5 +1,6 @@
 from extraction_engine.managers.config_manager import ConfigManager
 from database.database_manager import DatabaseManager
+from database.database_setup import initial_setup as db_initial_setup
 from extraction_engine.managers.exam_manager import ExamManager
 from extraction_engine.managers.file_manager import FileManager
 import logging
@@ -19,12 +20,8 @@ def run_exam_extraction(exam_format: str, question_pdf_path: str, answer_pdf_pat
 
     # Fetch the db_path using FileManager
     db_path = FileManager.get_filepaths("database")
-    db_manager = DatabaseManager(db_path)
+    db_manager = DatabaseManager(':memory:')
+    db_initial_setup(db_manager)
     logger.info(f"Using database: {db_path.as_posix()}")
     exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
     exam_manager.process()
-
-#TODO: Remove 
-if __name__ == "__main__":
-    exam_format = "cambridge_science"
-    run_exam_extraction(exam_format, 'phys-062511-may2016.pdf', 'phys-062511-may2016-ms.pdf')

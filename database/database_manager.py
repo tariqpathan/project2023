@@ -33,11 +33,3 @@ class DatabaseManager:
         if self.session:
             self.session.rollback()
     
-    
-
-if __name__ == "__main__":
-    from database.models import Subject
-    db = DatabaseManager(':memory:', echo=True)
-    with db.get_session() as session:
-        out = session.query(Subject).all()
-        print(out)

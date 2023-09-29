@@ -99,19 +99,3 @@ question_code_table = Table('question_code', Base.metadata,
     Column('question_id', Integer, ForeignKey('questions.id'), primary_key=True),
     Column('code_id', Integer, ForeignKey('codes.id'), primary_key=True)
 )
-
-
-
-
-
-
-# class QuestionCodeMapping(Base):
-#     __tablename__ = 'question_code_mappings'
-#     id = mapped_column(Integer, primary_key=True)
-#     code_str = mapped_column(String, index=True, nullable=False)
-#     question_id = mapped_column(Integer, ForeignKey('questions.id'), nullable=False)
-    
-#     question = relationship('Question', back_populates='question_code_mapping')
-
-#     __table_args__ = (UniqueConstraint('code_str', 'question_id', 
-#                                        name='uc_code_mapping'),)

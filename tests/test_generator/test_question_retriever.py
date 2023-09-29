@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from database.models import Base, Code, Question, Difficulty, Subtopic, Exam, Subject
-from test_generator.question_retriever import QuestionRetriever
+from test_generator.question_service import QuestionService
 
 @pytest.fixture(scope="function")
 def db_session():
@@ -40,33 +40,33 @@ def sample_data(db_session):
     db_session.commit()
 
 def test_get_random_questions(db_session, sample_data):
-    questions = QuestionRetriever.get_random_questions(db_session, 1)
+    questions = QuestionService._select_random_questions(db_session, 1)
     assert len(questions) == 1
 
 def test_check_code_unique(db_session, sample_data):
     code = 'abcdef'
     code_in_table = '123456'
-    assert QuestionRetriever.check_code_unique(db_session, code) == True
-    assert QuestionRetriever.check_code_unique(db_session, code_in_table) == False
+    assert QuestionService._check_code_unique(db_session, code) == True
+    assert QuestionService._check_code_unique(db_session, code_in_table) == False
 
 
 def test_generate_code():
-    code = QuestionRetriever.generate_code(6)
+    code = QuestionService._generate_code(6)
     assert len(code) == 6
     assert code.isalnum() == True
 
 def test_get_questions_with_correct_code(db_session, sample_data):
     code_in_table = '123456'
-    questions = QuestionRetriever.get_questions_from_code(db_session, code_in_table)
+    questions = QuestionService.get_questions_from_code(db_session, code_in_table)
     assert len(questions) == 2
 
 def test_get_questions_with_incorrect_code(db_session, sample_data):
     code_in_table = '123450'
-    questions = QuestionRetriever.get_questions_from_code(db_session, code_in_table)
+    questions = QuestionService.get_questions_from_code(db_session, code_in_table)
     assert len(questions) == 0
 
 def test_link_questions_with_code(db_session, sample_data):
     questions = db_session.query(Question).all()
-    code = QuestionRetriever.link_questions_with_code(db_session, questions[2:])
-    retrieved_questions = QuestionRetriever.get_questions_from_code(db_session, code)
+    code = QuestionService._link_questions_with_code(db_session, questions[2:])
+    retrieved_questions = QuestionService.get_questions_from_code(db_session, code)
     assert len(retrieved_questions) == 3    

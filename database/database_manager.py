@@ -3,11 +3,14 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from pathlib import Path
 from typing import Union
 
+from database.models import Base
+
 class DatabaseManager:
     def __init__(self, db_path: Union[str, Path], echo: bool = False):
         path = Path(db_path).as_posix() if isinstance(db_path, Path) else db_path
         self.engine = create_engine(f'sqlite:///{path}', echo=echo)
         self.Session = scoped_session(sessionmaker(bind=self.engine))
+        Base.metadata.create_all(self.engine)
         self.session = None
     
     def get_session(self):
@@ -29,3 +32,12 @@ class DatabaseManager:
     def rollback(self):
         if self.session:
             self.session.rollback()
+    
+    
+
+if __name__ == "__main__":
+    from database.models import Subject
+    db = DatabaseManager(':memory:', echo=True)
+    with db.get_session() as session:
+        out = session.query(Subject).all()
+        print(out)

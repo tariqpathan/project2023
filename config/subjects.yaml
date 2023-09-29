@@ -1,0 +1,18 @@
+# list of subjects and subtopics that are supported by the application.
+topics:
+  biology:
+  - humans
+  - plants
+  - ecology
+  - other
+  chemistry:
+  - atomic_structure
+  - bonding
+  - metals
+  physics:
+  - electricity
+  - mechanics
+  - waves
+  - other
+difficulties:
+  None

@@ -7,11 +7,12 @@ from extraction_engine.managers.file_manager import FileManager
 
 class ImageFileHandler:
     IMAGE_FORMAT = "jpg"
+    IMAGE_KEY = "images"
 
-    @staticmethod
-    def get_image_path(filepath: str) -> Path:
+    @classmethod
+    def get_image_path(cls, filepath: str) -> Path:
         """Returns the path where the image should be saved."""
-        base_path = FileManager.get_filepaths("images")  # get the base path for images from FileManager
+        base_path = FileManager.get_filepaths(cls.IMAGE_KEY)  # get the base path for images from FileManager
         return FileManager.construct_path(filepath, str(base_path))  # construct the full path using FileManager
 
     @classmethod
@@ -25,12 +26,12 @@ class ImageFileHandler:
             raise IOError(f"Unable to save image: {e}")
 
     @staticmethod
-    def get_image(filename: str) -> bytes:
+    def get_image(filename: str) -> Image.Image:
         """Returns the image data for the specified filename."""
         image_path = ImageFileHandler.get_image_path(filename)
         try:
-            with open(image_path, 'rb') as image_file:
-                return image_file.read()
+            image = Image.open(image_path)
+            return image
         except FileNotFoundError:
             raise ValueError(f"Image file {image_path} not found.")
         except Exception as e:

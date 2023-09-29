@@ -12,7 +12,7 @@ class CambridgeScienceAnswerProcessor(AbstractAnswerProcessor):
         and are single letters. This method extracts the answers from the text and
         returns them as a dictionary.
         """
-        options = set(['A', 'B', 'C', 'D'])
+        options = {'A', 'B', 'C', 'D'}
         answers = {}
         lines = [t.strip() for t in text.split("\n")]
         i = 0

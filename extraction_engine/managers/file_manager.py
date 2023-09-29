@@ -95,7 +95,7 @@ class FileManager:
         """Returns the path to the file location.
 
         Args:
-            filepath_name (str): The name of the file path in the paths.json file.
+            filepath_name (str): The name of the file path in the paths.json file. TODO: Change to key
 
         Returns:
             Path: The path to the file.

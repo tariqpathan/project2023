@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, ForeignKey, Table, Column, UniqueConstraint
+from sqlalchemy import Boolean, Integer, String, ForeignKey, Table, Column, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, relationship, mapped_column
 
 
@@ -58,6 +58,7 @@ class Question(Base):
     exam = relationship('Exam', back_populates='questions')
     subtopics = relationship('Subtopic', secondary='question_subtopic', back_populates='questions')
     codes = relationship('Code', secondary='question_code', back_populates='questions')
+    # question_text = relationship('QuestionText', uselist=False, back_populates='question')
 
 
 class Subtopic(Base):
@@ -90,6 +91,18 @@ class Code(Base):
     questions = relationship('Question', secondary='question_code', back_populates='codes')
 
 
+# class QuestionText(Base):
+#     __tablename__ = 'question_texts'
+#
+#     id = mapped_column(Integer, primary_key=True)
+#     question_id = mapped_column(Integer, ForeignKey('questions.id'), nullable=False)
+#     raw_text = mapped_column(String, nullable=False)
+#     processed_text = mapped_column(String, nullable=False)
+#     is_training_data = mapped_column(Boolean, default=False)
+#
+#     question = relationship('Question', back_populates='question_texts')
+
+
 # Association table for many-to-many relationship between questions and subtopics
 question_subtopic_table = Table('question_subtopic', Base.metadata,
                                 Column('question_id', Integer, ForeignKey('questions.id'), primary_key=True),
@@ -100,14 +113,3 @@ question_code_table = Table('question_code', Base.metadata,
                             Column('question_id', Integer, ForeignKey('questions.id'), primary_key=True),
                             Column('code_id', Integer, ForeignKey('codes.id'), primary_key=True)
                             )
-
-# class QuestionCodeMapping(Base):
-#     __tablename__ = 'question_code_mappings'
-#     id = mapped_column(Integer, primary_key=True)
-#     code_str = mapped_column(String, index=True, nullable=False)
-#     question_id = mapped_column(Integer, ForeignKey('questions.id'), nullable=False)
-
-#     question = relationship('Question', back_populates='question_code_mapping')
-
-#     __table_args__ = (UniqueConstraint('code_str', 'question_id', 
-#                                        name='uc_code_mapping'),)

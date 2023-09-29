@@ -1,7 +1,6 @@
 {
   "config": "./config/config.yaml",
-  "coverpage_settings": "./config/coverpage_settings.json",
-  "images": "./static/question_images/",
-  "uploads": "./uploads",
-  "db_path": "./database/dbOne.db"
+  "images": "/Users/Tariq/Documents/birkbeck-project/static/question_images",
+  "uploads": "/Users/Tariq/Documents/birkbeck-project/uploads",
+  "db_path": "/Users/Tariq/Documents/birkbeck-project/database/dbOne.db"
 }

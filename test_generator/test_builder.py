@@ -4,7 +4,7 @@ from reportlab.lib import utils
 from typing import List, Tuple
 from database.models import Question
 from database.database_manager import DatabaseManager
-from test_generator.question_retriever import QuestionRetriever
+from test_generator.question_service import QuestionService
 from extraction_engine.managers.file_manager import FileManager
 from reportlab.lib.units import inch
 
@@ -169,12 +169,12 @@ def scale_image(image_path: str, max_width: float) -> Tuple[int, int]:
 
 # Example usage:
 if __name__=="__main__":
-    qr = QuestionRetriever()
+    qr = QuestionService()
     
     path = FileManager.get_filepaths("db_path")
     db_manager = DatabaseManager(path)
     
     with db_manager.get_session() as session:
-        questions = qr.get_random_questions(session, 10)
+        questions = qr._select_random_questions(session, 10)
     
     generate_pdf(questions, "deleteThis-testGen.pdf")

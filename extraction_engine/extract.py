@@ -22,19 +22,9 @@ def run_extraction(exam_format: str, question_pdf_path: str, answer_pdf_path: st
 
     # Fetch the db_path using FileManager
     db_path = FileManager.get_filepaths("database")
-    db_manager = DatabaseManager(':memory:') #TODO: don't forget to change
+    db_manager = DatabaseManager(db_path)
     db_initial_setup(db_manager)
     logger.info(f"Using database: {db_path.as_posix()}")
     exam_manager = ExamManager(exam_format, question_pdf_path, answer_pdf_path, db_manager)
     status = exam_manager.process()
     return status
-
-if __name__=="__main__":
-    import os
-    folder = os.path.join(os.getcwd(), "static/question_images")
-    all_files = os.listdir(folder)
-    for filename in all_files:
-        if filename.endswith(".jpg") and filename.startswith('2016-062511'):
-            os.remove(os.path.join(folder, filename))
-
-    run_extraction("cambridge_science", "phys-062511-may2016.pdf", "phys-062511-may2016-ms.pdf")

@@ -8,7 +8,7 @@ def mock_session(mocker):
 
 @pytest.fixture
 def retriever():
-    return QuestionRetriever()
+    return QuestionService()
 
 def test_get_filter_names(retriever):
     filter_names = retriever.get_filter_names()
@@ -55,9 +55,3 @@ def test__generate_code(retriever):
     def test__generate_code(self):
         code = self.retriever._generate_code()
         self.assertEqual(len(code), 6)
-
-    # Add other test methods to test other functionalities
-
-
-if __name__ == '__main__':
-    unittest.main()

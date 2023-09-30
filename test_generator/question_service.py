@@ -135,6 +135,8 @@ class QuestionService:
     @staticmethod
     def get_questions_with_code(session: Session, code_str: str,
                                 answers: bool = True, **filters) -> dict[Any, Any]:
+        logging.debug(f"Getting questions for code: {code_str}")
+
         code = session.query(Code) \
             .filter(Code.code_str == code_str) \
             .options(joinedload(Code.questions).joinedload(Question.answer)) \
@@ -154,19 +156,3 @@ class QuestionService:
                 for q in questions
             ]
         }
-
-
-if __name__ == "__main__":
-    from database.database_manager import DatabaseManager
-    from extraction_engine.managers.file_manager import FileManager
-
-    db_path = FileManager.get_filepaths("db_path")
-    db_manager = DatabaseManager(db_path)
-    qs = QuestionService()
-    # print(qs.get_filter_names())
-    with db_manager.get_session() as session:
-        # res = qr.get_questions_with_code(session, 10)
-        # print(qs.get_all_options(session))
-        questions = qs.get_questions_with_code(session, "abcd", True)
-
-    print(questions)

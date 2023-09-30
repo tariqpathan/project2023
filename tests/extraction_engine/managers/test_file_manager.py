@@ -61,6 +61,5 @@ def test_get_env_paths_or_default(mocker, monkeypatch):
     FileManager._load_paths.assert_called_once()
     assert FileManager.paths_location == Path("/env/path")
 
-# This is for running the tests if you're not using a separate test runner
 if __name__ == "__main__":
     pytest.main([__file__])

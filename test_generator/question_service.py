@@ -72,6 +72,12 @@ class QuestionService:
         code = Code(code_str=code_str)
         session.add(code)
         code.questions.extend(questions)
+        try:
+            session.commit()
+        except Exception as e:
+            logger.exception(e)
+            session.rollback()
+            raise e
         return code.code_str
 
     @classmethod
@@ -134,7 +140,7 @@ class QuestionService:
             .options(joinedload(Code.questions).joinedload(Question.answer)) \
             .one_or_none()
         if not code:
-            return []
+            return {'code': None, 'result': []}
         questions = code.questions
 
         return {

@@ -1,7 +1,7 @@
 import logging
 import time
 from create_test_db import load_db, delete_db, delete_images
-from extraction_engine.extract import run_exam_extraction
+from extraction_engine.extract import run_extraction
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     session = load_db()
     exam_format = "cambridge_science"
     try:
-        run_exam_extraction(exam_format, 'bio-may2010.pdf', 'bio-may2010-ms.pdf')
+        run_extraction(exam_format, 'bio-may2010.pdf', 'bio-may2010-ms.pdf')
     except Exception as e:
         logger.exception(e)
     

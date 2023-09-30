@@ -2,13 +2,15 @@ from PIL import Image
 from pathlib import Path
 from extraction_engine.managers.file_manager import FileManager
 
-class ImageFileHandler:
-    IMAGE_FORMAT = "jpg"
 
-    @staticmethod
-    def get_image_path(filepath: str) -> Path:
+class ImageFileHandler:
+    # IMAGE_FORMAT = ".jpg"
+    IMAGE_KEY = "images"
+
+    @classmethod
+    def get_image_path(cls, filepath: str) -> Path:
         """Returns the path where the image should be saved."""
-        base_path = FileManager.get_filepaths("images")  # get the base path for images from FileManager
+        base_path = FileManager.get_filepaths(cls.IMAGE_KEY)  # get the base path for images from FileManager
         return FileManager.construct_path(filepath, str(base_path))  # construct the full path using FileManager
 
     @classmethod
@@ -20,7 +22,7 @@ class ImageFileHandler:
             return image_save_path
         except Exception as e:
             raise IOError(f"Unable to save image: {e}")
-    
+
     @staticmethod
     def get_image(filename: str) -> bytes:
         """Returns the image data for the specified filename."""
@@ -32,7 +34,7 @@ class ImageFileHandler:
             raise ValueError(f"Image file {image_path} not found.")
         except Exception as e:
             raise IOError(f"Unable to read image: {e}")
-        
+
     @staticmethod
     def delete_image(filename: str) -> None:
         """Deletes the image with the specified filename."""

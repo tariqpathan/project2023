@@ -1,0 +1,521 @@
+Index: extraction_engine/managers/image_file_handler.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from PIL import Image\r\nfrom pathlib import Path\r\nfrom extraction_engine.managers.file_manager import FileManager\r\n\r\nclass ImageFileHandler:\r\n    IMAGE_FORMAT = \"jpg\"\r\n\r\n    @staticmethod\r\n    def get_image_path(filepath: str) -> Path:\r\n        \"\"\"Returns the path where the image should be saved.\"\"\"\r\n        base_path = FileManager.get_filepaths(\"images\")  # get the base path for images from FileManager\r\n        return FileManager.construct_path(filepath, str(base_path))  # construct the full path using FileManager\r\n\r\n    @classmethod\r\n    def save_image(cls, image: Image.Image, filename: str) -> Path:\r\n        \"\"\"Saves the given image data to the specified filename in the image directory.\"\"\"\r\n        image_save_path = ImageFileHandler.get_image_path(filename)\r\n        try:\r\n            image.save(image_save_path)\r\n            return image_save_path\r\n        except Exception as e:\r\n            raise IOError(f\"Unable to save image: {e}\")\r\n    \r\n    @staticmethod\r\n    def get_image(filename: str) -> bytes:\r\n        \"\"\"Returns the image data for the specified filename.\"\"\"\r\n        image_path = ImageFileHandler.get_image_path(filename)\r\n        try:\r\n            with open(image_path, 'rb') as image_file:\r\n                return image_file.read()\r\n        except FileNotFoundError:\r\n            raise ValueError(f\"Image file {image_path} not found.\")\r\n        except Exception as e:\r\n            raise IOError(f\"Unable to read image: {e}\")\r\n        \r\n    @staticmethod\r\n    def delete_image(filename: str) -> None:\r\n        \"\"\"Deletes the image with the specified filename.\"\"\"\r\n        image_path = ImageFileHandler.get_image_path(filename)\r\n        if not image_path.exists(): return\r\n        try:\r\n            image_path.unlink()\r\n        except FileNotFoundError:\r\n            raise ValueError(f\"Image file {image_path} not found.\")\r\n        except Exception as e:\r\n            raise IOError(f\"Unable to delete image: {e}\")
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/extraction_engine/managers/image_file_handler.py b/extraction_engine/managers/image_file_handler.py
+--- a/extraction_engine/managers/image_file_handler.py	(revision ebb4da2dd428de77bd003a7398898d06fb7df2ae)
++++ b/extraction_engine/managers/image_file_handler.py	(date 1696032611540)
+@@ -2,13 +2,15 @@
+ from pathlib import Path
+ from extraction_engine.managers.file_manager import FileManager
+ 
++
+ class ImageFileHandler:
+-    IMAGE_FORMAT = "jpg"
++    # IMAGE_FORMAT = ".jpg"
++    IMAGE_KEY = "images"
+ 
+-    @staticmethod
+-    def get_image_path(filepath: str) -> Path:
++    @classmethod
++    def get_image_path(cls, filepath: str) -> Path:
+         """Returns the path where the image should be saved."""
+-        base_path = FileManager.get_filepaths("images")  # get the base path for images from FileManager
++        base_path = FileManager.get_filepaths(cls.IMAGE_KEY)  # get the base path for images from FileManager
+         return FileManager.construct_path(filepath, str(base_path))  # construct the full path using FileManager
+ 
+     @classmethod
+@@ -20,7 +22,7 @@
+             return image_save_path
+         except Exception as e:
+             raise IOError(f"Unable to save image: {e}")
+-    
++
+     @staticmethod
+     def get_image(filename: str) -> bytes:
+         """Returns the image data for the specified filename."""
+@@ -32,7 +34,7 @@
+             raise ValueError(f"Image file {image_path} not found.")
+         except Exception as e:
+             raise IOError(f"Unable to read image: {e}")
+-        
++
+     @staticmethod
+     def delete_image(filename: str) -> None:
+         """Deletes the image with the specified filename."""
+@@ -43,4 +45,4 @@
+         except FileNotFoundError:
+             raise ValueError(f"Image file {image_path} not found.")
+         except Exception as e:
+-            raise IOError(f"Unable to delete image: {e}")
+\ No newline at end of file
++            raise IOError(f"Unable to delete image: {e}")
+Index: test_generator/question_service.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import string\r\nimport random\r\nimport logging\r\nfrom sqlalchemy import and_\r\nfrom sqlalchemy.orm import Session, joinedload\r\nfrom typing import Dict, List, Any\r\n\r\nfrom database.models import Difficulty, Exam, Code, Question, Subject, Subtopic, Answer\r\nfrom database.database_utils import get_ids_from_names\r\n\r\nlogger = logging.getLogger(__name__)\r\n\r\n\r\nclass QuestionService:\r\n    FILTER_MAP = {\r\n        'difficulty_levels': lambda x, session: Question.difficulty_id.in_(get_ids_from_names(session, Difficulty, x)),\r\n        'subtopic_names': lambda x, session: Question.subtopics.any(\r\n            Subtopic.id.in_(get_ids_from_names(session, Subtopic, x))),\r\n        'subject_names': lambda x, session: Question.exam.has(\r\n            Exam.subject_id.in_(get_ids_from_names(session, Subject, x))),\r\n    }\r\n\r\n    ATTRIBUTE_MAP = {\r\n        'difficulty_levels': ('Difficulty', 'level'),\r\n        'subtopic_names': ('Subtopic', 'name'),\r\n        'subject_names': ('Subject', 'name'),\r\n    }\r\n\r\n    @classmethod\r\n    def get_filter_names(cls) -> List[str]:\r\n        \"\"\"Returns a list of valid filter names.\"\"\"\r\n        return list(cls.FILTER_MAP.keys())\r\n\r\n    @classmethod\r\n    def _get_options(cls, session: Session, filter_name: str) -> List[str]:\r\n        \"\"\"Returns all possible options for a given filter name.\"\"\"\r\n        model_name, attribute_name = cls.ATTRIBUTE_MAP.get(filter_name, (None, None))\r\n        if not model_name or not attribute_name:\r\n            return []\r\n        model_class = globals()[model_name]  # Use the globals() function to get the class by its name\r\n        return [getattr(item, attribute_name) for item in session.query(model_class).all()]\r\n\r\n    @classmethod\r\n    def get_all_options(cls, session: Session) -> Dict[str, List[str]]:\r\n        \"\"\"Returns a dictionary of all valid filter names and their corresponding options.\"\"\"\r\n        return {filter_name: cls._get_options(session, filter_name) for filter_name in cls.get_filter_names()}\r\n\r\n    @staticmethod\r\n    def _check_code_unique(session: Session, code: str) -> bool:\r\n        \"\"\"Returns True if the hash is unique, False otherwise\"\"\"\r\n        return session.query(Code).filter(\r\n            Code.code_str == code).count() == 0\r\n\r\n    @staticmethod\r\n    def _generate_code(length: int = 6) -> str:\r\n        letters = string.ascii_lowercase\r\n        digits = string.digits\r\n        random_letters = ''.join(random.choice(letters) for i in range(length - 2))\r\n        random_digits = ''.join(random.choice(digits) for i in range(2))\r\n        return random_letters + random_digits\r\n\r\n    @classmethod\r\n    def _link_questions_with_code(cls, session: Session, questions: List[Question]) -> str:\r\n        unique = False\r\n        code_str = ''\r\n        while not unique:\r\n            code_str = cls._generate_code()\r\n            unique = cls._check_code_unique(session, code_str)\r\n        code = Code(code_str=code_str)\r\n        session.add(code)\r\n        code.questions.extend(questions)\r\n        return code.code_str\r\n\r\n    @classmethod\r\n    def _select_random_questions(cls, session: Session, num_questions: int, **filters) -> List[Question]:\r\n        \"\"\"\r\n        Get a list of random questions based on provided filters.\r\n        \r\n        :param session: SQLAlchemy session object\r\n        :param num_questions: Number of questions to retrieve\r\n        :param answers: If True, only questions with answers will be returned\r\n        :param filters: Additional filters for questions. Expected keys are:\r\n            - difficulty_levels: List of difficulty levels\r\n            - subtopic_names: List of subtopic names\r\n            - subject_names: List of subject names\r\n        :return: List of Question objects\r\n        \"\"\"\r\n\r\n        # Question.id == Answer.question_id makes sure than an answer exists\r\n        query = session.query(Question).filter(Question.id == Answer.question_id)\r\n        query_conditions = []\r\n\r\n        for filter_name, filter_value in filters.items():\r\n            if filter_name in cls.FILTER_MAP:\r\n                query_conditions.append(cls.FILTER_MAP[filter_name](filter_value, session))\r\n\r\n        if query_conditions:\r\n            query = query.filter(and_(*query_conditions))\r\n\r\n        all_ids = [x.id for x in query.all()]\r\n        if not all_ids:\r\n            return []\r\n\r\n        random_ids = random.sample(all_ids, min(num_questions, len(all_ids)))\r\n        return session.query(Question).filter(Question.id.in_(random_ids)).all()\r\n\r\n    @classmethod\r\n    def generate_questions(cls, session: Session, num_questions: int, answers: bool = True, **filters) -> Dict[\r\n        str, Any]:\r\n        \"\"\"\r\n        Generate a list of random questions based on provided filters.\r\n\r\n        :param session: SQLAlchemy session object\r\n        :param num_questions: Number of questions to retrieve\r\n        :param answers: If True, only questions with answers will be returned\r\n        :param filters: Additional filters for questions. Expected keys are:\r\n            - difficulty_levels: List of difficulty levels\r\n            - subtopic_names: List of subtopic names\r\n            - subject_names: List of subject names\r\n        :return: Dictionary containing the code and a list of Question objects\r\n        \"\"\"\r\n        selected_questions = cls._select_random_questions(session, num_questions, **filters)\r\n        code = cls._link_questions_with_code(session, selected_questions)\r\n        return cls.get_questions_with_code(session, code, answers)\r\n\r\n    @staticmethod\r\n    def get_questions_with_code(session: Session, code_str: str,\r\n                                answers: bool = True, **filters) -> dict[Any, Any]:\r\n        code = session.query(Code) \\\r\n            .filter(Code.code_str == code_str) \\\r\n            .options(joinedload(Code.questions).joinedload(Question.answer)) \\\r\n            .one_or_none()\r\n        if not code:\r\n            return []\r\n        questions = code.questions\r\n\r\n        return {\r\n            'code': code.code_str,\r\n            'result': [\r\n                {\r\n                    'id': q.id,\r\n                    'question': q.image_filename,\r\n                    'answer': q.answer.answer_text if answers else None\r\n                }\r\n                for q in questions\r\n            ]\r\n        }\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    from database.database_manager import DatabaseManager\r\n    from extraction_engine.managers.file_manager import FileManager\r\n\r\n    db_path = FileManager.get_filepaths(\"db_path\")\r\n    db_manager = DatabaseManager(db_path)\r\n    qs = QuestionService()\r\n    # print(qs.get_filter_names())\r\n    with db_manager.get_session() as session:\r\n        # res = qr.get_questions_with_code(session, 10)\r\n        # print(qs.get_all_options(session))\r\n        questions = qs.get_questions_with_code(session, \"abcd\", True)\r\n\r\n    print(questions)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/test_generator/question_service.py b/test_generator/question_service.py
+--- a/test_generator/question_service.py	(revision ebb4da2dd428de77bd003a7398898d06fb7df2ae)
++++ b/test_generator/question_service.py	(date 1696032611536)
+@@ -7,7 +7,10 @@
+ 
+ from database.models import Difficulty, Exam, Code, Question, Subject, Subtopic, Answer
+ from database.database_utils import get_ids_from_names
++from extraction_engine.managers.image_file_handler import ImageFileHandler
++from utilities.logger import setup_logging
+ 
++setup_logging()
+ logger = logging.getLogger(__name__)
+ 
+ 
+@@ -139,7 +142,7 @@
+             'result': [
+                 {
+                     'id': q.id,
+-                    'question': q.image_filename,
++                    'question': ImageFileHandler.get_image_path(q.image_filename).as_posix(),
+                     'answer': q.answer.answer_text if answers else None
+                 }
+                 for q in questions
+Index: test_generator/test_builder.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/test_generator/test_builder.py b/test_generator/create_test_pdf.py
+rename from test_generator/test_builder.py
+rename to test_generator/create_test_pdf.py
+--- a/test_generator/test_builder.py	(revision ebb4da2dd428de77bd003a7398898d06fb7df2ae)
++++ b/test_generator/create_test_pdf.py	(date 1696031147146)
+@@ -6,12 +6,14 @@
+ from database.database_manager import DatabaseManager
+ from test_generator.question_service import QuestionService
+ from extraction_engine.managers.file_manager import FileManager
++from extraction_engine.managers.image_file_handler import ImageFileHandler
+ from reportlab.lib.units import inch
+ 
+ Y_MARGIN = 0.5 * inch
+ 
+-def draw_question(c, question, y_position, question_number):
+-    
++
++def draw_question(c: canvas, question: Question, y_position: int, question_number: int) -> int:
++
+     image_path = f"./static/question_images/{question.image_filename}"
+     new_image_width, new_image_height = scale_image(image_path, c._pagesize[0])  # Full A4 width
+ 
+@@ -69,11 +71,11 @@
+     
+     """
+ 
+-
+     # Update y_position
+     y_position -= (new_image_height + 1 * inch)
+     return y_position
+ 
++
+ def draw_answers(c, questions):
+     y_position = c._pagesize[1] - 1 * inch  # Resetting y-position
+     c.setFont("Helvetica", 12)
+@@ -86,9 +88,10 @@
+             c.showPage()
+             y_position = c._pagesize[1] - 1 * inch
+ 
++
+ def generate_pdf(questions: List, file_name: str):
+     c = canvas.Canvas(file_name, pagesize=A4)
+-    
++
+     # Initialize y_position
+     y_position = c._pagesize[1] - 1 * inch
+ 
+@@ -104,6 +107,7 @@
+ 
+     c.save()
+ 
++
+ def old_generate_pdf(questions: List[Question], file_name: str):
+     c = canvas.Canvas(file_name, pagesize=A4)
+     width, height = A4  # Width and height of A4 paper in points
+@@ -112,7 +116,7 @@
+     c.setFont("Helvetica", 12)
+ 
+     # Print questions at the top
+-    y_position = height - Y_MARGIN # Starting y-position
++    y_position = height - Y_MARGIN  # Starting y-position
+     max_width = width
+ 
+     for i, question in enumerate(questions):
+@@ -127,7 +131,8 @@
+             c.showPage()
+             y_position = height - Y_MARGIN
+ 
+-        c.drawImage(image_path, Y_MARGIN, y_position - new_image_height, width=new_image_width, height=new_image_height, mask='auto')
++        c.drawImage(image_path, Y_MARGIN, y_position - new_image_height, width=new_image_width, height=new_image_height,
++                    mask='auto')
+ 
+         y_position -= (new_image_height + Y_MARGIN)  # Move down for the next question
+ 
+@@ -153,6 +158,7 @@
+ 
+     c.save()
+ 
++
+ def scale_image(image_path: str, max_width: float) -> Tuple[int, int]:
+     # Load the image
+     image = utils.ImageReader(image_path)
+@@ -167,14 +173,15 @@
+ 
+     return new_image_width, new_image_height
+ 
++
+ # Example usage:
+-if __name__=="__main__":
++if __name__ == "__main__":
+     qr = QuestionService()
+-    
+     path = FileManager.get_filepaths("db_path")
+     db_manager = DatabaseManager(path)
+-    
++
+     with db_manager.get_session() as session:
+-        questions = qr._select_random_questions(session, 10)
+-    
+-    generate_pdf(questions, "deleteThis-testGen.pdf")
++        questions = qr.get_questions_with_code(session, "abcd", True)
++    print(questions)
++
++    # generate_pdf(questions, "deleteThis-testGen.pdf")
+Index: api/question_routes.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/api/question_routes.py b/api/question_routes.py
+new file mode 100644
+--- /dev/null	(date 1696033390995)
++++ b/api/question_routes.py	(date 1696033390995)
+@@ -0,0 +1,30 @@
++from fastapi import APIRouter, Depends, HTTPException
++from sqlalchemy.orm import Session
++
++from test_generator.question_service import QuestionService
++from api.dependencies import db_manager
++
++question_router = APIRouter(
++    dependencies=[Depends(db_manager.get_session)])
++
++
++def get_db():
++    with db_manager.get_session() as db:
++        try:
++            yield db
++        except Exception as e:
++            raise HTTPException(status_code=500, detail=f"Error getting data: {e}")
++
++
++@question_router.get("/random-questions/")
++def get_random_questions(db_session: Session = Depends(get_db)):
++    return QuestionService.generate_questions(db_session, 10)
++
++
++@question_router.get("/questions/code={code}")
++def get_questions_from_code(code: str, db_session: Session = Depends(get_db)):
++    return QuestionService.get_questions_with_code(db_session, code, True)
++
++
++def setup_question_routes(app):
++    app.include_router(question_router, prefix="/api")
+Index: api/api_routes.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/api/api_routes.py b/api/general_routes.py
+rename from api/api_routes.py
+rename to api/general_routes.py
+--- a/api/api_routes.py	(revision ebb4da2dd428de77bd003a7398898d06fb7df2ae)
++++ b/api/general_routes.py	(date 1696033261196)
+@@ -6,11 +6,12 @@
+ 
+ # from database.models import Exam, Question, Subject, Subtopic, Difficulty
+ import database.database_utils as db_utils
++from test_generator.question_service import QuestionService
+ from api.dependencies import db_manager, uploads_path, load_exam_formats
+ 
+ 
+ 
+-api_router = APIRouter(
++general_router = APIRouter(
+     dependencies=[Depends(db_manager.get_session)]
+ )
+ 
+@@ -21,34 +22,37 @@
+         except Exception as e:
+             raise HTTPException(status_code=500, detail=f"Error getting data: {e}")
+ 
+-@api_router.get("/subjects/")
++@general_router.get("/subjects/")
+ def get_all_subject(db_session: Session = Depends(get_db)):
+     return db_utils.get_all_subjects(db_session)
+ 
+-@api_router.get("/subtopics/")
++@general_router.get("/subtopics/")
+ def get_all_subtopics(db_session: Session = Depends(get_db)):
+     return db_utils.get_all_subtopics(db_session)
+ 
+-@api_router.get("/difficulties/")
++@general_router.get("/difficulties/")
+ def get_all_difficulties(db_session: Session = Depends(get_db)):
+     return db_utils.get_all_difficulties(db_session)
+ 
+-@api_router.get("/subtopics/{subject_name}")
++@general_router.get("/subtopics/{subject_name}")
+ def get_subtopics_for_subject(subject_name: str, db_session: Session = Depends(get_db)):
+     subject_id = db_utils.get_subject_id(db_session, subject_name)
+     if not subject_id:
+         raise HTTPException(status_code=404, detail=f"Subject with name {subject_name} does not exist.")
+     return db_utils.get_subtopic_for_subject(db_session, subject_id)
+ 
+-@api_router.get("/examformats/")
++@general_router.get("/examformats/")
+ def get_exam_formats():
+     return load_exam_formats()
+ 
+-@api_router.get("/listfiles/")
++@general_router.get("/listfiles/")
+ def list_files():
+     pdf_files = [f.name for f in Path(uploads_path).glob("*.pdf")]
+     return {"files": pdf_files}
+ 
++
++
++
+ def setup_get_routes(app):
+-    app.include_router(api_router, prefix="/api")
++    app.include_router(general_router, prefix="/api")
+ 
+Index: api/app.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from fastapi import FastAPI\r\nfrom api.api_routes import setup_get_routes\r\nfrom api.post_routes import setup_post_routes\r\n\r\n\r\napp = FastAPI()\r\nsetup_get_routes(app)\r\nsetup_post_routes(app)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/api/app.py b/api/app.py
+--- a/api/app.py	(revision ebb4da2dd428de77bd003a7398898d06fb7df2ae)
++++ b/api/app.py	(date 1696033261205)
+@@ -1,8 +1,10 @@
+ from fastapi import FastAPI
+-from api.api_routes import setup_get_routes
++from api.general_routes import setup_get_routes
+ from api.post_routes import setup_post_routes
++from api.question_routes import setup_question_routes
+ 
+ 
+ app = FastAPI()
+ setup_get_routes(app)
+ setup_post_routes(app)
++setup_question_routes(app)
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AnalysisUIOptions\">\r\n    <option name=\"ANALYZE_INJECTED_CODE\" value=\"false\" />\r\n    <option name=\"SCOPE_TYPE\" value=\"3\" />\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9a216cc1-ee7d-4605-90f7-c8d1f81e4681\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/test_generator/question_service.py\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/tests/test_generator/test_question_service.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/database/models.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/database/models.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/test_generator/question_retriever.py\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/test_generator/test_builder.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/test_generator/test_builder.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/tests/database/test_question_retriever.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/tests/test_generator/test_question_retriever.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"develop\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2VWqCX5aUOZR7LfrWGZ6h0ALybs\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"run.code.analysis.last.selected.profile\": \"aDefault\",\r\n    \"settings.editor.selected.configurable\": \"project.propVCSSupport.DirectoryMappings\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  },\r\n  \"keyToStringList\": {\r\n    \"DatabaseDriversLRU\": [\r\n      \"sqlite\"\r\n    ],\r\n    \"com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File\": [\r\n      \"Python\"\r\n    ]\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Tariq\\PycharmProjects\\msc-project-source-code-files-22-23-tariqpathan\\tests\\test_generator\" />\r\n      <recent name=\"C:\\Users\\Tariq\\PycharmProjects\\msc-project-source-code-files-22-23-tariqpathan\\extraction_engine\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Python.question_service (1)\">\r\n    <configuration name=\"manual_label_helper\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"msc-project-source-code-files-22-23-tariqpathan\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/machine_learning\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/machine_learning/manual_label_helper.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"preprocess\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"msc-project-source-code-files-22-23-tariqpathan\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/machine_learning\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/machine_learning/preprocess.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"question_service (1)\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"msc-project-source-code-files-22-23-tariqpathan\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/test_generator\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/test_generator/question_service.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"question_service\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"msc-project-source-code-files-22-23-tariqpathan\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/test_generator\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"C:\\Users\\Tariq\\PycharmProjects\\msc-project-source-code-files-22-23-tariqpathan\\test_generator\\question_service.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"training\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"msc-project-source-code-files-22-23-tariqpathan\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/machine_learning\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/machine_learning/training.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.question_service (1)\" />\r\n        <item itemvalue=\"Python.question_service\" />\r\n        <item itemvalue=\"Python.training\" />\r\n        <item itemvalue=\"Python.preprocess\" />\r\n        <item itemvalue=\"Python.manual_label_helper\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9a216cc1-ee7d-4605-90f7-c8d1f81e4681\" name=\"Changes\" comment=\"\" />\r\n      <created>1694962057316</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1694962057316</updated>\r\n      <workItem from=\"1694962059424\" duration=\"5496000\" />\r\n      <workItem from=\"1695575008561\" duration=\"7881000\" />\r\n      <workItem from=\"1695855728579\" duration=\"12713000\" />\r\n      <workItem from=\"1695942167975\" duration=\"11801000\" />\r\n      <workItem from=\"1696014265137\" duration=\"12682000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/develop\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/msc_project_source_code_files_22_23_tariqpathan$dict_to_csv.coverage\" NAME=\"dict_to_csv Coverage Results\" MODIFIED=\"1695946180968\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/machine_learning\" />\r\n    <SUITE FILE_PATH=\"coverage/msc_project_source_code_files_22_23_tariqpathan$preprocess.coverage\" NAME=\"preprocess Coverage Results\" MODIFIED=\"1695980267081\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/machine_learning\" />\r\n    <SUITE FILE_PATH=\"coverage/msc_project_source_code_files_22_23_tariqpathan$training.coverage\" NAME=\"training Coverage Results\" MODIFIED=\"1695981560057\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/machine_learning\" />\r\n    <SUITE FILE_PATH=\"coverage/msc_project_source_code_files_22_23_tariqpathan$manual_label_helper.coverage\" NAME=\"manual_label_helper Coverage Results\" MODIFIED=\"1695945426148\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/machine_learning\" />\r\n    <SUITE FILE_PATH=\"coverage/msc_project_source_code_files_22_23_tariqpathan$question_retriever.coverage\" NAME=\"question_retriever Coverage Results\" MODIFIED=\"1696023654918\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/test_generator\" />\r\n    <SUITE FILE_PATH=\"coverage/msc_project_source_code_files_22_23_tariqpathan$question_service__1_.coverage\" NAME=\"question_service (1) Coverage Results\" MODIFIED=\"1696029348585\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/test_generator\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ebb4da2dd428de77bd003a7398898d06fb7df2ae)
++++ b/.idea/workspace.xml	(date 1696033261629)
+@@ -9,13 +9,14 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="9a216cc1-ee7d-4605-90f7-c8d1f81e4681" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/test_generator/question_service.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/tests/test_generator/test_question_service.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/api/question_routes.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/models.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/test_generator/question_retriever.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/test_generator/test_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_generator/test_builder.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/tests/database/test_question_retriever.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_generator/test_question_retriever.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/api/api_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/general_routes.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/api/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/app.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/config/paths.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/paths.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/extraction_engine/managers/image_file_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/extraction_engine/managers/image_file_handler.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/test_generator/question_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_generator/question_service.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/test_generator/test_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_generator/create_test_pdf.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -82,8 +83,8 @@
+       <recent name="C:\Users\Tariq\PycharmProjects\msc-project-source-code-files-22-23-tariqpathan\extraction_engine" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Python.question_service (1)">
+-    <configuration name="manual_label_helper" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++  <component name="RunManager" selected="Python tests.pytest in create_test_pdf.py">
++    <configuration name="preprocess" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="msc-project-source-code-files-22-23-tariqpathan" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -96,7 +97,7 @@
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning/manual_label_helper.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning/preprocess.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -105,7 +106,7 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="preprocess" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++    <configuration name="question_service (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="msc-project-source-code-files-22-23-tariqpathan" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -113,12 +114,12 @@
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+       <option name="SDK_HOME" value="" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_generator" />
+       <option name="IS_MODULE_SDK" value="true" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning/preprocess.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_generator/question_service.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -127,7 +128,7 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="question_service (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++    <configuration name="question_service" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="msc-project-source-code-files-22-23-tariqpathan" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -140,7 +141,7 @@
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_generator/question_service.py" />
++      <option name="SCRIPT_NAME" value="C:\Users\Tariq\PycharmProjects\msc-project-source-code-files-22-23-tariqpathan\test_generator\question_service.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -149,7 +150,7 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="question_service" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++    <configuration name="training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="msc-project-source-code-files-22-23-tariqpathan" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -157,12 +158,12 @@
+         <env name="PYTHONUNBUFFERED" value="1" />
+       </envs>
+       <option name="SDK_HOME" value="" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_generator" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning" />
+       <option name="IS_MODULE_SDK" value="true" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="C:\Users\Tariq\PycharmProjects\msc-project-source-code-files-22-23-tariqpathan\test_generator\question_service.py" />
++      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning/training.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -171,35 +172,30 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++    <configuration name="pytest in create_test_pdf.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+       <module name="msc-project-source-code-files-22-23-tariqpathan" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+       <option name="SDK_HOME" value="" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning" />
++      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_generator" />
+       <option name="IS_MODULE_SDK" value="true" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning/training.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
++      <option name="_new_keywords" value="&quot;&quot;" />
++      <option name="_new_parameters" value="&quot;&quot;" />
++      <option name="_new_additionalArguments" value="&quot;&quot;" />
++      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_generator/create_test_pdf.py&quot;" />
++      <option name="_new_targetType" value="&quot;PATH&quot;" />
+       <method v="2" />
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Python tests.pytest in create_test_pdf.py" />
+         <item itemvalue="Python.question_service (1)" />
+         <item itemvalue="Python.question_service" />
+         <item itemvalue="Python.training" />
+         <item itemvalue="Python.preprocess" />
+-        <item itemvalue="Python.manual_label_helper" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -215,7 +211,7 @@
+       <workItem from="1695575008561" duration="7881000" />
+       <workItem from="1695855728579" duration="12713000" />
+       <workItem from="1695942167975" duration="11801000" />
+-      <workItem from="1696014265137" duration="12682000" />
++      <workItem from="1696014265137" duration="16197000" />
+     </task>
+     <servers />
+   </component>
+@@ -250,6 +246,7 @@
+     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$preprocess.coverage" NAME="preprocess Coverage Results" MODIFIED="1695980267081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
+     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$training.coverage" NAME="training Coverage Results" MODIFIED="1695981560057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
+     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$manual_label_helper.coverage" NAME="manual_label_helper Coverage Results" MODIFIED="1695945426148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
++    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_builder_py.coverage" NAME="pytest in test_builder.py Coverage Results" MODIFIED="1696031147155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_generator" />
+     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$question_retriever.coverage" NAME="question_retriever Coverage Results" MODIFIED="1696023654918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_generator" />
+     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$question_service__1_.coverage" NAME="question_service (1) Coverage Results" MODIFIED="1696029348585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_generator" />
+   </component>
+Index: config/paths.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n    \"config\": \"./config/config.yaml\",\r\n    \"images\": \"./static/question_images/\",\r\n    \"uploads\": \"./uploads\",\r\n    \"db_path\": \"./database/dbOne.db\",\r\n    \"database\": \"./database/test-run.db\",\r\n    \"test-database\": \"./database/test.db\"\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/paths.json b/config/paths.json
+--- a/config/paths.json	(revision ebb4da2dd428de77bd003a7398898d06fb7df2ae)
++++ b/config/paths.json	(date 1696031885113)
+@@ -1,6 +1,6 @@
+ {
+     "config": "./config/config.yaml",
+-    "images": "./static/question_images/",
++    "images": "/Users/Tariq/Documents/birkbeck-project/static/question_images/",
+     "uploads": "./uploads",
+     "db_path": "./database/dbOne.db",
+     "database": "./database/test-run.db",

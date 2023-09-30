@@ -3,13 +3,15 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from extraction_engine.extract import run_extraction
 
+
 class ExtractionRequest(BaseModel):
     question_paper: str
     answer_paper: str
     exam_format: str
 
 
-post_router = APIRouter(dependencies = [])
+post_router = APIRouter(dependencies=[])
+
 
 # TODO: Complete
 @post_router.post("/extract/")
@@ -26,6 +28,7 @@ def initiate_extraction(request: ExtractionRequest):
 
 def setup_post_routes(app):
     app.include_router(post_router, prefix="/api")
+
 
 """
     Fetch the list of available papers and populate a dropdown or list element.

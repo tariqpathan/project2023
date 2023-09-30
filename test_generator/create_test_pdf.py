@@ -6,12 +6,14 @@ from database.models import Question
 from database.database_manager import DatabaseManager
 from test_generator.question_service import QuestionService
 from extraction_engine.managers.file_manager import FileManager
+from extraction_engine.managers.image_file_handler import ImageFileHandler
 from reportlab.lib.units import inch
 
 Y_MARGIN = 0.5 * inch
 
-def draw_question(c, question, y_position, question_number):
-    
+
+def draw_question(c: canvas, question: Question, y_position: int, question_number: int) -> int:
+
     image_path = f"./static/question_images/{question.image_filename}"
     new_image_width, new_image_height = scale_image(image_path, c._pagesize[0])  # Full A4 width
 
@@ -69,10 +71,10 @@ def draw_question(c, question, y_position, question_number):
     
     """
 
-
     # Update y_position
     y_position -= (new_image_height + 1 * inch)
     return y_position
+
 
 def draw_answers(c, questions):
     y_position = c._pagesize[1] - 1 * inch  # Resetting y-position
@@ -86,9 +88,10 @@ def draw_answers(c, questions):
             c.showPage()
             y_position = c._pagesize[1] - 1 * inch
 
+
 def generate_pdf(questions: List, file_name: str):
     c = canvas.Canvas(file_name, pagesize=A4)
-    
+
     # Initialize y_position
     y_position = c._pagesize[1] - 1 * inch
 
@@ -104,6 +107,7 @@ def generate_pdf(questions: List, file_name: str):
 
     c.save()
 
+
 def old_generate_pdf(questions: List[Question], file_name: str):
     c = canvas.Canvas(file_name, pagesize=A4)
     width, height = A4  # Width and height of A4 paper in points
@@ -112,7 +116,7 @@ def old_generate_pdf(questions: List[Question], file_name: str):
     c.setFont("Helvetica", 12)
 
     # Print questions at the top
-    y_position = height - Y_MARGIN # Starting y-position
+    y_position = height - Y_MARGIN  # Starting y-position
     max_width = width
 
     for i, question in enumerate(questions):
@@ -127,7 +131,8 @@ def old_generate_pdf(questions: List[Question], file_name: str):
             c.showPage()
             y_position = height - Y_MARGIN
 
-        c.drawImage(image_path, Y_MARGIN, y_position - new_image_height, width=new_image_width, height=new_image_height, mask='auto')
+        c.drawImage(image_path, Y_MARGIN, y_position - new_image_height, width=new_image_width, height=new_image_height,
+                    mask='auto')
 
         y_position -= (new_image_height + Y_MARGIN)  # Move down for the next question
 
@@ -153,6 +158,7 @@ def old_generate_pdf(questions: List[Question], file_name: str):
 
     c.save()
 
+
 def scale_image(image_path: str, max_width: float) -> Tuple[int, int]:
     # Load the image
     image = utils.ImageReader(image_path)
@@ -167,14 +173,15 @@ def scale_image(image_path: str, max_width: float) -> Tuple[int, int]:
 
     return new_image_width, new_image_height
 
+
 # Example usage:
-if __name__=="__main__":
+if __name__ == "__main__":
     qr = QuestionService()
-    
     path = FileManager.get_filepaths("db_path")
     db_manager = DatabaseManager(path)
-    
+
     with db_manager.get_session() as session:
-        questions = qr._select_random_questions(session, 10)
-    
-    generate_pdf(questions, "deleteThis-testGen.pdf")
+        questions = qr.get_questions_with_code(session, "abcd", True)
+    print(questions)
+
+    # generate_pdf(questions, "deleteThis-testGen.pdf")

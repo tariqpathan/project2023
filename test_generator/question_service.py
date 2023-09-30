@@ -7,7 +7,10 @@ from typing import Dict, List, Any
 
 from database.models import Difficulty, Exam, Code, Question, Subject, Subtopic, Answer
 from database.database_utils import get_ids_from_names
+from extraction_engine.managers.image_file_handler import ImageFileHandler
+from utilities.logger import setup_logging
 
+setup_logging()
 logger = logging.getLogger(__name__)
 
 
@@ -139,7 +142,7 @@ class QuestionService:
             'result': [
                 {
                     'id': q.id,
-                    'question': q.image_filename,
+                    'question': ImageFileHandler.get_image_path(q.image_filename).as_posix(),
                     'answer': q.answer.answer_text if answers else None
                 }
                 for q in questions

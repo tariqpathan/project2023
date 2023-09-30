@@ -2,11 +2,11 @@ from PIL import Image
 from typing import List, Optional
 from database.models import Exam, Question
 from extraction_engine.managers.config_manager import ConfigManager
-from extraction_engine.factories.ImageProcessorFactory import ImageProcessorFactory
+from extraction_engine.factories.image_processor_factory import ImageProcessorFactory
 from extraction_engine.factories.question_factory import QuestionFactory
 from extraction_engine.processing.abstract_image_processor import AbstractImageProcessor
 from extraction_engine.processing.cambridge_science_image_processor import CambridgeScienceImageProcessor
-from extraction_engine.processing.ImageTextProcessor import ImageTextProcessor
+from extraction_engine.processing.image_text_processor import ImageTextProcessor
 
 import logging
 

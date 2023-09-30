@@ -53,6 +53,6 @@ def list_files():
 
 
 
-def setup_get_routes(app):
+def setup_general_routes(app):
     app.include_router(general_router, prefix="/api")
 

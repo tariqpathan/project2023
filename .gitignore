@@ -2,12 +2,11 @@
 *.jpg
 *.pdf
 *.pyc
+*.log
 project-env
 deleteThis*
-codesofar.py
 create_test_resources.py
-directory-structure.yml
-static
+static/*
 **/tests/test-resources/*
-uploads
+uploads/*
 __pycache__/

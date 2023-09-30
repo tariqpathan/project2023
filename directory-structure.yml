@@ -1,0 +1,102 @@
+project_root:
+  api:
+    - app.py
+    - dependencies.py
+    - extract_routes.py
+    - general_routes.py
+    - pdf_routes.py
+    - question_routes.py
+  config:
+    - config.yaml
+    - paths.json
+    - subjects.yaml
+  database:
+    - database_manager.py
+    - database_setup.py
+    - database_utils.py
+    - models.py
+  extraction_engine:
+    - extract.py
+    factories:
+      - answer_factory.py
+      - exam_factory.py
+      - image_processor_factory.py
+      - question_factory.py
+    managers:
+      - answer_manager.py
+      - config_manager.py
+      - exam_manager.py
+      - file_manager.py
+      - image_file_handler.py
+      - question_manager.py
+    pdf_processing:
+      - pdf_cover_extractor.py
+      - pdf_manager.py
+      - pdf_utils.py
+    processing:
+      - abstract_answer_processor.py
+      - abstract_image_processor.py
+      - cambridge_science_answer_processor.py
+      - cambridge_science_image_processor.py
+      - image_text_processor.py
+  test_generator:
+    - question_pdf_creator.py
+    - question_service.py
+  utilities:
+    - exceptions.py
+    - logger.py
+  static:
+    question_images:
+      - 1.jpg # example name
+    uploads:
+      - exam_paper.pdf
+      - answer_paper.jpg
+  - .gitignore
+  - requirements.txt
+  tests:
+    database:
+      - test_app_database.py
+      - test_create_db.py
+      - test_database_manager.py
+      - test_database_setup.py
+      - test_database_utils.py
+      - test_models.py
+    extraction_engine:
+      - test_extract.py
+      factories:
+        - test_answer_factory.py
+        - test_exam_factory.py
+        - test_image_processor_factory.py
+        - test_question_factory.py
+      managers:
+        - test_answer_manager.py
+        - test_config_manager.py
+        - test_exam_manager.py
+        - test_file_manager.py
+        - test_image_file_handler.py
+        - test_question_manager.py
+      pdf_processing:
+        - test_pdf_cover_extractor.py
+        - test_pdf_manager.py
+        - test_pdf_utils.py
+      processing:
+        - test_abstract_answer_processor.py
+        - test_abstract_image_processor.py
+        - test_cs_answer_processor.py
+        - test_cs_image_processor.py
+        - test_image_text_processor.py
+    test_generator:
+      - test_question_pdf_creator.py
+      - test_question_retriever.py
+      - test_question_service.py
+    utilities:
+      - test_exceptions.py
+    test_resources:
+      - test_exam_paper.pdf
+      - test_answer_paper.jpg
+      - test_config.yaml
+      - test_paths.json
+      - test_coverpage_settings.json
+      -test_answer_cover.txt
+      -test_question_cover.txt
+    

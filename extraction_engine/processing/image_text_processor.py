@@ -27,7 +27,7 @@ class ImageTextProcessor():
     def get_question_number(self, image: Image.Image, psm_mode:int=7) -> Optional[int]:
         """Extracts a number from image or else returns None"""
         cropped = self._question_crop(image)
-        cropped.save(f"static/debug/{time.time() * 1000}.jpg")
+        # cropped.save(f"static/debug/{time.time() * 1000}.jpg")
         text = ImageTextProcessor.get_text_from_image(cropped, psm_mode)
         if text.isdigit():
             return int(text)

@@ -4,9 +4,11 @@
 *.pyc
 *.log
 project-env
+venv
 deleteThis*
 create_test_resources.py
-static/*
-**/tests/test-resources/*
+static/debug/*
+static/question-images/*
+tests/test-resources/*
 uploads/*
-__pycache__/
+__pycache__

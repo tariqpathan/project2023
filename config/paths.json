@@ -2,7 +2,7 @@
     "config": "./config/config.yaml",
     "images": "./static/question_images/",
     "uploads": "./uploads",
-    "db_path": "./database/dbOne.db",
-    "database": "./database/test-run.db",
-    "test-database": "./database/test.db"
+    "database": "atmt.db",
+    "debugging-images": "./static/debug/",
+    "test-database": "./tests/test_resources/test.db"
 }

@@ -4,5 +4,6 @@
     "uploads": "./uploads",
     "database": "atmt.db",
     "debugging-images": "./static/debug/",
-    "test-database": "./tests/test_resources/test.db"
+    "test-database": "./tests/test_resources/test.db",
+    "db_path": "./database/dbOne.db"
 }

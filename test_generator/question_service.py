@@ -134,7 +134,7 @@ class QuestionService:
 
     @staticmethod
     def get_questions_with_code(session: Session, code_str: str,
-                                answers: bool = True, **filters) -> dict[Any, Any]:
+                                answers: bool = True) -> dict[Any, Any]:
         logging.debug(f"Getting questions for code: {code_str}")
 
         code = session.query(Code) \

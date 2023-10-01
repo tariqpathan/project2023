@@ -8,7 +8,7 @@ from database.database_manager import DatabaseManager
 from extraction_engine.managers.file_manager import FileManager
 
 
-DATABASE_KEY = "database" # Name of the key that stores the database path in the config file
+DATABASE_KEY = "db_path" # Name of the key that stores the database path in the config file
 UPLOADS_KEY = "uploads"
 EXAM_CONFIG_KEY = "config"
 

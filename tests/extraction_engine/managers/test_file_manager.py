@@ -15,7 +15,7 @@ def test_to_path():
     assert path == Path("/some/path")
 
     with pytest.raises(ValueError):
-        FileManager._to_path('incorrect')    
+        FileManager._to_path(12)
 
 def test_construct_path():
     path = FileManager.construct_path("file.txt")

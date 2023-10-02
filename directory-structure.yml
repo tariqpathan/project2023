@@ -97,6 +97,6 @@ project_root:
       - test_config.yaml
       - test_paths.json
       - test_coverpage_settings.json
-      -test_answer_cover.txt
-      -test_question_cover.txt
+      -tr_answer_cover.txt
+      -tr_question_cover.txt
     

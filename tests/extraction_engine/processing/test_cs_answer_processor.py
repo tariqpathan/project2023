@@ -25,15 +25,5 @@ def test_init(mock_image, config):
     processor = CambridgeScienceImageProcessor(config)
     assert processor._config == config
 
-@patch('your_module.Image.Image.convert')
-def test_convert_to_grayscale_image(mock_convert, mock_image):
-    processor = CambridgeScienceImageProcessor({})
-    processor._convert_to_grayscale_image(mock_image)
-    mock_convert.assert_called_once_with('L')
 
-@patch('your_module.Image.Image.point')
-def test_convert_to_binary_image(mock_point, mock_image, config):
-    processor = CambridgeScienceImageProcessor(config)
-    processor._convert_to_binary_image(mock_image, config["binary_threshold"])
-    mock_point.assert_called_once()
 

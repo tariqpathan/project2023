@@ -10,26 +10,14 @@
   <component name="ChangeListManager">
     <list default="true" id="9a216cc1-ee7d-4605-90f7-c8d1f81e4681" name="Changes" comment="updated api routes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/directory-structure.yml" beforeDir="false" afterPath="$PROJECT_DIR$/directory-structure.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extraction_engine/managers/question_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/extraction_engine/managers/question_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/factories/test_image_processor_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/factories/test_image_processor_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/managers/test_answer_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/managers/test_answer_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/managers/test_config_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/managers/test_config_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/managers/test_exam_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/managers/test_exam_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/managers/test_file_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/managers/test_file_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/managers/test_question_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/managers/test_question_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/processing/test_cs_answer_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/processing/test_cs_answer_processor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_resources/test-ms-2010-cover.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_resources/tr-ms-2010-cover.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_resources/test-ms-2016-cover.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_resources/tr-ms-2016-cover.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_resources/test-qp-2010-cover.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_resources/tr-qp-2010-cover.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_resources/test-qp-2016-cover.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_resources/tr-qp-2016-cover.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_resources/test_answer_cover.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_resources/tr_answer_cover.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_resources/test_question_cover.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_resources/tr_question_cover.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../msc-project-source-code-files-22-23-tariqpathan\exportToHTML" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -205,7 +193,7 @@
       <workItem from="1695942167975" duration="11801000" />
       <workItem from="1696014265137" duration="16720000" />
       <workItem from="1696057812577" duration="297000" />
-      <workItem from="1696195096049" duration="15861000" />
+      <workItem from="1696195096049" duration="17148000" />
     </task>
     <servers />
   </component>
@@ -256,7 +244,7 @@
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$question_retriever.coverage" NAME="question_retriever Coverage Results" MODIFIED="1696023654918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_generator" />
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test__generate_code.coverage" NAME="pytest for test_question_service.test__generate_code Coverage Results" MODIFIED="1696196198826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_models_test_unique_subject_name.coverage" NAME="pytest for test_models.test_unique_subject_name Coverage Results" MODIFIED="1696201276550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
-    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1696236050872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1696236103876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test__select_random_questions.coverage" NAME="pytest for test_question_service.test__select_random_questions Coverage Results" MODIFIED="1696198892471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_new_test__get_options.coverage" NAME="pytest for test_question_service_new.test__get_options Coverage Results" MODIFIED="1696195411768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_manager_test_create_question.coverage" NAME="pytest for test_question_manager.test_create_question Coverage Results" MODIFIED="1696208856456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/managers" />

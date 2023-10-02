@@ -64,11 +64,18 @@ class QuestionService:
 
     @classmethod
     def _link_questions_with_code(cls, session: Session, questions: List[Question]) -> str:
+        max_attempts = 100
         unique = False
+        attempts = 0
         code_str = ''
         while not unique:
+            if attempts > max_attempts:
+                raise Exception("Failed to generate a unique code.")
+
             code_str = cls._generate_code()
             unique = cls._check_code_unique(session, code_str)
+            attempts += 1
+
         code = Code(code_str=code_str)
         session.add(code)
         code.questions.extend(questions)

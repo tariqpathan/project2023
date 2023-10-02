@@ -87,8 +87,8 @@ project_root:
         - test_image_text_processor.py
     test_generator:
       - test_question_pdf_creator.py
-      - test_question_retriever.py
-      - test_question_service.py
+      - deprecated_test_question_retriever.py
+      - test_question_service_old.py
     utilities:
       - test_exceptions.py
     test_resources:

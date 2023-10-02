@@ -61,7 +61,7 @@ def test_get_ids_from_names(db_session):
 
     assert dbu.get_ids_from_names(db_session, Subject, ['Math', 'Physics']) == [sub1.id, sub2.id]
 
-# def test_get_from_name(db_session): #TODO: marked for removal
+# def test_get_from_name(db_session):
 #     sub1 = Subject(name='Math')
 #     db_session.add(sub1)
 #     db_session.commit()

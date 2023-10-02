@@ -1,7 +1,7 @@
 
 from database.models import Exam, Subject, Subtopic, Difficulty
 
-#TODO: check if this is needed
+
 def get_subject_id(session, subject_name):
     """Retrieve the ID of the subject with the given name."""
     subject = session.query(Subject).filter(Subject.name == subject_name).first()
@@ -16,7 +16,7 @@ def get_all_subjects(session):
 def get_ids_from_names(session, model, names):
     return [item.id for item in session.query(model.id).filter(model.name.in_(names)).all()]
 
-# #TODO: marked for removal
+
 # def get_from_name(session, model, name):
 #     return session.query(model).filter(model.name == name).first()
 

@@ -8,18 +8,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a216cc1-ee7d-4605-90f7-c8d1f81e4681" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_09_2023_01_25_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_09_2023_01_25__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/question_routes.py" afterDir="false" />
+    <list default="true" id="9a216cc1-ee7d-4605-90f7-c8d1f81e4681" name="Changes" comment="updated api routes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/general_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/post_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/post_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/paths.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/paths.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extraction_engine/managers/image_file_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/extraction_engine/managers/image_file_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/directory-structure.yml" beforeDir="false" afterPath="$PROJECT_DIR$/directory-structure.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_generator/question_pdf_creator.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_generator/question_pdf_creator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_generator/question_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_generator/question_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_generator/test_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_generator/create_test_pdf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/database/test_database_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/database/test_database_setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/database/test_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/database/test_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/factories/test_answer_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/factories/test_answer_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/factories/test_exam_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/factories/test_exam_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/extraction_engine/factories/test_question_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/extraction_engine/factories/test_question_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_generator/test_question_pdf_creator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_generator/test_question_pdf_creator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_generator/test_question_retriever.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_generator/deprecated_test_question_retriever.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_generator/test_question_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_generator/test_question_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +30,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Unit Test" />
         <option value="Python Script" />
       </list>
     </option>
@@ -40,6 +42,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -86,101 +91,13 @@
       <recent name="C:\Users\Tariq\PycharmProjects\msc-project-source-code-files-22-23-tariqpathan\extraction_engine" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in create_test_pdf.py">
-    <configuration name="preprocess" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="msc-project-source-code-files-22-23-tariqpathan" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning/preprocess.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="question_service (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="msc-project-source-code-files-22-23-tariqpathan" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_generator" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_generator/question_service.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="question_service" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="msc-project-source-code-files-22-23-tariqpathan" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_generator" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Tariq\PycharmProjects\msc-project-source-code-files-22-23-tariqpathan\test_generator\question_service.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="msc-project-source-code-files-22-23-tariqpathan" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning/training.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in create_test_pdf.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for test_exam_factory.test_get_or_create_exam_when_exam_not_exists">
+    <configuration name="pytest for test_exam_factory.test_get_or_create_exam_when_exam_exists" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="msc-project-source-code-files-22-23-tariqpathan" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_generator" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/extraction_engine/factories" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -188,17 +105,85 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_generator/create_test_pdf.py&quot;" />
+      <option name="_new_target" value="&quot;test_exam_factory.test_get_or_create_exam_when_exam_exists&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_exam_factory.test_get_or_create_exam_when_exam_not_exists" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="msc-project-source-code-files-22-23-tariqpathan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/extraction_engine/factories" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_exam_factory.test_get_or_create_exam_when_exam_not_exists&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_question_factory.test_create_question" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="msc-project-source-code-files-22-23-tariqpathan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/extraction_engine/factories" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_question_factory.test_create_question&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_question_factory.test_save_and_get_image" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="msc-project-source-code-files-22-23-tariqpathan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/extraction_engine/factories" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_question_factory.test_save_and_get_image&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_exam_factory.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="msc-project-source-code-files-22-23-tariqpathan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/extraction_engine/factories" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/extraction_engine/factories/test_exam_factory.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in create_test_pdf.py" />
-        <item itemvalue="Python.question_service (1)" />
-        <item itemvalue="Python.question_service" />
-        <item itemvalue="Python.training" />
-        <item itemvalue="Python.preprocess" />
+        <item itemvalue="Python tests.pytest for test_exam_factory.test_get_or_create_exam_when_exam_not_exists" />
+        <item itemvalue="Python tests.pytest in test_exam_factory.py" />
+        <item itemvalue="Python tests.pytest for test_exam_factory.test_get_or_create_exam_when_exam_exists" />
+        <item itemvalue="Python tests.pytest for test_question_factory.test_create_question" />
+        <item itemvalue="Python tests.pytest for test_question_factory.test_save_and_get_image" />
       </list>
     </recent_temporary>
   </component>
@@ -216,6 +201,7 @@
       <workItem from="1695942167975" duration="11801000" />
       <workItem from="1696014265137" duration="16720000" />
       <workItem from="1696057812577" duration="297000" />
+      <workItem from="1696195096049" duration="8771000" />
     </task>
     <servers />
   </component>
@@ -247,11 +233,49 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$dict_to_csv.coverage" NAME="dict_to_csv Coverage Results" MODIFIED="1695946180968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
-    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$preprocess.coverage" NAME="preprocess Coverage Results" MODIFIED="1695980267081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test__link_questions_with_code.coverage" NAME="pytest for test_question_service.test__link_questions_with_code Coverage Results" MODIFIED="1696196811607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_app_database_py.coverage" NAME="pytest in test_app_database.py Coverage Results" MODIFIED="1696201416959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test__get_questions_by_filters.coverage" NAME="pytest for test_question_service.test__get_questions_by_filters Coverage Results" MODIFIED="1696199381429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_question_service_2_test_get_questions_with_code_test_get_questions_with_invalid_code.coverage" NAME="pytest for question_service_2.test_get_questions_with_code.test_get_questions_with_invalid_code Coverage Results" MODIFIED="1696195202879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_builder_py.coverage" NAME="pytest in test_builder.py Coverage Results" MODIFIED="1696031147155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_exam_factory_test_get_or_create_exam_when_exam_not_exists.coverage" NAME="pytest for test_exam_factory.test_get_or_create_exam_when_exam_not_exists Coverage Results" MODIFIED="1696204356118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/factories" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_question_service_py.coverage" NAME="pytest in test_question_service.py Coverage Results" MODIFIED="1696199440473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_factory_test_create_question.coverage" NAME="pytest for test_question_factory.test_create_question Coverage Results" MODIFIED="1696203660789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/factories" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test__get_options.coverage" NAME="pytest for test_question_service.test__get_options Coverage Results" MODIFIED="1696196202090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_models_test_unique_exam_code.coverage" NAME="pytest for test_models.test_unique_exam_code Coverage Results" MODIFIED="1696201393507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_pdf_creator_test_draw_rectangle_and_number.coverage" NAME="pytest for test_question_pdf_creator.test_draw_rectangle_and_number Coverage Results" MODIFIED="1696199931997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_models_py.coverage" NAME="pytest in test_models.py Coverage Results" MODIFIED="1696200833388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$training.coverage" NAME="training Coverage Results" MODIFIED="1695981560057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$manual_label_helper.coverage" NAME="manual_label_helper Coverage Results" MODIFIED="1695945426148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
-    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_builder_py.coverage" NAME="pytest in test_builder.py Coverage Results" MODIFIED="1696031147155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_pdf_creator_test_draw_single_question.coverage" NAME="pytest for test_question_pdf_creator.test_draw_single_question Coverage Results" MODIFIED="1696200095027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_old_test_get_filter_names.coverage" NAME="pytest for test_question_service_old.test_get_filter_names Coverage Results" MODIFIED="1696195303903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test_get_all_options.coverage" NAME="pytest for test_question_service.test_get_all_options Coverage Results" MODIFIED="1696196207551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_database_setup_py.coverage" NAME="pytest in test_database_setup.py Coverage Results" MODIFIED="1696200492326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_database_manager_py.coverage" NAME="pytest in test_database_manager.py Coverage Results" MODIFIED="1696201421912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$question_retriever.coverage" NAME="question_retriever Coverage Results" MODIFIED="1696023654918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_factories.coverage" NAME="pytest in factories Coverage Results" MODIFIED="1696201440714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/factories" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test__generate_code.coverage" NAME="pytest for test_question_service.test__generate_code Coverage Results" MODIFIED="1696196198826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_database_setup_test_add_subject.coverage" NAME="pytest for test_database_setup.test_add_subject Coverage Results" MODIFIED="1696200426521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_models_test_unique_subject_name.coverage" NAME="pytest for test_models.test_unique_subject_name Coverage Results" MODIFIED="1696201276550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_answer_factory_TestAnswerFactory.coverage" NAME="pytest for test_answer_factory.TestAnswerFactory Coverage Results" MODIFIED="1696201997656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/factories" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test_get_filter_names.coverage" NAME="pytest for test_question_service.test_get_filter_names Coverage Results" MODIFIED="1696195452149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test__select_random_questions.coverage" NAME="pytest for test_question_service.test__select_random_questions Coverage Results" MODIFIED="1696198892471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test__check_code_unique.coverage" NAME="pytest for test_question_service.test__check_code_unique Coverage Results" MODIFIED="1696196380873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_new_test__get_options.coverage" NAME="pytest for test_question_service_new.test__get_options Coverage Results" MODIFIED="1696195411768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
     <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$question_service__1_.coverage" NAME="question_service (1) Coverage Results" MODIFIED="1696029348585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_database_utils_py.coverage" NAME="pytest in test_database_utils.py Coverage Results" MODIFIED="1696200503315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_pdf_creator_test_scale_image.coverage" NAME="pytest for test_question_pdf_creator.test_scale_image Coverage Results" MODIFIED="1696199829119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_question_factory_py.coverage" NAME="pytest in test_question_factory.py Coverage Results" MODIFIED="1696203010752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/factories" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_exam_factory_py.coverage" NAME="pytest in test_exam_factory.py Coverage Results" MODIFIED="1696203956971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/factories" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$preprocess.coverage" NAME="preprocess Coverage Results" MODIFIED="1695980267081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_question_pdf_creator_py.coverage" NAME="pytest in test_question_pdf_creator.py Coverage Results" MODIFIED="1696200050752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_models_test_question_difficulty_relation.coverage" NAME="pytest for test_models.test_question_difficulty_relation Coverage Results" MODIFIED="1696200825410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/database" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_exam_factory_test_get_or_create_exam_when_exam_exists.coverage" NAME="pytest for test_exam_factory.test_get_or_create_exam_when_exam_exists Coverage Results" MODIFIED="1696203939500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/factories" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test_get_questions_with_code_test_get_questions_with_invalid_code.coverage" NAME="pytest for test_question_service.test_get_questions_with_code.test_get_questions_with_invalid_code Coverage Results" MODIFIED="1696195279341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test_get_questions_with_code.coverage" NAME="pytest for test_question_service.test_get_questions_with_code Coverage Results" MODIFIED="1696197707910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_factory_test_save_and_get_image.coverage" NAME="pytest for test_question_factory.test_save_and_get_image Coverage Results" MODIFIED="1696203640728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/factories" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_test__link_questions_with_code_failure.coverage" NAME="pytest for test_question_service.test__link_questions_with_code_failure Coverage Results" MODIFIED="1696196808200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_in_test_image_processor_factory_py.coverage" NAME="pytest in test_image_processor_factory.py Coverage Results" MODIFIED="1696203003590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/extraction_engine/factories" />
+    <SUITE FILE_PATH="coverage/msc_project_source_code_files_22_23_tariqpathan$pytest_for_test_question_service_new_test_get_questions_with_code_test_get_questions_with_invalid_code.coverage" NAME="pytest for test_question_service_new.test_get_questions_with_code.test_get_questions_with_invalid_code Coverage Results" MODIFIED="1696195331283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/test_generator" />
   </component>
 </project>

@@ -3,8 +3,6 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib import utils
 from typing import List, Tuple, Dict, Any
-# from database.models import Question
-# from test_generator.question_service import QuestionService
 from reportlab.lib.units import inch
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
@@ -65,7 +63,7 @@ def draw_single_question(c: canvas.Canvas, ques_img_path: str, question_id: int,
     Draws a single question image on the PDF along with a question number.
     
     :param c: Canvas object for PDF drawing
-    :param question: Question object containing data
+    :param ques_img_path: Path to the question image
     :param y_position: The Y-coordinate for the drawing
     :param question_number: The index number of the question
     :return: Updated y_position

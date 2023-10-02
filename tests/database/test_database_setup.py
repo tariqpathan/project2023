@@ -1,13 +1,12 @@
 # Test for create_db.py
 from database.models import Base, Subject, Exam
 from database.database_manager import DatabaseManager
-import os
+from sqlalchemy.exc import IntegrityError
 import pytest
 
 @pytest.fixture(scope='function')
-def db_manager(tmpdir):
-    db_path = tmpdir.join("test.db")
-    db_manager = DatabaseManager(db_path)
+def db_manager():
+    db_manager = DatabaseManager(":memory:")
     Base.metadata.create_all(db_manager.engine)
     yield db_manager  # this is where the testing happens
     Base.metadata.drop_all(db_manager.engine)
@@ -23,4 +22,5 @@ def test_add_subject(db_manager):
 
         subject = Subject(name='Math')
         session.add(subject)
-        session.commit()
+        with pytest.raises(IntegrityError):
+            session.commit()
